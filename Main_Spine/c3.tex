@@ -1,0 +1,52 @@
+% !TeX root = ../main.tex
+\chapter{摸鱼的算法}
+\echapter{Algorithm of Underwork}
+
+
+\begin{algorithm}[H]
+	\caption{Event Detection}
+	\label{algo:event1}
+	\LinesNumbered
+	\KwIn{FFT Bins $B_{1}, B_{2}, B_{3}, ..., B_{n}$}
+	\KwOut{Event start point $S$, end point $E$}
+	\For{i=1:n}{	
+		\eIf{max($B_{i}$) : max($B_{(i+4)}$)$>$-80}{
+			$S$=i; \tcp*{Start Point}
+		\For{j=S:n}{
+			\eIf{max($B_{j}$) : max($B_{(j+4)}$)$<$-100}{
+				$E$=j; \tcp*{End Point}
+				Return [$S,E$];
+			}{j++;}
+		}
+	}{
+	i++;}
+}
+\end{algorithm}
+
+\lstinputlisting[style=sty_basic,language=matlab,caption={test algorithm}]{pso.m}
+
+
+
+\subsection{摸鱼的历史}
+\esubsection{History of Underwork}
+
+\subsection{摸鱼的历史}
+\esubsection{History of Underwork}
+
+\zhlipsum[12,7]
+
+\subsection{摸鱼的历史}
+\esubsection{History of Underwork}
+
+\subsection{摸鱼的历史}
+\esubsection{History of Underwork}
+
+\blindtext
+
+\blindtext
+
+\subsection{摸鱼的历史}
+\esubsection{History of Underwork}
+
+\subsection{摸鱼的历史}
+\esubsection{History of Underwork}
