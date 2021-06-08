@@ -97,13 +97,13 @@ If you have any questions about the template, please submit an issue directly on
 - Main_Miscellaneous: 放置非正文章节的文字内容
 - Reference: 放置参考文献数据库文件(.bib)
 - Materials: 放置模板相关资源
-  - Materials/BiblographyStyles: 放置参考文献样式
-  - Materials/Fonts: 放置字体文件（为减小工程体积未放置字体，请自行添加）
+  - Materials/BiblographyStyles: 放置参考文献样式（已修改过确保中英文献时`等`能正确显示）
+  - Materials/Fonts: 放置字体文件（以防未安装字体）
   - Materials/Icons: 放置学校的相关标识
   - Materials/Requirement: 放置校方要求
-  - Materials/Tools: 放置由作者提供的简单小脚本
   - Materials/Word-Templates: 放置校方提供的 Microsoft Word 模板
-- Materials/Requirements/学科专业翻译/: 放置学科、专业的标准翻译文件
+  - Materials/Tools: 放置由作者提供的简单小脚本
+- Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/: 放置学科、专业的标准翻译文件
 
 **文件**
 - clear.bat/sh: 清理临时文件脚本
