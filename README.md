@@ -183,7 +183,7 @@ xelatex main.tex
 \newacronym[description=逻辑卷管理器]{lvm}{LVM}{Logical Volume Manager}
 ```
 
-只有在正文使用命令恰当引用的缩略词才会在缩略词表中列出。正文中引用缩略词时，使用 `glossaries` 宏包提供的 `\gls` 、`\Gls`（首字母大写）或 `\glspl`（复数形式）等命令引用缩略词的 `<label>`。
+本模板会导入所有添加到 `glossary.tex` 中的词汇。正文中引用缩略词时，使用 `glossaries` 宏包提供的 `\gls` 、`\Gls`（首字母大写）或 `\glspl`（复数形式）等命令引用缩略词的 `<label>`。
 
 具体使用方法参考[glossaries宏包文档](https://www.ctan.org/tex-archive/macros/latex/contrib/glossaries/)。
 
