@@ -40,9 +40,9 @@
 %%% 文档类信息 %%%
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\ProvidesClass{XJTU-thesis}[2021/06/01 1.0.0 Xi'an Jiaotong University Degree Thesis Template]
+\ProvidesClass{XJTU-thesis}[2021/06/11 1.1.0 Xi'an Jiaotong University Degree Thesis Template]
 \def\xjtuthesis{XJTU-thesis}
-\def\meta@version{1.0.0}
+\def\meta@version{1.1.0}
 \def\metaversion{\meta@version}
 
 
@@ -1061,6 +1061,7 @@
 \setlength{\cftbeforesubsecskip}{0pt}
 \setlength{\cftbeforechapskip}{0pt}
 
+% 实在不想这样 但是没办法 手动添加 `声明'
 \newcommand\tableofchinesecontents{
   \if@twocolumn
     \@restonecoltrue\onecolumn
@@ -1077,6 +1078,7 @@
   \pdfbookmark{目~~~~录}{CONTENTS-zh}
   \@starttoc{toc}
   \if@restonecol\twocolumn\fi
+  \noindent 声明
 }
 
 \newcommand\engcontentsname{CONTENTS}
@@ -1095,24 +1097,25 @@
     }{\MakeUppercase\engcontentsname}}
   \pdfbookmark{\engcontentsname}{\engcontentsname}
   \@starttoc{toe}
-  \if@restonecol\twocolumn\fi
+  \if@restonecol\twocolumn\fi  
+  \noindent Declarations
 }
 \newcommand\addengcontents[2]{%
     \addcontentsline{toe}{#1}{\protect\numberline{\csname the#1\endcsname}#2}
+}
+\newcommand\addchscontents[2]{%
+    \addcontentsline{toc}{#1}{\protect\numberline{\csname the#1\endcsname}#2}
 }
 \newcommand\addengappendice[2]{%
     \addcontentsline{toe}{#1}{theappendix}#2
 }
 
-% 实在不想这样 但是没办法 手动添加 `声明'
 \renewcommand{\thesistableofcontens}{
   \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
   \begin{spacing}{1.5}
   \tableofchinesecontents
-  \noindent 声明
   \clearpage
   \tableofengcontents
-  \noindent Declarations
   \cleardoublepage
   \end{spacing}
 }
@@ -1178,43 +1181,54 @@
 \makeglossaries
 \glsaddall
 
+\newcommand{\itemi}{}
 
-
+% TODO use latex3 compress these command into on type
 \newcommand{\xchapter}[2]{
   \hypersetup{bookmarksdepth=-2}
-  \chapter{#1}
+  \renewcommand{\itemi}{#1}
+  \ifthesis@english
+    \renewcommand{\itemi}{#2}
+  \fi
+  \stoptocwriting
+  \chapter{\itemi}
+  \resumetocwriting
+  \addchscontents{chapter}{#1}
   \addengcontents{chapter}{#2}
   \hypersetup{bookmarksdepth=2}
-  \ifthesis@english
-    \pdfbookmark[0]{\thechapter~~#2}{#2}
-  \else
-    \pdfbookmark[0]{\thechapter~~#1}{#2-zh}
-  \fi
+  \pdfbookmark[0]{\thechapter~~\itemi}{#2}
 }
 
 \newcommand{\xsection}[2]{
   \hypersetup{bookmarksdepth=-2}
-  \section{#1}
+  \renewcommand{\itemi}{#1}
+  \ifthesis@english
+    \renewcommand{\itemi}{#2}
+  \fi
+  \stoptocwriting
+  \section{\itemi}
+  \resumetocwriting
+  \addchscontents{section}{#1}
   \addengcontents{section}{#2}
   \hypersetup{bookmarksdepth=2}
-  \ifthesis@english
-    \pdfbookmark[1]{\thesection~~#2}{#2}
-  \else
-    \pdfbookmark[1]{\thesection~~#1}{#2-zh}
-  \fi
+  \pdfbookmark[1]{\thesection~~\itemi}{#2}
 }
 
 \newcommand{\xsubsection}[2]{
   \hypersetup{bookmarksdepth=-2}
-  \subsection{#1}
+  \renewcommand{\itemi}{#1}
+  \ifthesis@english
+    \renewcommand{\itemi}{#2}
+  \fi
+  \stoptocwriting
+  \subsection{\itemi}
+  \resumetocwriting
+  \addchscontents{subsection}{#1}
   \addengcontents{subsection}{#2}
   \hypersetup{bookmarksdepth=2}
-  \ifthesis@english
-    \pdfbookmark[2]{\thesubsection~~#2}{#2}
-  \else
-    \pdfbookmark[2]{\thesubsection~~#1}{#2-zh}
-  \fi
+  \pdfbookmark[2]{\thesubsection~~\itemi}{#2}
 }
+
 
 %%% Body %%%
 %%% 正文部分 %%%

@@ -2,20 +2,19 @@
 % !TEX encoding = UTF-8 Unicode
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% select the basic options of this thesis/dissertation (this document will use thesis for convenience)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% select the basic style of this thesis/dissertation (this document will use thesis for convenience)
 %% 选择论文的基本类型
 
 \documentclass[
     doctor,     % 必选项：   {master, doctor} 此处不区分专业/学术学位，在下面学科类型处区分
                 % Mandatory: {master, doctor} No difference between Academic degree and Professional degree,
-                %                             but be careful about the option `\degree' and `subject'
+                %                             but be careful about the arguments in `\degree' and `\subject'
     % english,  % 可选项：   英文正文请选择此项
-                % Optional:  For english main content, It will not generate Titlepage and Table of Contents in Chinese,
-                %            and change some auto-generated matter into English
-    % blind,    % 可选项：   论文用于盲审请选择此项，将不会产生致谢(全文)、答辩委员会会议决议(内容)、
+                % Optional:  For english main content, It will change some auto-generated matter into English
+    % blind,    % 可选项：   论文用于盲审请选择此项，将不会产生致谢(内容)、答辩委员会会议决议(内容)、
                 %            常规评阅人名单(内容)，注意请自行修改 `攻读学位期间取得的研究成果' 内的内容格式
-                % Optional:  For blind review, It will not generate Acknowledgements(All), Decision of Defense Committee(Content),
+                % Optional:  For blind review, It will not generate Acknowledgements(Content), Decision of Defense Committee(Content),
                 %            General Reviewers List(Content), CHANGE THE STYLE of Achievements BY YOURSELF
 ]{XJTU-thesis}
 
@@ -108,11 +107,10 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 注意：根据校方要求，以下所有页面顺序不可调整，英文写作的论文要求请咨询后自行调整
-%% Notice: The order of these pages are defined in the requirements of the University, If the thesis written in english has a different requriment, please adjust it by yourself, if these configuration cannot fullfill the requirements, tell me in github issues.
+%% 注意：根据校方要求，以下所有页面顺序不可调整
+%% Notice: The order of these pages are defined in the requirements of the University.
 
 \begin{document}
-
 % [自动生成] 中英题名页
 % [Auto Generate] Chinese English Title Page
 \thesistitles
@@ -121,21 +119,21 @@
 % [Auto Generate] Defense Committee Pages
 \thesiscommittes
 
-% [自动生成] 生成摘要页 修改 Main_Miscellaneous/abstract_chs/eng.tex 中的内容
-% [Auto Generate] Abstract, Rewrite your content in Main_Miscellaneous/abstract_chs/eng.tex
+% 生成摘要页 修改 Main_Miscellaneous/abstract_chs/eng.tex 中的内容
+% Abstract, Rewrite your content in Main_Miscellaneous/abstract_chs/eng.tex
 \thesisabstract
 
-% [自动生成] 中英目录页
-% [Auto Generate] Table of Contents
+% 中英目录页
+% Table of Contents
 \thesistableofcontens
 
-% [自动生成] 主要符号表 修改 Main_Miscellaneous/glossary.tex 中的内容
-% [Auto Generate] Glossaries Page, Rewrite your content in Main_Miscellaneous/glossary.tex
+% 主要符号表 修改 Main_Miscellaneous/glossary.tex 中的内容
+% Glossaries Page, Rewrite your content in Main_Miscellaneous/glossary.tex
 \thesisglossarylist
 
-% 正文 注意：英文正文写作时，中、英标题都填写为英文标题，同时，参数的顺序有意义，不要乱放
+% 正文 注意：英文正文写作时，中、英标题还是先中后英标题；同时，下面参数的顺序有意义，不要乱放
 % Main contents, X of cX is the chapter of the thesis, you can change it if you want, the order matters
-% and FILL THE BOTH CHINESE AND ENGLISH NAME OF TITLES IN ENGLISH IF YOU USE `english' option
+% and KEEP Chinese Title in the First, English Titile in the Second, if you use `english' option
 
 \thesisbody{
     Main_Spine/c1,
