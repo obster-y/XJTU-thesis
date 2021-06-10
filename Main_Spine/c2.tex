@@ -1,69 +1,27 @@
 % !TeX root = ../main.tex
-\chapter{摸鱼的定义}
-\echapter{Definition of Underwork}
+\xchapter{浮动体：图表}{Floating: Figures, Tables}
 
-\subsection{摸鱼的历史}
-\esubsection{History of Underwork}
+\xsection{图}{Figures}
 
-\subsection{摸鱼的历史}
-\esubsection{History of Underwork}
+\xsubsection{应该使用 subcaption 而不是 subfigure}{Use subcaption instead of subfigure}
 
-
-
-\begin{table}[H]
-    \caption{左对齐}
-    \begin{tabularx}{\textwidth}{XX}
-    \toprule
-        \textbf{Symptom} & \textbf{Metric} \\
-    \midrule
-        Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
-        Class that is large and complex & WMC is high\\
-        Class that has a lot of methods that only operate on a proper subset of the instance variable set & TCC is low\\
-    \bottomrule
-    \end{tabularx}
-\end{table}
-
-\begin{figure}[H]
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[height=5.8cm]{xjtu_blue.pdf}
-        \subcaption{蓝色校徽}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\linewidth}
-        \centering
-        \includegraphics[height=6cm]{xjtu_gray.pdf}
-        \subcaption{灰色校徽}
-        \label{subfig:icon}
-    \end{subfigure}
-    \caption{校徽}
-\end{figure}
-
-\begin{table}[H]
-    \caption{居中}
-    \begin{tabularx}{\textwidth}{YY}
-    \toprule
-        \textbf{Symptom} & \textbf{Metric} \\
-    \midrule
-        Class  & ATFD \\
-        Class  & WMC \\
-        Class  & TCC \\
-    \bottomrule
-    \end{tabularx}
-\end{table}
-
-
-\begin{table}[H]
-    \caption{左对齐}
-    \begin{tabularx}{\textwidth}{XX}
-    \toprule
-        \textbf{Symptom} & \textbf{Metric} \\
-    \midrule
-        Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
-        Class that is large and complex & WMC is high\\
-        Class that has a lot of methods that only operate on a proper subset of the instance variable set & TCC is low\\
-    \bottomrule
-    \end{tabularx}
-\end{table}
+\begin{verbatim}
+    \begin{figure}[H]
+        \begin{subfigure}[b]{0.49\linewidth}
+            \centering
+            \includegraphics[height=5.8cm]{xjtu_blue.pdf}
+            \subcaption{蓝色校徽}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\linewidth}
+            \centering
+            \includegraphics[height=6cm]{xjtu_gray.pdf}
+            \subcaption{灰色校徽}
+            \label{subfig:icon}
+        \end{subfigure}
+        \caption{校徽}
+    \end{figure}
+    
+\end{verbatim}
 
 \begin{figure}[H]
     \begin{subfigure}[b]{0.49\linewidth}
@@ -81,6 +39,40 @@
 \end{figure}
 
 
+\xsection{表}{Tables}
+
+表格要求采用三线表，与文字齐宽，顶线与底线线粗为 $1.5$ pt，中线线粗是 $1$ pt，如表 \ref{tab_ch2} 所示\footnote{{\color{red}注意}：图表中的变量与单位通过斜线 $/$ 隔开。}。
+
+通栏表格应使用 tabularx 环境：
+
+\begin{verbatim}
+    \begin{table}[H]
+        \caption{左对齐}
+        \begin{tabularx}{\textwidth}{XX}
+        \toprule
+            \textbf{Symptom} & \textbf{Metric} \\
+        \midrule
+            Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
+            Class that is large and complex & WMC is high\\
+            Class that has a lot of methods that only operate on a proper subse&\\
+        \bottomrule
+        \end{tabularx}
+    \end{table}
+\end{verbatim}
+
+\begin{table}[H]
+    \caption{左对齐}
+    \begin{tabularx}{\textwidth}{XX}
+    \toprule
+        \textbf{Symptom} & \textbf{Metric} \\
+    \midrule
+        Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
+        Class that is large and complex & WMC is high\\
+        Class that has a lot of methods that only operate on a proper subse & \\
+    \bottomrule
+    \end{tabularx}
+\end{table}
+
 \begin{table}[H]
     \caption{居中}
     \begin{tabularx}{\textwidth}{YY}
@@ -94,3 +86,17 @@
     \end{tabularx}
 \end{table}
 
+\begin{table}[!ht]
+	\renewcommand{\arraystretch}{1.2}
+	\centering\wuhao
+	\caption{表题也是五号字} \label{tab_ch2} \vspace{2mm}
+	\begin{tabularx}{\textwidth}{*{4}Y}
+	\toprule[1.5pt]
+		Interference & DOA / degree & Bandwidth / MHz & INR / dB \\
+	\midrule[1pt]
+		1 & $-30$ & 20 & 60 \\
+		2 & 20 & 10 & 50 \\
+		3 & 40 & 5 & 40 \\
+	\bottomrule[1.5pt]
+	\end{tabularx}
+\end{table}

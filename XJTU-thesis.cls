@@ -27,11 +27,6 @@
 %% COMPONETS        %% 文章结构   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% 参考文献 ，等
-% 中英区别
-% 页码 图表
-% 打印 电子版？空白页？填在哪里
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +67,7 @@
 }
 \ProcessOptions\relax
 
-\LoadClass[12pt,twoside,]{book}
+\LoadClass[12pt,twoside,openany]{book}
 
 \ifdeg@bachelor\relax\else
   \ifdeg@master\relax\else
@@ -196,9 +191,9 @@
 %%% 页边距 %%%
 \RequirePackage[
   a4paper,
-  left=26mm, 
-  right=26mm, 
-  top=2.1cm, 
+  left=26mm,
+  right=26mm,
+  top=2.1cm,
   bottom=2cm,
   includehead,
   includefoot,
@@ -217,6 +212,7 @@
 \RequirePackage{emptypage}
 \RequirePackage{pdfpages}
 
+% 根据图书馆要求，电子版纸质版完全对应。要求标题页，答辩委员会，摘要，目录，主要符号表，第一章，不论如何都应从奇数页开始；之后所有页面不在区分奇偶页。声明页不编号，单独附在最后。
 \newcommand\pagecheck{%
   \if@openright
     \cleardoublepage
@@ -226,7 +222,7 @@
 }
 
 
-
+% 英文
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -524,7 +520,7 @@
 
 \ifthesis@english
   \declaretheorem[name={Proof},style=style_proof,unnumbered,preheadhook={\setlength{\parindent}{5.4em}}]{proof}
-  \declaretheorem[name={Theorem},style=style_theorem,numberwithin=chapter]{theorem} 
+  \declaretheorem[name={Theorem},style=style_theorem,numberwithin=chapter]{theorem}
   \declaretheorem[name={Axiom},style=style_theorem,numberlike=theorem]{axiom}
   \declaretheorem[name={Corollary},style=style_theorem,numberlike=theorem]{corollary}
   \declaretheorem[name={Lemma},style=style_theorem,numberlike=theorem]{lemma}
@@ -537,7 +533,7 @@
   \declaretheorem[name={Conjecture},style=style_theorem,numberlike=theorem]{conjecture}
 \else
   \declaretheorem[name={证明},style=style_proof,unnumbered,preheadhook={\setlength{\parindent}{5.1em}}]{proof}
-  \declaretheorem[name={定理},style=style_theorem,numberwithin=chapter]{theorem} 
+  \declaretheorem[name={定理},style=style_theorem,numberwithin=chapter]{theorem}
   \declaretheorem[name={公理},style=style_theorem,numberlike=theorem]{axiom}
   \declaretheorem[name={推论},style=style_theorem,numberlike=theorem]{corollary}
   \declaretheorem[name={引理},style=style_theorem,numberlike=theorem]{lemma}
@@ -549,12 +545,6 @@
   \declaretheorem[name={问题},style=style_theorem,numberlike=theorem]{problem}
   \declaretheorem[name={猜想},style=style_theorem,numberlike=theorem]{conjecture}
 \fi
-
-% 定义新的环境标志
-% \theoremsymbol{$\Diamond$} \newtheorem{definition}{\hskip 2em \hei 定义}[chapter]
-% \theoremsymbol{$\blacklozenge$} \newtheorem{example}{\hskip 2em \hei 例}[chapter]
-% \theoremsymbol{$\square$} \newtheorem{theorem}{\hskip 2em \hei 定理}[chapter]
-% \theoremsymbol{$\blacksquare$} \newtheorem*{proof}{\hskip 2em \hei 证明}
 
 
 %%% footnote %%%
@@ -630,8 +620,8 @@
 \renewcommand{\footrulewidth}{0pt}
 
 \fancyhf{}
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter~~~#1}{}}
 \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
+
 
 
 %%% title %%%
@@ -647,9 +637,9 @@
 \titleformat{\chapter}[block]
   {\centering\fontsize{16pt}{16pt}\selectfont\thispagestyle{fancy}}{\arabic{chapter}}{1em}{}
 \titleformat{\section}[block]
-  {\fontsize{15pt}{15pt}\heiti\selectfont}{\arabic{chapter}.\arabic{section}}{7pt}{}
+  {\fontsize{15pt}{15pt}\selectfont}{\arabic{chapter}.\arabic{section}}{7pt}{}
 \titleformat{\subsection}[block]
-  {\fontsize{14pt}{14pt}\heiti\selectfont}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{7pt}{}
+  {\fontsize{14pt}{14pt}\selectfont}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{7pt}{}
 \titleformat{\subsubsection}[block]
   {\fontsize{12pt}{12pt}\selectfont}{\arabic{subsubsection}）}{6pt}{}
 \titleformat{\paragraph}[block]
@@ -713,7 +703,8 @@
 \AtBeginEnvironment{table}{
   \def\@floatboxreset{\centering}
 }
-\AtBeginEnvironment{tabular}{\xiaowu}
+\AtBeginEnvironment{tabular}{\wuhao}
+\AtBeginEnvironment{tabularx}{\wuhao}
 
 
 %%% caption %%%
@@ -738,6 +729,7 @@
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
 \AtBeginDocument{
   \renewcommand\thelstlisting{\arabic{chapter}-\arabic{lstlisting}}
+
 }
 \renewcommand{\thealgocf}{\arabic{chapter}-\arabic{algocf}}
 
@@ -772,53 +764,24 @@
 \RequirePackage[hyphens]{xurl}
 \urlstyle{rm}
 
-% \ifxjtu@pdflinks
-%     \RequirePackage{hyperref}
-%     \ifxjtu@colorlinks
-%         \hypersetup{
-%             bookmarksnumbered=true,
-%             bookmarksopen=true,
-%             bookmarksopenlevel=1,
-%             breaklinks=true,
-%             colorlinks=true,
-%             linkcolor=blue,
-%             anchorcolor=blue,
-%             citecolor=green,
-%             plainpages=false,
-%             % pdfpagelabels, % comment this to reduce warning
-%             pdfborder=0 0 0,
-%         }
-%     \else
-%         \hypersetup{
-%             bookmarksnumbered=true,
-%             bookmarksopen=true,
-%             bookmarksopenlevel=1,
-%             breaklinks=true,
-%             colorlinks=false,
-%             plainpages=false,
-%             % pdfpagelabels, % comment this to reduce warning
-%             pdfborder={0 0 0.7},
-%             citebordercolor={0 0 1}
-%         }
-%     \fi
-%     \urlstyle{same}
-% \fi
-
 \RequirePackage[hyperfootnotes=false,
     bookmarksnumbered=true,
     bookmarksopen=true,
-    bookmarksdepth=4,
+    bookmarksdepth=2,
+%    bookmarks=false,
     breaklinks=true,
     hidelinks=true,
     pdfborder={0 0 0},
     citebordercolor={0 0 1},
-    colorlinks=false,  
+    colorlinks=false,
     citecolor=black,
     linkcolor=black,
     urlcolor=black,
+    psdextra=true,
 ]{hyperref}
-
-\hypersetup{bookmarksdepth=5}
+\RequirePackage{bookmark}
+\pdfstringdefDisableCommands{\let\backslash\textbackslash}
+\hypersetup{bookmarksdepth=2}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -843,7 +806,6 @@
 \newcommand{\thesisreviewers}{}
 \newcommand{\thesisdeclarations}{}
 
-
 %%% title page %%%
 %%% 题名页 %%%
 \newcommand{\zhasscociateinfo}{
@@ -865,29 +827,35 @@
   }
 }
 \renewcommand{\thesistitles}{
-  \ifthesis@english\else
-    \thispagestyle{empty}
-    % \pdfbookmark{题名页}{Title Page}
-    \begin{center}
-      \vskip 1.2cm
-      \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\
-      \vskip 1.2cm
-      \fontsize{22pt}{22pt}\selectfont \chinesedegreename 学位论文\\
-      \vskip 3.5cm
-      \sanhao {\bfseries \zh@thetitle}\\
-      \vskip 6cm
-      \begin{spacing}{2.5}\sanhao
-        学位申请人： \zh@theauthor\\
-        指导教师： \zh@theadvisor\\
-        \zhasscociateinfo\\
-        学科名称： \zh@thesubject\\
-        \zh@thesubmitdate\\
-      \end{spacing}
-    \end{center}
-    \pagecheck
-  \fi
   \thispagestyle{empty}
-  % \pdfbookmark{Title Page}{Title Page}
+  \ifthesis@english
+    \pdfbookmark{Title Page (Chinese)}{Title Page (Chinese)}
+  \else
+    \pdfbookmark{题名页}{Title Page (Chinese)}
+  \fi
+  \parbox[t][1.2cm]{2.5cm}{}
+  \begin{center}
+
+    \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\[1.7cm]
+    \fontsize{22pt}{22pt}\selectfont \chinesedegreename 学位论文\\
+    \vskip 3.5cm
+    \sanhao {\bfseries \zh@thetitle}\\
+    \vfill
+    \begin{spacing}{2.5}\sanhao
+      学位申请人： \zh@theauthor\\
+      指导教师： \zh@theadvisor\\
+      \zhasscociateinfo\\
+      学科名称： \zh@thesubject\\
+      \zh@thesubmitdate\\
+    \end{spacing}
+  \end{center}
+  \cleardoublepage
+  \thispagestyle{empty}
+  \ifthesis@english
+    \pdfbookmark{Title Page (English)}{Title Page (English)}
+  \else
+    \pdfbookmark{Title Page}{Title Page (English)}
+  \fi
   \begin{center}
     \vskip 1.2cm
     \sanhao {\bfseries \en@thetitle}\\
@@ -909,7 +877,7 @@
       \en@thesubmitdate\\
     \end{spacing}
   \end{center}
-  \pagecheck
+  \cleardoublepage
 }
 
 
@@ -923,15 +891,40 @@
     \clist_set_from_seq:NN \l_tmpb_clist \l_tmpa_seq
     \seq_gput_right:Nx \g_defense_committee_seq \l_tmpb_clist
 }
+
 \tl_set:Nn \g_dc_tabular_tl {\sanhao}
+
+
+\box_new:N \l_bp_set_to_box
+\cs_new_protected:Npn \bp_box_set_to:NNn #1 #2 #3
+  {
+    \hbox_set:Nn \l_bp_set_to_box {#3}
+    \dim_set:Nn #2 { #1 \l_bp_set_to_box }
+    \box_set_eq:NN \l_bp_set_to_box \c_empty_box
+  }
+\cs_new_protected:Npn \bp_set_to_height:Nn { \bp_box_set_to:NNn \box_ht:N }
+\cs_new_protected:Npn \bp_set_to_depth:Nn  { \bp_box_set_to:NNn \box_dp:N }
+\cs_new_protected:Npn \bp_set_to_width:Nn  { \bp_box_set_to:NNn \box_wd:N }
+\cs_new:Npn \WidthOfSpace { \tex_fontdimen:D 2 \tex_font:D }
+
 \NewDocumentCommand \gencommitteelist {}{
-    \seq_gpop_left:NN \g_defense_committee_seq \l_dcc_tl
-    \tl_gput_right:Nn \g_dc_tabular_tl {\hskip 2em {\clist_use:Nn \l_dcc_tl {}}：&\underline{\hskip 10em}（注：主席）\\}
-    \seq_map_variable:NNn \g_defense_committee_seq \i {
-      \tl_gput_right:Nn \g_dc_tabular_tl {\sanhao}
-      \tl_gput_right:Nx \g_dc_tabular_tl 
-      {\hskip 2em {\clist_use:Nn \i {}}：&\underline{\hskip 10em}\\}
-    }
+  \fp_new:N \l_moriambar_ratio_fp
+  \seq_gpop_left:NN \g_defense_committee_seq \l_dcc_tl
+
+  \dim_new:N \spaceWidth
+  \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \l_dcc_tl 1}
+
+  \tl_gput_right:Nn \g_dc_tabular_tl {{\clist_item:Nn \l_dcc_tl 1 \clist_item:Nn \l_dcc_tl 3}：&\sanhao\underline{\parbox[t]{10em}{\clist_item:Nn \l_dcc_tl 2}}\xiaowu（注：主席）\\}
+
+
+
+  \seq_map_variable:NNn \g_defense_committee_seq \i {
+    \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \i 2}
+    \tl_gput_right:Nn \g_dc_tabular_tl {\sanhao}
+    \tl_gput_right:Nx \g_dc_tabular_tl {{\clist_item:Nn \i 1 \clist_item:Nn \i 3}：&}
+    \tl_gput_right:Nn \g_dc_tabular_tl {\sanhao}
+    \tl_gput_right:Nx \g_dc_tabular_tl {\underline{\exp_not:N \parbox[t]{10em}{\clist_item:Nn \i 2} }\\}
+  }
 }
 \NewDocumentCommand \defencecommittelist {}{
   \tl_use:N \g_dc_tabular_tl
@@ -941,7 +934,12 @@
 \renewcommand{\thesiscommittes}{
   \gencommitteelist
   \thispagestyle{empty}
-  \parbox[t][7mm][t]{\textwidth}{}
+  \ifthesis@english
+    \pdfbookmark{Defense Committee}{Defense Committee}
+  \else
+    \pdfbookmark{答辩委员会}{Defense Committee-zh}
+  \fi
+  \parbox[t][5mm][t]{\textwidth}{}
   \begin{center}
     \sanhao \bfseries \chinesedegreename 学位论文答辩委员会
   \end{center}
@@ -950,39 +948,43 @@
     \sanhao \bfseries \zh@thetitle
   \end{center}\end{spacing}
   \vfill
-  \begin{center} 
+  \begin{center}
     \renewcommand{\arraystretch}{2.5}
     \begin{tabular}{rl}
       \multicolumn{1}{l}{\sanhao 答辩人：\zh@theauthor}&\\
       \multicolumn{1}{l}{\sanhao 答辩委员会委员：}&\\
       \defencecommittelist
       \multicolumn{1}{l}{\sanhao 答辩时间：\zh@thedefensedate}&\\
-      \multicolumn{1}{l}{\sanhao 答辩地点：\zh@thedefenseloc}&\\
+      \multicolumn{2}{l}{\sanhao 答辩地点：\zh@thedefenseloc}\\
     \end{tabular}
     \renewcommand{\arraystretch}{1}
   \end{center}
-  \pagecheck
+  \cleardoublepage
 }
 
 
 %%% abstract %%%
 %%% 摘要 %%%
+\AtBeginEnvironment{document}{\pagenumbering{Roman}}
 \newenvironment{chineseabstract}{
-  % \ifthesis@english
-  %   \pdfbookmark{ABSTRACT (Chinese)}{ABSTRACT (Chinese)}
-  % \else
-  %   \pdfbookmark{摘要}{ABSTRACT (Chinese)}
-  % \fi
+  \ifthesis@english
+    \pdfbookmark{ABSTRACT (Chinese)}{ABSTRACT (Chinese)}
+  \else
+    \pdfbookmark{摘~~~~要}{ABSTRACT (Chinese)}
+  \fi
   \setlength{\parskip}{0.25\baselineskip}
-  \chapter*{摘~~~~~要}
-  \addcontentsline{toc}{chapter}{摘~~要}
+  \chapter*{摘~~~~要}
+
+  \hypersetup{bookmarksdepth=-2}
+  \addcontentsline{toc}{chapter}{摘~~~~要}
   \addcontentsline{toe}{chapter}{ABSTRACT (Chinese)}
+  \hypersetup{bookmarksdepth=2}
   \markboth{摘~~~~要}{摘~~~~要}
 }{\clearpage}
 
 \newcommand{\chinesekeywordstype}[2]{
   \noindent
-  \begin{minipage}[t]{\linewidth} 
+  \begin{minipage}[t]{\linewidth}
   \vspace{0.1\baselineskip}
   \newcommand{\chskeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries 关~~键~~词：}
   \parbox[t]{\widthof{\chskeywords}}{\chskeywords}
@@ -995,9 +997,16 @@
 }
 
 \newenvironment{englishabstract}{
+  \ifthesis@english
+    \pdfbookmark{ABSTRACT (English)}{ABSTRACT (English)}
+  \else
+    \pdfbookmark{ABSTRACT}{ABSTRACT (English)}
+  \fi
   \chapter*{ABSTRACT}
+  \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{ABSTRACT}
   \addcontentsline{toe}{chapter}{ABSTRACT (English)}
+  \hypersetup{bookmarksdepth=2}
   \markboth{ABSTRACT}{ABSTRACT}
   \setlength{\parindent}{0em}
   \setlength{\parskip}{0.5\baselineskip}
@@ -1018,32 +1027,28 @@
 }
 
 \renewcommand{\thesisabstract}{
-  \pagestyle{fancy}  
+  \pagestyle{fancy}
   \fancyhf{}
   \setcounter{page}{1}
   \fancyhead[CE]{\fontsize{10.5pt}{12.6pt}\selectfont\display@header}
-  \fancyhead[CO]{\fontsize{10.5pt}{12.6pt}\selectfont\nouppercase{\leftmark}}
+  \fancyhead[CO]{\fontsize{10.5pt}{12.6pt}\selectfont\nouppercase\leftmark}
   \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
-  \ifthesis@english
-    \input{Main_Miscellaneous/abstract_eng}
-  \else
-    \input{Main_Miscellaneous/abstract_chs}
-    \pagecheck
-    \input{Main_Miscellaneous/abstract_eng}
-  \fi
-  \pagecheck
+  \input{Main_Miscellaneous/abstract_chs}
+  \cleardoublepage
+  \input{Main_Miscellaneous/abstract_eng}
+  \cleardoublepage
 }
 
 
 % %%% table of contents %%%
 % %%% 目录 %%%
 
-\RequirePackage{titletoc} 
+\RequirePackage{titletoc}
 \RequirePackage{tocloft}
 \setcounter{tocdepth}{2}
 
 % 点间距
-\renewcommand*\cftdotsep{.072}
+\renewcommand*\cftdotsep{0.75}
 % 添加第7级标题
 \newcommand*\l@subsubparagraph{\@dottedtocline{6}{14em}{7em}}
 \newcommand{\toclevel@subsubparagraph}{6}
@@ -1069,6 +1074,7 @@
     \@mkboth{
       \MakeUppercase\contentsname
     }{\MakeUppercase\contentsname}}
+  \pdfbookmark{目~~~~录}{CONTENTS-zh}
   \@starttoc{toc}
   \if@restonecol\twocolumn\fi
 }
@@ -1087,10 +1093,10 @@
     \@mkboth{
       \MakeUppercase\engcontentsname
     }{\MakeUppercase\engcontentsname}}
+  \pdfbookmark{\engcontentsname}{\engcontentsname}
   \@starttoc{toe}
   \if@restonecol\twocolumn\fi
 }
-
 \newcommand\addengcontents[2]{%
     \addcontentsline{toe}{#1}{\protect\numberline{\csname the#1\endcsname}#2}
 }
@@ -1098,20 +1104,16 @@
     \addcontentsline{toe}{#1}{theappendix}#2
 }
 
-\newcommand\echapter[1]{\addengcontents{chapter}{#1}}
-\newcommand\esection[1]{\addengcontents{section}{#1}}
-\newcommand\esubsection[1]{\addengcontents{subsection}{#1}}
-\newcommand\eappendix[1]{\addengappendice{#1}}
-
 % 实在不想这样 但是没办法 手动添加 `声明'
 \renewcommand{\thesistableofcontens}{
+  \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
   \begin{spacing}{1.5}
-  \ifthesis@english\else
-    \tableofchinesecontents
-    \noindent 声明
-  \fi
+  \tableofchinesecontents
+  \noindent 声明
+  \clearpage
   \tableofengcontents
   \noindent Declarations
+  \cleardoublepage
   \end{spacing}
 }
 \def\temp{\relax}
@@ -1151,26 +1153,68 @@
 }
 
 \newcommand{\thesisglossarylist}{
+
   \ifthesis@english
     \newcommand{\glsmark}{Glossary}
+    \pdfbookmark{\glsmark}{Glossary}
   \else
     \newcommand{\glsmark}{主要符号表}
+    \pdfbookmark{\glsmark}{Glossary-zh}
   \fi
 
+  \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
   \markboth{\glsmark}{\glsmark}
-  
+
   \setlength\glsdescwidth{.9\textwidth}
-  % \pdfbookmark{\glsmark}{glossary}
+  \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{主要符号表}
   \addcontentsline{toe}{chapter}{Glossary}
+  \hypersetup{bookmarksdepth=2}
   \printglossary[style=long-xjtu, title={\protect\centering\glsmark}, nonumberlist, nogroupskip]
-  \pagecheck
+  \cleardoublepage
 }\renewcommand{\glsclearpage}{\clearpage}
 
 \input{Main_Miscellaneous/glossary.tex}
 \makeglossaries
 \glsaddall
 
+
+
+\newcommand{\xchapter}[2]{
+  \hypersetup{bookmarksdepth=-2}
+  \chapter{#1}
+  \addengcontents{chapter}{#2}
+  \hypersetup{bookmarksdepth=2}
+  \ifthesis@english
+    \pdfbookmark[0]{\thechapter~~#2}{#2}
+  \else
+    \pdfbookmark[0]{\thechapter~~#1}{#2-zh}
+  \fi
+}
+
+\newcommand{\xsection}[2]{
+  \hypersetup{bookmarksdepth=-2}
+  \section{#1}
+  \addengcontents{section}{#2}
+  \hypersetup{bookmarksdepth=2}
+  \ifthesis@english
+    \pdfbookmark[1]{\thesection~~#2}{#2}
+  \else
+    \pdfbookmark[1]{\thesection~~#1}{#2-zh}
+  \fi
+}
+
+\newcommand{\xsubsection}[2]{
+  \hypersetup{bookmarksdepth=-2}
+  \subsection{#1}
+  \addengcontents{subsection}{#2}
+  \hypersetup{bookmarksdepth=2}
+  \ifthesis@english
+    \pdfbookmark[2]{\thesubsection~~#2}{#2}
+  \else
+    \pdfbookmark[2]{\thesubsection~~#1}{#2-zh}
+  \fi
+}
 
 %%% Body %%%
 %%% 正文部分 %%%
@@ -1183,61 +1227,71 @@
     \pagenumbering{arabic}
     \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\arabic{page}}
     \pagestyle{fancy}
+    \renewcommand{\chaptermark}[1]{\markboth{{\thechapter}\hspace{0.5em}##1}{}}
   }
+
   % input body
   \seq_map_variable:NNn \l_tmpa_seq \i {
-    \use:n { \input { \i } }
+    \use:n  {\input{\i}}
   }
+
   \use:n {
-    \clearpage
+    \pagecheck
   }
 }
 \ExplSyntaxOff
+
 
 
 %%% acknowledgement %%%
 %%% 致谢 %%%
 \renewcommand{\thesisacknowledegment}{
   \renewcommand{\thechapter}{}
+  \begin{spacing}{1.5}
+  \begin{acknowledgement}
   \ifthesis@blind\else
-    \begin{spacing}{1.5}
     \input{Main_Miscellaneous/acknowledegment}
-    \end{spacing}
   \fi
-  \clearpage
+  \end{acknowledgement}
+  \end{spacing}
+  \pagecheck
 }
 
 \newenvironment{acknowledgement}{
   \ifthesis@english
-    \newcommand{\thesisachievementtitle}{Acknowledgements}
+    \newcommand{\thesisacknowledgementstitle}{Acknowledgements}
+    \pdfbookmark{\thesisacknowledgementstitle}{Acknowledgements}
   \else
-    \newcommand{\thesisachievementtitle}{致~~~~谢}
+    \newcommand{\thesisacknowledgementstitle}{致~~~~谢}
+    \pdfbookmark{\thesisacknowledgementstitle}{Acknowledgements}
   \fi
+
+  \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{致谢}
   \addcontentsline{toe}{chapter}{Acknowledgements}
-  \chapter*{\thesisachievementtitle}
-  \chaptermark{\thesisachievementtitle}
-  % \ifthesis@english
-  %   \pdfbookmark{Acknowledgements}{Acknowledgements}
-  % \else
-  %   \pdfbookmark{致谢}{Acknowledgements}
-  % \fi
+  \hypersetup{bookmarksdepth=2}
+  \chapter*{\thesisacknowledgementstitle}
+  \chaptermark{\thesisacknowledgementstitle}
 }{}
 
 
 %%% biblography %%%
 %%% 参考文献 %%%
-\bibliographystyle{Materials/BiblographyStyles/GBT7714-2005}
+\RequirePackage[sort&compress,numbers]{natbib}			% 支持引用缩写的宏包
+\bibliographystyle{Materials/BiblographyStyles/gbt-7714-2015-numerical}
 \renewcommand{\@biblabel}[1]{[#1]\hfill}
 \renewcommand{\thesisbibliography}[1][References/reference.bib]{
   \ifthesis@english
     \newcommand{\thesisbibname}{References}
+    \pdfbookmark{\thesisbibname}{References}
   \else
     \newcommand{\thesisbibname}{参考文献}
+    \pdfbookmark{\thesisbibname}{References}
   \fi
-  \chaptermark{\thesisbibname}
+  \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{参考文献}
   \addcontentsline{toe}{chapter}{References}
+  \hypersetup{bookmarksdepth=2}
   \renewcommand{\bibname}{\thesisbibname}
   \bibliography{#1}
   \nocite{*}
@@ -1246,32 +1300,17 @@
 
 \pretocmd{\bibliography}{
   \interlinepenalty=10000
-  \begin{spacing}{1}
+  \begin{spacing}{1.5}\wuhao
 }{}{}
 \apptocmd{\bibliography}{
   \end{spacing}
 }{}{}
 
-\newcommand{\bstlabelmark}{lo}
-\newcommand{\thesisloadbibliography}[2][]{
-  \ifthenelse{
-    \equal{#1}{large}
-  }{
-    \setlength{\labelsep}{3pt}
-    \renewcommand{\bstlabelmark}{loo}
-    \bibliographystyle{Thesis_Materials/GBT7714-2005}
-    \bibliography{#2}
-    \setlength{\labelsep}{6pt}
-  }{
-    \bibliographystyle{Thesis_Materials/GBT7714-2005}
-    \bibliography{#2}
-  }
-}
-
 
 %%% Appendix %%%
 %%% 附录 %%%
 \RequirePackage{appendix}
+
 \newcommand{\stoptocwriting}{%
   \addtocontents{toc}{\protect\setcounter{tocdepth}{-5}}}
 \newcommand{\resumetocwriting}{%
@@ -1286,7 +1325,7 @@
   \int_new:N \l_tmpa_count
   \int_set:Nn \l_tmpa_count {\seq_count:N \l_tmpa_seq}
 
-  % change toc item 
+  % change toc item
   \str_new:N \l_chstocitem_str
   \str_set:Nn \l_chstocitem_str {附录}
   \str_new:N \l_engtocitem_str
@@ -1297,13 +1336,13 @@
   % add toc item and reformat captions
   \use:n {
     \ifthesis@english
-      % \pdfbookmark{Appendix}{Appendix}
       \newcommand{\appdname}{Appendix~}
+      \pdfbookmark{\appdname}{Appendix}
     \else
-      % \pdfbookmark{附录}{Appendix}
       \newcommand{\appdname}{附录}
+      \pdfbookmark{\appdname}{Appendix}
     \fi
-    
+
     \titleformat{\chapter}[block]
       {\centering\fontsize{16pt}{16pt}\selectfont\thispagestyle{fancy}}{\appdname~\Alph{chapter}}{1em}{}
     \titleformat{\section}[block]
@@ -1312,7 +1351,7 @@
       {\fontsize{14pt}{14pt}\heiti\selectfont}{\Alph{chapter}.\arabic{section}.\arabic{subsection}}{7pt}{}
 
     \renewcommand{\thetable}{\arabic{table}}
-    \renewcommand{\theequation}{\arabic{equation}}
+    \renewcommand{\theequation}{\appdname\Alph{chapter}-\arabic{equation}}
     \renewcommand{\thefigure}{\arabic{figure}}
     \renewcommand{\thelstlisting}{\arabic{lstlisting}}
     \renewcommand{\thealgocf}{\arabic{algocf}}
@@ -1330,21 +1369,23 @@
     \fi
     \appendix
     \renewcommand{\thechapter}{\appdname~\Alph{chapter}}
+    \hypersetup{bookmarksdepth=-2}
     \addcontentsline{toc}{chapter}{附录}
     \addcontentsline{toe}{chapter}{\l_engtocitem_str}
     \stoptocwriting
   }
 
-  % input appedi{x/es} 
+  % input appedi{x/es}
   \seq_map_variable:NNn \l_tmpa_seq \i {\use:nn { \input } { { \i } }}
 
   \use:n {
     \resumetocwriting
+    \renewcommand{\theequation}{\arabic{equation}}
     \renewcommand{\thechapter}{}
     \restoreapp
     \titleformat{\chapter}[block]
       {\centering\fontsize{16pt}{16pt}\selectfont\thispagestyle{fancy}}{}{1em}{}
-    % \clearpage
+    \hypersetup{bookmarksdepth=2}
   }
 }
 \ExplSyntaxOff
@@ -1354,19 +1395,21 @@
 %%% 完成成果 %%%
 \newenvironment{achievelist}{
   \wuhao\selectfont
-	\begin{enumerate}[label={[\arabic*]},itemsep=1ex]
+	\begin{enumerate}[label={[\arabic*]},itemsep=1ex,align=left]
 }{\end{enumerate}}
 
-\renewcommand{\thesisachivements}{    
+\renewcommand{\thesisachivements}{
   \ifthesis@english
-    % \pdfbookmark{Achievements}{Achievements}
     \newcommand{\thesisaccomplishtitle}{Achievements}
+    \pdfbookmark{\thesisaccomplishtitle}{Achievements}
   \else
-    % \pdfbookmark{附录}{Appendix}
     \newcommand{\thesisaccomplishtitle}{攻读学位期间取得的研究成果}
+    \pdfbookmark{\thesisaccomplishtitle}{Achievements}
   \fi
+    \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{攻读学位期间取得的研究成果}
   \addcontentsline{toe}{chapter}{Achievements}
+    \hypersetup{bookmarksdepth=2}
   \chapter*{\thesisaccomplishtitle}
   \chaptermark{\thesisaccomplishtitle}
   \input{Main_Miscellaneous/achievement.tex}
@@ -1379,11 +1422,15 @@
 \renewcommand{\thesisdecision}{
   \ifthesis@english
     \newcommand{\thesisdecisiontitle}{Decision of Defense Committee}
+    \pdfbookmark{\thesisdecisiontitle}{Decision of Defense Committee}
   \else
     \newcommand{\thesisdecisiontitle}{答辩委员会会议决议}
+    \pdfbookmark{\thesisdecisiontitle}{Decision of Defense Committee}
   \fi
+  \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{答辩委员会会议决议}
   \addcontentsline{toe}{chapter}{Decision of Defense Committee}
+  \hypersetup{bookmarksdepth=2}
   \chapter*{\sanhao \thesisdecisiontitle}
   \chaptermark{\thesisdecisiontitle}
   \ifthesis@blind\else
@@ -1421,23 +1468,30 @@
 }
 \ExplSyntaxOff
 
-\renewcommand{\thesisreviewers}{
+\renewcommand{\thesisreviewers}[2]{
   \genreviewerlist
   \ifthesis@english
     \newcommand{\thesisreviewerlisttitle}{General Reviewers List}
+    \pdfbookmark{\thesisreviewerlisttitle}{General Reviewers List}
   \else
     \newcommand{\thesisreviewerlisttitle}{常规评阅人名单}
+    \pdfbookmark{\thesisreviewerlisttitle}{General Reviewers List}
   \fi
-  \addcontentsline{toc}{chapter}{常规评阅人名单}
   \chapter*{\sanhao \thesisreviewerlisttitle}
   \chaptermark{\thesisreviewerlisttitle}
+  \hypersetup{bookmarksdepth=-2}
+  \addcontentsline{toc}{chapter}{常规评阅人名单}
   \addcontentsline{toe}{chapter}{General Reviewers List}
-  本学位论文共接受X位专家评阅，其中常规评阅人X名，名单如下：\\[0.2\baselineskip]
+  \hypersetup{bookmarksdepth=2}
+  本学位论文共接受 #1 位专家评阅，其中常规评阅人 #2 名，名单如下：
   \ifthesis@blind\else
     \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{0.8\textwidth}{YXY}
+    \begin{table}[H]
+      \centering
+    \begin{tabular}{ccc}
       \generalreviewerlist
-    \end{tabularx}
+    \end{tabular}
+    \end{table}
     \renewcommand{\arraystretch}{1}
     \vfill
   \fi
@@ -1458,8 +1512,12 @@
     \newcommand{\thesisoriginalitytitle}{声明}
   \fi
   \chaptermark{\thesisoriginalitytitle}
-  % \cftaddtitleline{toc}{chapter}{声明}{}
-  % \cftaddtitleline{toe}{chapter}{Declarations}{}
+  \fancyfoot[]{}
+  \ifthesis@english
+    \pdfbookmark{\thesisoriginalitytitle}{Declarations}
+  \else
+    \pdfbookmark{\thesisoriginalitytitle}{Declarations}
+  \fi
 
   \begin{center}
   \sanhao 学位论文独创性声明（1）
@@ -1506,7 +1564,7 @@
 
   \noindent （本声明的版权归西安交通大学所有，未经许可，任何单位及任何个人不得擅自使用）
   \clearpage
-} 
+}
 
 \makeatother
 

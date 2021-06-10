@@ -1,13 +1,21 @@
-# XJTU-thesis 西安交通大学学位论文模板
+# XJTU-thesis 西安交通大学学位论文模板 </br> XJTU-thesis: A Degree Thesis Template for Xi'an Jiaotong University
+
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
 
 本项目为非官方的西安交通大学学位论文的 LaTeX 模板（提供 XJTU-thesis.cls）（提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求，同时模板作者5年内不会弃坑，会随时更新。
 
+## 更新记录
+
+- 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
+
+## 基本信息
+
+[研究生院提供的 LaTeX 模板](http://gs.xjtu.edu.cn/info/1209/7605.htm)
 [学校的硕博学位论文要求](http://www.lib.xjtu.edu.cn/info/1102/1217.htm) 此链接的页面内容会更新，但链接不变，目前采用的版本是 2021 年 5 月 8 日 发布的模板与要求。
 
-本模板参考了以下五个学位论文模板的相关内容：
+本模板在制作前阅读了以下五个学位论文模板的相关内容：
 
 - [电子科技大学毕业论文模板](https://github.com/x-magus/ThesisUESTC)
 - [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
@@ -21,7 +29,7 @@
 
 除根据校方要求作出的调整外，同时并修改/添加了以下内容：
 - 重构工程结构，方便人类使用和阅读，进一步将内容与形式分离
-- 为英文撰写的学位论文提供支持
+- 为英文撰写的学位论文提供支持：正文内容的切换、自动生成英文 pdf 书签
 - 浮动体环境使用 `subcaption` 替代了 `subfig` 或 `subfigure`
 - 引入 `siunitx` 正确生成数字和单位
 - 为不同操作系统设置了自动的字体导入方案
@@ -29,15 +37,19 @@
 - 提供了可能会有用的两个小脚本（pdf 批量裁图和转换）
 - 提供了自动生成答辩委员会、常规评阅人名单的方案 (LaTeX3 实现)
 
-目前尚未完善/修复的内容：
-- [完善中]英文选项下 pdf 目录项尚未调整为英文
-- [修复中]英文选项下参考文献处奇数页眉无法调整为首字母大写（当前为全部大写）
-
 如果对模板使用或格式有相关问题，请在 github 上提交 issue，如果发现 bug，欢迎提交 PR。
+ 
 
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
+
+
+## Update Log
+
+- 2021.06.09 Specified format not mentioned in the templates given by University Library, then made changes.
+
+## Basic Information
 
 This project is an unofficial Latex template (document class) for Xi'An Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university. 
 
@@ -45,7 +57,7 @@ This project is an unofficial Latex template (document class) for Xi'An Jiaotong
 
 This template is modified and improved based on these five projects:
 
-- [电子科技大学毕业论文模板](https://github.com/x-magus/ThesisUESTC)
+- [ThesisUESTC](https://github.com/x-magus/ThesisUESTC)
 - [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
 - [XJTUthesis](https://github.com/Aetf/xjtuthesis)
 - [XJTUthesis-master-2020](https://github.com/kohillyang/XJTUthesis-master-2020)
@@ -54,18 +66,14 @@ This template is modified and improved based on these five projects:
 All the projects above have some problems, that's why this project exsiss.
 
 This project make these adjustments/improvements:
-- Refactor the structure of the project, make it more human-readable and decoupled.
-- Support writing in english
+- Refactor the structure of the project, make it more human-readable and decoupled
+- Support writing in english: auto change some matter into english, support english pdf bookmark
 - Substitute `subfig` or `subfigure` with `subcaption`
 - Introduce `siunitx` for units
 - Make font setting suits different OS
 - Provied a latexmk configuration
 - Provied two may-useful script for pdf cropping and transforming
 - Provide functions to generate committee member list and reviewr list
-
-This project has these issues to be solved:
-- [Repairing]Bookmarks of titles in English opition is showed in Chinese
-- [Repairing]The heading of References is all capitalized
 
 If you have any questions about the template, please submit an issue directly on github. If you find a bug, please submit a pull request.
 
@@ -78,6 +86,7 @@ If you have any questions about the template, please submit an issue directly on
 - 本项目希望使用者有一定LaTeX文档编写基础，但也欢迎新手使用。
 - 建议安装以下提示的相关环境、软件，放弃老旧的软件。
 - 本项目只提供多文档结构的模板
+- 建议使用本工程提供的 latexmk 脚本，不然需要手动编译 glossary。
 
 ## 使用方法
 
@@ -113,7 +122,7 @@ If you have any questions about the template, please submit an issue directly on
 - README.md: 本文档
 - LICENSE: 版权说明
 - Materials/Tools/batch_pdfcrop.bat/sh: 批量裁剪 pdf 白边并重命名
-- Materials/Tools/pdf2jpg.py: 批量转换 pdf 至 jpg 以避免查重（需下载 pdfbox）
+- Materials/Tools/pdf2jpg.py: 批量转换 pdf 至 jpg 以避免查重到无意义的重复如表头之类的（需下载 pdfbox）
 
 ### 文档编译
 
@@ -174,7 +183,7 @@ xelatex main.tex
 \newacronym[description=逻辑卷管理器]{lvm}{LVM}{Logical Volume Manager}
 ```
 
-本模板会导入所有添加到 `glossary.tex` 中的词汇。正文中引用缩略词时，使用 `glossaries` 宏包提供的 `\gls` 、`\Gls`（首字母大写）或 `\glspl`（复数形式）等命令引用缩略词的 `<label>`。
+只有在正文使用命令恰当引用的缩略词才会在缩略词表中列出。正文中引用缩略词时，使用 `glossaries` 宏包提供的 `\gls` 、`\Gls`（首字母大写）或 `\glspl`（复数形式）等命令引用缩略词的 `<label>`。
 
 具体使用方法参考[glossaries宏包文档](https://www.ctan.org/tex-archive/macros/latex/contrib/glossaries/)。
 
@@ -198,10 +207,6 @@ xelatex main.tex
 
 本模板提供了一套基本样式 `sty_basic`，使用者也可以自定义喜欢的样式
 
-### 图片
-
-模板已经将 `Figures/` 路径加入考虑，可以直接将图片放在其下，容易整理，工程也看起来清爽。
-
 ### 致谢
 
 致谢部分由命令 `\thesisacknowledegment` 开始，具体内容应在 `Main_Miscellaneous/acknowledegment.tex` 中编辑。
@@ -212,13 +217,9 @@ xelatex main.tex
 
 参考文献的在文中的引用分两种：在原文中作句法成分的为直接引用，使用 `\cite` 命令，否则为 `\citing` 命令，在文中文献编号显示为上标。
 
-**!!!注意:**
-当引用中文文献，而文献作者超过三位时，后面的作者想使用`等`字省略，请在.bib文件此条目内添加语言选项 `language = {zh}` 。模版会自动按照中文的习惯处理作者信息。不添加此选项则显示为 `,et al`
-
 ### 附录
 
 附录部分由命令 `\thesisappendix{}` 命令引入，此处引入的文件内的每一个章，都会被当作是一个附录，使用大写拉丁字母顺序编号。能够自动根据要求使得所有附录在目录中合并显示为一个 `附录` 或 `Appendi{x/ces}`。
-
 
 ### 插入图片和表格
 
@@ -244,9 +245,12 @@ xelatex main.tex
 
 若子图过多需要跨页则在间断处插入 `\floatcontinue` 命令，具体使用可自行查询。
 
+图片文件可以统一放在 `./Figure` 目录下，可以直接将图片放在其下，容易整理，工程也看起来清爽。具体插入图片和表格的代码参考范例 `main.tex`。
+
+
 插入表格使用 `table` 环境，自动调整表格前后的间距和默认的字体大小。
 
-图片文件可以统一放在 `./Figure` 目录下。具体插入图片和表格的代码参考范例 `main.tex`。
+根据学校要求，所有表格必须通栏，因此请使用 `tabularx` 环境生成表格，列格式 `X Y Z` 分别代表 `左对齐 居中 右对齐`。三线表默认宽度也已进行调整，不必手动更改。
 
 ### 定理环境
 

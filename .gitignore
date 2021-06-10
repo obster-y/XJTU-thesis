@@ -24,6 +24,7 @@
 *.zld
 *.zlg
 *.zln
+*.pdf
 
 ## Intermediate documents:
 *.dvi
