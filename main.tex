@@ -7,17 +7,15 @@
 %% 选择论文的基本类型
 
 \documentclass[
-    master,     % 必选项：   {master, doctor} 此处不区分专业/学术学位，在下面学科类型处区分 
-                % Mandatory: {master, doctor} No difference between Academic degree and Professional degree, 
+    doctor,     % 必选项：   {master, doctor} 此处不区分专业/学术学位，在下面学科类型处区分
+                % Mandatory: {master, doctor} No difference between Academic degree and Professional degree,
                 %                             but be careful about the option `\degree' and `subject'
-    openany,    % 必选项：   {openany, openright} (增加空白页以适应双面打印)
-                % Mandatory: {openany, openright} openright for printing, it will generate blank page to accomodate two-side printing
     % english,  % 可选项：   英文正文请选择此项
-                % Optional:  For english main content, It will not generate Titlepage and Table of Contents in Chinese, 
+                % Optional:  For english main content, It will not generate Titlepage and Table of Contents in Chinese,
                 %            and change some auto-generated matter into English
     % blind,    % 可选项：   论文用于盲审请选择此项，将不会产生致谢(全文)、答辩委员会会议决议(内容)、
                 %            常规评阅人名单(内容)，注意请自行修改 `攻读学位期间取得的研究成果' 内的内容格式
-                % Optional:  For blind review, It will not generate Acknowledgements(All), Decision of Defense Committee(Content), 
+                % Optional:  For blind review, It will not generate Acknowledgements(All), Decision of Defense Committee(Content),
                 %            General Reviewers List(Content), CHANGE THE STYLE of Achievements BY YOURSELF
 ]{XJTU-thesis}
 
@@ -29,7 +27,7 @@
 
 % 论文标题（不超过35个字，英文注意大小写规律）
 % Title, Make sure you have an acceptable capitalization
-\title{一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五}{English Title and English Title and English Title}
+\title{这是一个不超过三十五个字的名字比较长的关于如何开展XXX的研究}{English Title and English Title and English Title}
 
 % 学位类型（请按照 'Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/' 路径下文档正确填写
 % Type of your degree, Translate it from documents in `Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/'
@@ -37,16 +35,16 @@
 
 % 作者姓名（注意：所有人名英文均为「名在前，姓在后」，如果只有外文名，请在两个参数都填写外文名称）
 % If you have only foreign name, put it as both first and second argument
-\author{作者姓名}{Name Surname}
+\author{郑正正}{Zhengzheng Zheng}
 
 % 指导老师姓名（注意：同作者姓名）
 % Name of supervisor, It have the same requirments as the author
-\advisor{姓名1}{教授}{Name 2}{Prof.}
+\advisor{冯峰}{教授}{Feng Feng}{Prof.}
 
 % 合作指导老师姓名 或 老师团队（合作指导老师指：1.与招生简章中一致的合作导师，2.CSC项目的合作导师）
 %（校方模板要求只能选择一个，都有则显示合作导师）
 % Name of associate advisor or adviror's team, You can use only one of them, and advisorassociate has a higher priority.
-\advisorassociate{姓名2}{教授}{Name 2}{Prof.}
+\advisorassociate{陈尘}{副教授}{Chen Chen}{Asscociate Prof.}
 % \advisorteam{团队中文名}{English Name of the Team}
 
 % 学科名称
@@ -56,11 +54,11 @@
 % 答辩委员会委员 显示的顺序和这里的一样 第一个人是主席
 % Committee member of your defence, notice that the order shows in the thesis is same as here, and the first one is the chairperson
 % each member should be put as {Organization,Name,Title} split by comma
-\addcommitteemember{西安交通大学,四五六七,教授}
-\addcommitteemember{西安理工大学,一二三,教授}
-\addcommitteemember{国家电网西北分部,二三四,高工}
-\addcommitteemember{西安交通大学,三四五,副教授}
-\addcommitteemember{西安交通大学,五六,教授}
+\addcommitteemember{西安交通大学,张长长,教授}
+\addcommitteemember{西安理工大学,王旺旺,教授}
+\addcommitteemember{国网陕西经济技术研究院,李力,高工}
+\addcommitteemember{西安交通大学,东方不败,副教授}
+\addcommitteemember{西安交通大学,赵照,研究员}
 
 % 答辩时间（手动指定）
 % Defence date, input manually
@@ -68,7 +66,7 @@
 
 % 答辩地点（涉密论文请手动设置为「西安交通大学」）
 % Defence location, default value is 「西安交通大学」
-\defenseloc{西安交通大学主E303}
+\defenseloc{西安交通大学主楼E座303室}
 
 % 论文提交日期，不输入参数则默认使用当前日期，如手动指明年月，请在第一个可选参数内填写年份，第二个可选参数填写月份（均为阿拉伯数字）
 % Submission date of this thesis, if you not put it manually, it will use the current time
@@ -77,15 +75,15 @@
 
 % 常规审阅人 要求和答辩委员会委员一样
 % General reviewer list, same requirements as the committee member
-\addgeneralreviewer{西安交通大学,四五六七,教授}
-\addgeneralreviewer{西安理工大学,一二三,教授}
-\addgeneralreviewer{国家电网西北分部,二三四,高工}
-\addgeneralreviewer{西安交通大学,三四五,副教授}
-\addgeneralreviewer{西安交通大学,五六,教授}
+\addgeneralreviewer{西安交通大学,张长长,教授}
+\addgeneralreviewer{西安理工大学,王旺旺,教授}
+\addgeneralreviewer{国网陕西经济技术研究院,李力,高工}
+\addgeneralreviewer{西安交通大学,东方不败,副教授}
+\addgeneralreviewer{西安交通大学,赵照,研究员}
 
 % 学院
 % School or Faculty, unused now
-% \school{电力工程系}{School of Electrical Engineering}
+% \school{电气工程学院}{School of Electrical Engineering}
 
 % 专业[学士学位使用]
 % Major, unused now
@@ -115,7 +113,7 @@
 
 \begin{document}
 
-% [自动生成] 中英题名页 
+% [自动生成] 中英题名页
 % [Auto Generate] Chinese English Title Page
 \thesistitles
 
@@ -123,27 +121,28 @@
 % [Auto Generate] Defense Committee Pages
 \thesiscommittes
 
-% [自动生成] 生成摘要页 
-% [Auto Generate] Abstract [If you select `english' option, it will only generate english abstract]
+% [自动生成] 生成摘要页 修改 Main_Miscellaneous/abstract_chs/eng.tex 中的内容
+% [Auto Generate] Abstract, Rewrite your content in Main_Miscellaneous/abstract_chs/eng.tex
 \thesisabstract
 
-% [自动生成] 中英目录页（开启英文选项后只有英文目录）
-% [Auto Generate] Table of Contents(in Chinese and English, If you enable the `english` option in the document class, there will be only English ToC)
+% [自动生成] 中英目录页
+% [Auto Generate] Table of Contents
 \thesistableofcontens
 
 % [自动生成] 主要符号表 修改 Main_Miscellaneous/glossary.tex 中的内容
-% [Auto Generate] Glossaries Page, Rewrite you content in Main_Miscellaneous/glossary.tex 
+% [Auto Generate] Glossaries Page, Rewrite your content in Main_Miscellaneous/glossary.tex
 \thesisglossarylist
 
 % 正文 注意：英文正文写作时，中、英标题都填写为英文标题，同时，参数的顺序有意义，不要乱放
 % Main contents, X of cX is the chapter of the thesis, you can change it if you want, the order matters
 % and FILL THE BOTH CHINESE AND ENGLISH NAME OF TITLES IN ENGLISH IF YOU USE `english' option
+
 \thesisbody{
     Main_Spine/c1,
     Main_Spine/c2,
     Main_Spine/c3,
     Main_Spine/c4,
-    Main_Spine/c5,
+    Main_Spine/c5
 }
 
 % 致谢 修改 Main_Miscellaneous/acknowledegment.tex 中的内容
@@ -167,9 +166,9 @@
 % Decision, Rewrite you content in Main_Miscellaneous/decision.tex
 \thesisdecision
 
-% [自动生成] 常规评阅人名单
-% [Auto Generate] Reviewer List
-\thesisreviewers
+% [自动生成] 常规评阅人名单 需要手动指定两个数字
+% [Auto Generate] Reviewer List, set two number
+\thesisreviewers{7}{5}
 
 % [自动生成] 独创性声明
 % [Auto Generate] Originality Declaration
