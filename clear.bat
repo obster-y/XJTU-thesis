@@ -1,7 +1,5 @@
-
 @echo off
 title LaTex Cleaner
-del /a /f /q /s  "*.aux"
 del /a /f /q /s  "*.aux"
 del /a /f /q /s  "*.bak"
 del /a /f /q /s  "*.bbl"
@@ -28,4 +26,8 @@ del /a /f /q /s  "*.synctex.gz"
 del /a /f /q /s  "*.synctex\(busy\)"
 del /a /f /q /s  "*.thm"
 del /a /f /q /s  "*.toc"
-del /a /f /q /s  "*.xdv"
+del /a /f /q /s  "*.slg"
+del /a /f /q /s  "*.slo"
+del /a /f /q /s  "*.sls"
+del /a /f /q /s  "*.toe"
+del /a /f /q /s  "*.xdy"

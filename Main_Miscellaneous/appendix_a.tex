@@ -9,42 +9,39 @@
 
 
 \begin{definition}[向量空间]
-	设 $X$ 是一个非空集合，$\mathbb{F}$ 是一个数域 (实数域 $\mathbb{R}$ 或者复数域 $\mathbb{C}$)。如果在 $X$ 上定义了加法和数乘两种运算，并且满足以下 8 条性质：
-	%
-	\begin{enumerate}
-		\item 加法交换律，$\forall~x,y \in X$，$x+y = y+x \in X$；
-		\item 加法结合律，$\forall~x,y,z \in X$，$(x+y)+z = x+(y+z)$；
-		\item 加法的零元，$\exists~0 \in X$，使得 $\forall~x \in X$，$0+x = x$；
-		\item 加法的负元，$\forall~x \in X$，$\exists~-x \in X$，使得 $x+(-x) = x-x = 0$。
-		\item 数乘结合律，$\forall~\alpha,\beta \in \mathbb{F}$，$\forall~x \in X$，$(\alpha\beta)x = \alpha(\beta x) \in X$；
-		\item 数乘分配律，$\forall~\alpha \in \mathbb{F}$，$\forall~x,y \in X$，$\alpha(x+y) = \alpha x + \alpha y$；
-		\item 数乘分配律，$\forall~\alpha,\beta \in \mathbb{F}$，$\forall~x \in X$，$(\alpha+\beta)x = \alpha x + \beta x$；
-		\item 数乘的幺元，$\exists~1 \in \mathbb{F}$，使得 $\forall~x \in X$，$1 x = x$，
-	\end{enumerate}
-	%
-	% 那么称 $X$ 是数域 $\mathbb{F}$ 上的一个{\hei 向量空间} (linear space)。
+  设 $X$ 是一个非空集合，$\mathbb{F}$ 是一个数域 (实数域 $\mathbb{R}$ 或者复数域 $\mathbb{C}$)。如果在 $X$ 上定义了加法和数乘两种运算，并且满足以下 8 条性质：
+  \begin{enumerate}
+    \item 加法交换律，$\forall~x,y \in X$，$x+y = y+x \in X$；
+    \item 加法结合律，$\forall~x,y,z \in X$，$(x+y)+z = x+(y+z)$；
+    \item 加法的零元，$\exists~0 \in X$，使得 $\forall~x \in X$，$0+x = x$；
+    \item 加法的负元，$\forall~x \in X$，$\exists~-x \in X$，使得 $x+(-x) = x-x = 0$。
+    \item 数乘结合律，$\forall~\alpha,\beta \in \mathbb{F}$，$\forall~x \in X$，$(\alpha\beta)x = \alpha(\beta x) \in X$；
+    \item 数乘分配律，$\forall~\alpha \in \mathbb{F}$，$\forall~x,y \in X$，$\alpha(x+y) = \alpha x + \alpha y$；
+    \item 数乘分配律，$\forall~\alpha,\beta \in \mathbb{F}$，$\forall~x \in X$，$(\alpha+\beta)x = \alpha x + \beta x$；
+    \item 数乘的幺元，$\exists~1 \in \mathbb{F}$，使得 $\forall~x \in X$，$1 x = x$，
+  \end{enumerate}
 \end{definition}
 
 \begin{example}[矩阵空间]
-	所有 $m\times n$ 的矩阵在普通矩阵加法和矩阵数乘运算下构成一个向量空间 $\mathbb{C}^{m\times n}$。如果定义内积如下：
-	%
-	\begin{equation}
-	\iprod{A}{B} = \mathrm{tr}(B^H Q A) = \sum_{i=1}^{n} b_i^H Q a_i
-	\end{equation}
-	%
-	其中 $a_i$ 和 $b_i$ 分别是 $A$ 和 $B$ 的第 $i$ 列，而 $Q$ 是 Hermite 正定矩阵，那么 $\mathbb{C}^{m\times n}$ 构成一个 Hilbert 空间。
+  所有 $m\times n$ 的矩阵在普通矩阵加法和矩阵数乘运算下构成一个向量空间 $\mathbb{C}^{m\times n}$。如果定义内积如下：
+  %
+  \begin{equation}
+  \iprod{A}{B} = \mathrm{tr}(B^H Q A) = \sum_{i=1}^{n} b_i^H Q a_i
+  \end{equation}
+  %
+  其中 $a_i$ 和 $b_i$ 分别是 $A$ 和 $B$ 的第 $i$ 列，而 $Q$ 是 Hermite 正定矩阵，那么 $\mathbb{C}^{m\times n}$ 构成一个 Hilbert 空间。
 \end{example}
 
 \begin{theorem}[Riesz 表示定理]
-	设 $H$ 是 Hilbert 空间，$H^{\ast}$ 是 $H$ 的对偶空间，那么对 $\forall~f\in H^{\ast}$，存在唯一的 $x_f\in H$，使得
-	%
-	\begin{equation}
-	f(x) = \iprod{x}{x_f}, \qquad \forall~x \in H
-	\end{equation}
-	%
-	并且满足 $\|f\|=\|x_f\|$。
+  设 $H$ 是 Hilbert 空间，$H^{\ast}$ 是 $H$ 的对偶空间，那么对 $\forall~f\in H^{\ast}$，存在唯一的 $x_f\in H$，使得
+  %
+  \begin{equation}
+  f(x) = \iprod{x}{x_f}, \qquad \forall~x \in H
+  \end{equation}
+  %
+  并且满足 $\|f\|=\|x_f\|$。
 \end{theorem}
 
 \begin{proof}
-	先证存在性，再证唯一性，最后正~$\|f\|=\|x_f\|$。
+  先证存在性，再证唯一性，最后正~$\|f\|=\|x_f\|$。
 \end{proof}

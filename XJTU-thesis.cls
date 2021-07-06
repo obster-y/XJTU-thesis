@@ -549,7 +549,7 @@
 
 %%% footnote %%%
 %%% 脚注 %%%
-\RequirePackage[flushmargin,para,bottom,perpage,symbol*]{footmisc}
+\RequirePackage[flushmargin,bottom,perpage,symbol*]{footmisc}
 
 \DefineFNsymbols{circled}{
   {\ding{192}}{\ding{193}}{\ding{194}}
@@ -649,7 +649,7 @@
 \titleformat{\subsubparagraph}[block]
   {\fontsize{12pt}{12pt}\selectfont}{（\alph{subsubparagraph}）}{6pt}{}
 
-\titlespacing{\chapter}{0pt}{-7mm}{14pt}
+\titlespacing{\chapter}{0pt}{0mm}{14pt}
 \titlespacing{\section}{0pt}{18pt}{6pt}
 \titlespacing{\subsection}{2em}{12pt}{6pt}
 \titlespacing{\subsubsection}{2em}{12pt}{6pt}
@@ -1009,7 +1009,7 @@
   \hypersetup{bookmarksdepth=2}
   \markboth{ABSTRACT}{ABSTRACT}
   \setlength{\parindent}{0em}
-  \setlength{\parskip}{0.5\baselineskip}
+  \setlength{\parskip}{0.35\baselineskip}
 }{}
 
 \newcommand{\englishkeywordstype}[2]{
@@ -1061,7 +1061,13 @@
 \setlength{\cftbeforesubsecskip}{0pt}
 \setlength{\cftbeforechapskip}{0pt}
 
+\cftsetindents{chap}{0em}{0.9em}
+\cftsetindents{sec}{0.7em}{1.5em}
+\cftsetindents{subsec}{1.4em}{2.3em}
+\cftsetindents{subsubsec}{2.1em}{3.2em}
+
 % 实在不想这样 但是没办法 手动添加 `声明'
+\renewcommand\contentsname{目~~~~录}
 \newcommand\tableofchinesecontents{
   \if@twocolumn
     \@restonecoltrue\onecolumn
@@ -1069,7 +1075,6 @@
     \@restonecolfalse
   \fi
   \chapter*{
-    % \vspace{8mm}
     \contentsname
     \vspace{2.4mm}
     \@mkboth{
@@ -1089,7 +1094,6 @@
     \@restonecolfalse
   \fi
   \chapter*{
-    % \vspace{6mm}
     \engcontentsname
     \vspace{1.4mm}
     \@mkboth{
@@ -1112,7 +1116,7 @@
 
 \renewcommand{\thesistableofcontens}{
   \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
-  \begin{spacing}{1.5}
+  \begin{spacing}{1}
   \tableofchinesecontents
   \clearpage
   \tableofengcontents
@@ -1291,7 +1295,7 @@
 
 %%% biblography %%%
 %%% 参考文献 %%%
-\RequirePackage[sort&compress,numbers]{natbib}			% 支持引用缩写的宏包
+\RequirePackage[sort&compress,numbers]{natbib}
 \bibliographystyle{Materials/BiblographyStyles/gbt-7714-2015-numerical}
 \renewcommand{\@biblabel}[1]{[#1]\hfill}
 \renewcommand{\thesisbibliography}[1][References/reference.bib]{
@@ -1314,6 +1318,7 @@
 
 \pretocmd{\bibliography}{
   \interlinepenalty=10000
+  \setlength{\bibsep}{0pt}
   \begin{spacing}{1.5}\wuhao
 }{}{}
 \apptocmd{\bibliography}{
