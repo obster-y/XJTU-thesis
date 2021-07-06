@@ -1,6 +1,10 @@
 % !TEX program = latexmk
 % !TEX encoding = UTF-8 Unicode
 
+% 注意：请使用 TeXLive 2019 及以上版本，已在 2019 2020 2021 版本测试编译成功，已在 2018 测试编译失败
+% 如不想更新，可尝试使用 手动编译 XeLaTeX（可能出错）
+
+% WARNING: Please use TeXLive version >= 2019, This template has been tested and found available on 2019, 2020, 2021, unavailable on 2018. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% select the basic style of this thesis/dissertation (this document will use thesis for convenience)
@@ -133,7 +137,7 @@
 
 % 正文 注意：英文正文写作时，中、英标题还是先中后英标题；同时，下面参数的顺序有意义，不要乱放
 % Main contents, X of cX is the chapter of the thesis, you can change it if you want, the order matters
-% and KEEP Chinese Title in the First, English Titile in the Second, if you use `english' option
+% and KEEP Chinese Title as the FIRST argument, English Titile as the SECOND, if you use `english' option
 
 \thesisbody{
     Main_Spine/c1,
@@ -144,7 +148,7 @@
 }
 
 % 致谢 修改 Main_Miscellaneous/acknowledegment.tex 中的内容
-% Acknowledgement, Rewrite you content in Main_Miscellaneous/acknowledegment.tex
+% Acknowledgement, Rewrite your content in Main_Miscellaneous/acknowledegment.tex
 \thesisacknowledegment
 
 % [自动生成] 参考文献 默认使用 References/reference.bib，手动指定请使用可选参数 [path/to/bibfile]
@@ -157,15 +161,15 @@
                 Main_Miscellaneous/appendix_b}
 
 % 攻读学位期间取得的研究成果 修改 Main_Miscellaneous/achievement.tex 中的内容 注意盲审时需要手动修改格式
-% Achievement, Rewrite you content in Main_Miscellaneous/achievement.tex
+% Achievement, Rewrite your content in Main_Miscellaneous/achievement.tex
 \thesisachivements
 
-% 答辩委员会决议 修改 Main_Miscellaneous/decision.tex 中的内容 注意盲审时需要手动修改格式
-% Decision, Rewrite you content in Main_Miscellaneous/decision.tex
+% 答辩委员会决议 修改 Main_Miscellaneous/decision.tex 中的内容
+% Decision, Rewrite your content in Main_Miscellaneous/decision.tex
 \thesisdecision
 
 % [自动生成] 常规评阅人名单 需要手动指定两个数字
-% [Auto Generate] Reviewer List, set two number
+% [Auto Generate] Reviewer List, set two number as the content in this page 
 \thesisreviewers{7}{5}
 
 % [自动生成] 独创性声明
