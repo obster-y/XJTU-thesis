@@ -9,11 +9,16 @@
 ## 更新记录
 
 - 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
+- 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
 
 ## 基本信息
 
 [研究生院提供的 LaTeX 模板](http://gs.xjtu.edu.cn/info/1209/7605.htm)
-[学校的硕博学位论文要求](http://www.lib.xjtu.edu.cn/info/1102/1217.htm) 此链接的页面内容会更新，但链接不变，目前采用的版本是 2021 年 5 月 8 日 发布的模板与要求。
+
+[学校的硕博学位论文要求](http://www.lib.xjtu.edu.cn/info/1102/1217.htm)
+
+此链接的页面内容会更新，但链接不变，目前采用的版本是 2021 年 5 月 8 日 发布的模板与要求。
+
 
 本模板在制作前阅读了以下五个学位论文模板的相关内容：
 
@@ -38,7 +43,7 @@
 - 提供了自动生成答辩委员会、常规评阅人名单的方案 (LaTeX3 实现)
 
 如果对模板使用或格式有相关问题，请在 github 上提交 issue，如果发现 bug，欢迎提交 PR。
- 
+
 
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
@@ -47,13 +52,19 @@
 
 ## Update Log
 
-- 2021.06.09 Specified format not mentioned in the templates given by University Library, then made changes.
+- 2021.06.09: Specified formats not mentioned in the template given by University Library, then made some changes.
+- 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
+
 
 ## Basic Information
 
-This project is an unofficial Latex template (document class) for Xi'An Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university. 
+This project is an unofficial LaTeX template (document class) for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university. 
 
-[Requirements of the thesis](http://www.lib.xjtu.edu.cn/info/1102/1217.htm). The content of this link will update but keep the link unchanged, This template now using the requirement released on May 8th 2021.
+[Templates from Univerisity's Degree Office](http://gs.xjtu.edu.cn/info/1209/7605.htm)
+
+[Requirements from Library](http://www.lib.xjtu.edu.cn/info/1102/1217.htm).
+
+The content of this link will update but keep the link unchanged, This template now using the requirement released on May 8th 2021.
 
 This template is modified and improved based on these five projects:
 
@@ -91,7 +102,7 @@ If you have any questions about the template, please submit an issue directly on
 ## 使用方法
 
 ### 基本环境
-使用模板需要系统安装一种TeX环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不推荐 CTeX），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用`--shell-escape`编译选项。Linux如果出现字体问题，需要下载放在与主tex文件同一路径下。
+使用模板需要系统安装一种TeX环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用`--shell-escape`编译选项。Linux如果出现字体问题，需要下载放在与主tex文件同一路径下。
 
 模板采用LaTeX类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
 

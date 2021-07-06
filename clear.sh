@@ -26,4 +26,8 @@ rm -f *.synctex.gz
 rm -f *.synctex\(busy\)
 rm -f *.thm
 rm -f *.toc
-rm -f *.xdv
+rm -f *.slg
+rm -f *.slo
+rm -f *.sls
+rm -f *.toe
+rm -f *.xdy
