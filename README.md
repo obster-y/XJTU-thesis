@@ -91,10 +91,10 @@ If you have any questions about the template, please submit an issue directly on
 -----
 
 ## 注意事项
-- 本项目**不是**官方模板，并且只能生成PDF文件，如果想要获得DOC文档只能进行二次转换。
+- 本项目**不是**官方模板，并且只能生成 PDF 文件，如果想要获得 DOC 文档只能进行二次转换。
 - 本项目**未受到**任何形式的任何资助。
 - 本项目目前**不能完成**学士学位论文的排版。
-- 本项目希望使用者有一定LaTeX文档编写基础，但也欢迎新手使用。
+- 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用。
 - 建议安装以下提示的相关环境、软件，放弃老旧的软件。
 - 本项目只提供多文档结构的模板
 - 建议使用本工程提供的 latexmk 脚本，不然需要手动编译 glossary。
@@ -102,9 +102,9 @@ If you have any questions about the template, please submit an issue directly on
 ## 使用方法
 
 ### 基本环境
-使用模板需要系统安装一种TeX环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用`--shell-escape`编译选项。Linux如果出现字体问题，需要下载放在与主tex文件同一路径下。
+使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本大于等于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在与主 tex 文件同一路径下。
 
-模板采用LaTeX类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
+模板采用 LaTeX 类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
 
 目前完成了硕博的模板，尚未完成学士学位模板。主文档内容的书写参考范例 `main.tex`。
 
@@ -121,13 +121,13 @@ If you have any questions about the template, please submit an issue directly on
   - Materials/Fonts: 放置字体文件（以防未安装字体）
   - Materials/Icons: 放置学校的相关标识
   - Materials/Requirement: 放置校方要求
-  - Materials/Word-Templates: 放置校方提供的 Microsoft Word 模板
+  - Materials/MS-Word-Templates: 放置校方提供的 Microsoft Word 模板
   - Materials/Tools: 放置由作者提供的简单小脚本
 - Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/: 放置学科、专业的标准翻译文件
 
 **文件**
 - clear.bat/sh: 清理临时文件脚本
-- latexmkrc: latexmk配置
+- latexmkrc: latexmk 配置
 - main.tex: 主文档
 - XJTU-thesis.cls: 文档类
 - README.md: 本文档
@@ -138,7 +138,7 @@ If you have any questions about the template, please submit an issue directly on
 ### 文档编译
 
 #### 手动编译
-编译文档请使用XeLaTeX引擎。模版提供latexmkrc用于自动编译。请将工作目录切换到本项目文件夹下，执行
+编译文档请使用 XeLaTeX 引擎。模版提供 latexmkrc 用于自动编译。请将工作目录切换到本项目文件夹下，执行
 ```bash
 latexmk main.tex
 ```
@@ -151,7 +151,17 @@ xelatex main.tex
 命令即可，若文档内部有交叉引用或录入参考文献则需要编译两次。
 
 #### 软件编译
-请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用非正版的 WinEdt等。使用TeXstudio、Texmaker或WinEdt等编辑环境请将编译引擎设置成latexmk，如果在Windows平台下使用MiKTeX还需要安装[Perl语言解释器](http://strawberryperl.com/)。
+请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用非正版的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
+
+在使用 Latexmk 时，可以自行修改 latexmkrc 中的内容，实现自定义编译流程。
+
+```text
+当前，在编译开始时，首先自动清除辅助文件 `$cleanup_mode = 2;`
+
+而后进行其他编译流程；
+
+最后，打开一个 pdf 浏览器阅读生成的 pdf 文件 `$preview_mode = 1;`
+```
 
 ## 论文排版指南
 
@@ -224,9 +234,11 @@ xelatex main.tex
 
 ### 参考文献
 
-使用BibTeX录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照标准设置为 `GBT7714-2015`。
+使用 BibTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」的 `GBT7714-2015-numerical`，可自行替换为 `GBT7714-2015-author-year` 使用「著者-出版年制」。
 
-参考文献的在文中的引用分两种：在原文中作句法成分的为直接引用，使用 `\cite` 命令，否则为 `\citing` 命令，在文中文献编号显示为上标。
+参考文献的在文中的引用分两种：在原文中作句法成分的为直接引用，使用 `\cite` 命令；若使用 `\citing` 命令，在文中文献编号显示为上标。
+
+暂未添加 BibLaTeX 支持。
 
 ### 附录
 
@@ -279,17 +291,3 @@ xelatex main.tex
 
 本项目提供了一个清除临时文件的 shell/bat 脚本，可以清除临时文件。
 
-### 其他命令
-模版提供一些可能有用的命令方便论文写作，其中包含一些常见的中文字符：
-
-| 命令名称 | 字符 | Unicode 编号|
-|---|---|---|
-|\chinesecolon| ： | FF1A |
-|\chinesespace|    | 3000 |
-|\chineseperiod| 。| 3002 |
-|\chinesequestion| ？  | FF1F |
-|\chineseexclamation| ！  | FF01 |
-|\chinesecomma| ，  | FF0C |
-|\chinesesemicolon|  ； | FF1B |
-|\chineseleftparenthesis|（ | FF08 |
-|\chineserightparenthesis| ）| FF09 |

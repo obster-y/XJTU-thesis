@@ -40,9 +40,9 @@
 %%% 文档类信息 %%%
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\ProvidesClass{XJTU-thesis}[2021/06/11 1.1.0 Xi'an Jiaotong University Degree Thesis Template]
+\ProvidesClass{XJTU-thesis}[2021/07/08 1.2.1 Xi'an Jiaotong University Degree Thesis Template]
 \def\xjtuthesis{XJTU-thesis}
-\def\meta@version{1.1.0}
+\def\meta@version{1.2.1}
 \def\metaversion{\meta@version}
 
 
@@ -103,7 +103,7 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
+\definecolor{dimgray}{rgb}{0.9,0.9,0.9}
 
 %%% tikz %%%
 \RequirePackage{tikz}
@@ -134,9 +134,10 @@
 \RequirePackage{xpatch}
 \RequirePackage{xparse}         % 多默认参数命令（需要LaTeX3）
 \RequirePackage{calc}
-\RequirePackage{blindtext}      % 生成测试文本
 \RequirePackage[normalem]{ulem}
 \RequirePackage{ifthen}
+\RequirePackage{realboxes}
+\RequirePackage{blindtext}      % 生成测试文本
 \RequirePackage{zhlipsum}
 
 
@@ -387,14 +388,14 @@
 \newcommand{\stuid}[1]{
   \renewcommand{\zh@thestuid}{#1}
 }
-\newcommand\z[1]{\ifnum #1 < 10 0\fi #1}
+\newcommand\monthnametwod[1]{\ifnum #1 < 10 0\fi #1}
 
 \newcommand{\monthname}[1]{
 \ifcase#1 \or January \or February \or March \or April \or May \or June
 \or July \or August \or September \or October \or November \or December
 \fi}
 \NewDocumentCommand{\submitdate}{O{\the\year} O{\the\month}}{
-  \renewcommand{\zh@thesubmitdate}{#1 年 \z{#2} 月}
+  \renewcommand{\zh@thesubmitdate}{#1 年 \monthnametwod{#2} 月}
   \renewcommand{\en@thesubmitdate}{\monthname{#2} #1}
 }
 
@@ -468,7 +469,8 @@
 %%% codes %%%
 %%% 代码环境 %%%
 \RequirePackage{listings}
-\lstset{inputpath = {{./Codes/}},}          % 可以添加其他路径
+\lstset{inputpath = {{./Codes/}},}          % 可以继续添加其他路径
+\lstset{basicstyle = \ttfamily}
 \lstdefinestyle{sty_basic}{
     % backgroundcolor=\color{backcolour},     % 颜色
     commentstyle=\color{codegreen},
@@ -493,6 +495,10 @@
     deletendkeywords = {},
 }
 
+
+\DeclareDocumentCommand{\clist}{v}{%
+    \Colorbox{dimgray}{\csname lstinline\endcsname!#1!}%
+}
 
 %%% enumerate %%%
 %%% 枚举环境 %%%
@@ -628,7 +634,8 @@
 %%% 各级标题 %%%
 \RequirePackage{titlesec}
 
-\setcounter{secnumdepth}{7}     % 根据2021年模板，共有7级标题
+% 根据2021年模板，共有7级标题
+\setcounter{secnumdepth}{7}
 % 添加第7级标题
 \titleclass{\subsubparagraph}{straight}[\subparagraph]
 \newcounter{subsubparagraph}
@@ -643,7 +650,7 @@
 \titleformat{\subsubsection}[block]
   {\fontsize{12pt}{12pt}\selectfont}{\arabic{subsubsection}）}{6pt}{}
 \titleformat{\paragraph}[block]
-  {\fontsize{12pt}{12pt}\selectfont}{（\arabic{subsubsection}）}{6pt}{}
+  {\fontsize{12pt}{12pt}\selectfont}{（\arabic{paragraph}）}{6pt}{}
 \titleformat{\subparagraph}[block]
   {\fontsize{12pt}{12pt}\selectfont}{\alph{subparagraph}）}{6pt}{}
 \titleformat{\subsubparagraph}[block]
@@ -756,7 +763,7 @@
 
 %%% CROSSREF & HYPERLINK %%%
 %%% 交叉引用和超链接 %%%
-\RequirePackage{cite}
+% \RequirePackage{cite}
 \newcommand{\citing}[1]{\textsuperscript{\cite{#1}}}
 \setlist{noitemsep}
 \setlist{nolistsep}
@@ -764,13 +771,13 @@
 \RequirePackage[hyphens]{xurl}
 \urlstyle{rm}
 
-\RequirePackage[hyperfootnotes=false,
+\RequirePackage[
+    hyperfootnotes=false,
     bookmarksnumbered=true,
     bookmarksopen=true,
     bookmarksdepth=2,
-%    bookmarks=false,
+    % bookmarks=false,
     breaklinks=true,
-    hidelinks=true,
     pdfborder={0 0 0},
     citebordercolor={0 0 1},
     colorlinks=false,
@@ -810,20 +817,20 @@
 %%% 题名页 %%%
 \newcommand{\zhasscociateinfo}{
   \ifthenelse{\equal{\zh@theadvisorassociate}{\chinesespace}}{
-    \ifthenelse{\equal{\zh@theadvisorteam}{\chinesespace}}{}{
-      导师团队：\zh@theadvisorteam
+    \ifthenelse{\equal{\zh@theadvisorteam}{\chinesespace}}{~}{
+      导师团队：\zh@theadvisorteam\linebreak
     }
   }{
-    合作导师：\zh@theadvisorassociate
+    合作导师：\zh@theadvisorassociate\linebreak
   }
 }
 \newcommand{\enasscociateinfo}{
   \ifthenelse{\equal{\en@theadvisorassociate}{\chinesespace}}{
-    \ifthenelse{\equal{\en@theadvisorteam}{\chinesespace}}{}{
-      Supervisor Team: \en@theadvisorteam
+    \ifthenelse{\equal{\en@theadvisorteam}{\chinesespace}}{~}{
+      Supervisor Team: \en@theadvisorteam\linebreak
     }
   }{
-    Associate Supervisor: \en@theadvisorassociate
+    Associate Supervisor: \en@theadvisorassociate\linebreak
   }
 }
 \renewcommand{\thesistitles}{
@@ -835,7 +842,6 @@
   \fi
   \parbox[t][1.2cm]{2.5cm}{}
   \begin{center}
-
     \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\[1.7cm]
     \fontsize{22pt}{22pt}\selectfont \chinesedegreename 学位论文\\
     \vskip 3.5cm
@@ -844,7 +850,7 @@
     \begin{spacing}{2.5}\sanhao
       学位申请人： \zh@theauthor\\
       指导教师： \zh@theadvisor\\
-      \zhasscociateinfo\\
+      \zhasscociateinfo
       学科名称： \zh@thesubject\\
       \zh@thesubmitdate\\
     \end{spacing}
@@ -872,7 +878,7 @@
       By\\
       \en@theauthor\\
       Supervisor: \en@theadvisor\\
-      \enasscociateinfo\\
+      \enasscociateinfo
       \en@thesubject\\
       \en@thesubmitdate\\
     \end{spacing}
@@ -1200,7 +1206,7 @@
   \addchscontents{chapter}{#1}
   \addengcontents{chapter}{#2}
   \hypersetup{bookmarksdepth=2}
-  \pdfbookmark[0]{\thechapter~~\itemi}{#2}
+  \pdfbookmark[0]{\thechapter~~\itemi}{\thechapter #2}
 }
 
 \newcommand{\xsection}[2]{
@@ -1215,7 +1221,7 @@
   \addchscontents{section}{#1}
   \addengcontents{section}{#2}
   \hypersetup{bookmarksdepth=2}
-  \pdfbookmark[1]{\thesection~~\itemi}{#2}
+  \pdfbookmark[1]{\thesection~~\itemi}{\thesection #2}
 }
 
 \newcommand{\xsubsection}[2]{
@@ -1230,7 +1236,7 @@
   \addchscontents{subsection}{#1}
   \addengcontents{subsection}{#2}
   \hypersetup{bookmarksdepth=2}
-  \pdfbookmark[2]{\thesubsection~~\itemi}{#2}
+  \pdfbookmark[2]{\thesubsection~~\itemi}{\thesubsection #2}
 }
 
 
@@ -1258,7 +1264,6 @@
   }
 }
 \ExplSyntaxOff
-
 
 
 %%% acknowledgement %%%
@@ -1296,9 +1301,9 @@
 %%% biblography %%%
 %%% 参考文献 %%%
 \RequirePackage[sort&compress,numbers]{natbib}
-\bibliographystyle{Materials/BiblographyStyles/gbt-7714-2015-numerical}
 \renewcommand{\@biblabel}[1]{[#1]\hfill}
-\renewcommand{\thesisbibliography}[1][References/reference.bib]{
+\renewcommand{\thesisbibliography}[2][References/reference.bib]{
+  \bibliographystyle{#2}
   \ifthesis@english
     \newcommand{\thesisbibname}{References}
     \pdfbookmark{\thesisbibname}{References}
