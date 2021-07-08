@@ -40,27 +40,29 @@
 %%% 文档类信息 %%%
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\ProvidesClass{XJTU-thesis}[2021/07/08 1.2.1 Xi'an Jiaotong University Degree Thesis Template]
+\ProvidesClass{XJTU-thesis}[2021/07/08 1.2.2 Xi'an Jiaotong University Template]
 \def\xjtuthesis{XJTU-thesis}
-\def\meta@version{1.2.1}
+\def\meta@version{1.2.2}
 \def\metaversion{\meta@version}
 
 
 %%% cls options %%%
 %%% 文档类参数 %%%
-\newif\ifdeg@bachelor         \deg@bachelorfalse
-\newif\ifdeg@master           \deg@masterfalse
-\newif\ifdeg@doctor           \deg@doctorfalse
+\newif\iftyp@report           \typ@reportfalse
+\newif\iftyp@bachelor         \typ@bachelorfalse
+\newif\iftyp@master           \typ@masterfalse
+\newif\iftyp@doctor           \typ@doctorfalse
 \newif\ifthesis@blind         \thesis@blindfalse
 \newif\ifthesis@english       \thesis@englishfalse
 % \newif\ifthesis@pdflinks      \thesis@pdflinksfalse
 % \newif\ifthesis@colorlinks    \thesis@colorlinksfalse
 
-\DeclareOption{bachelor}    {\deg@bachelortrue}
-\DeclareOption{master}      {\deg@mastertrue}
-\DeclareOption{doctor}      {\deg@doctortrue}
-\DeclareOption{blind}      {\thesis@blindtrue}
-\DeclareOption{english}      {\thesis@englishtrue}
+\DeclareOption{report}      {\typ@reporttrue}
+\DeclareOption{bachelor}    {\typ@bachelortrue}
+\DeclareOption{master}      {\typ@mastertrue}
+\DeclareOption{doctor}      {\typ@doctortrue}
+\DeclareOption{blind}       {\thesis@blindtrue}
+\DeclareOption{english}     {\thesis@englishtrue}
 
 \DeclareOption*{%
     \PassOptionsToClass{\CurrentOption}{book}
@@ -69,11 +71,13 @@
 
 \LoadClass[12pt,twoside,openany]{book}
 
-\ifdeg@bachelor\relax\else
-  \ifdeg@master\relax\else
-    \ifdeg@doctor\relax\else
-      \ClassError{XJTU-thesis}%
-        {You have to assign one of these options: bachelor, master or doctor.}{}
+\iftyp@report\relax\else
+  \iftyp@bachelor\relax\else
+    \iftyp@master\relax\else
+      \iftyp@doctor\relax\else
+        \ClassError{XJTU-thesis}%
+          {You have to assign one of these options for this document: report, bachelor, master or doctor.}{}
+      \fi
     \fi
   \fi
 \fi
@@ -404,20 +408,16 @@
 %%% 定义不同选项下的变量 %%%
 
 %% 学士 %%
-% \ifdeg@bachelor{
-%   \def\chinesedegreename{本科}
-%   \def\englishdegreename{Bachelor}
-%   \def\chinesebooktitle{本科毕业设计（论文）}
-%   \def\englishbooktitle{Bachelor Thesis}
-%   \def\englishthesistype{A thesis}
-% }
-%
-% \newcommand{\ifbachelor}[2]{
-%   \ifthenelse{\equal{\englishdegreename}{Bachelor}}{#1}{#2}
-% }
+\iftyp@bachelor
+  \def\chinesedegreename{本科}
+  \def\englishdegreename{Bachelor}
+  \def\chinesebooktitle{本科毕业设计（论文）}
+  \def\englishbooktitle{Bachelor Thesis}
+  \def\englishthesistype{A thesis}
+\fi
 
 %% 硕士 %%
-\ifdeg@master
+\iftyp@master
   \def\chinesedegreename{硕士}
   \def\englishdegreename{Master}
   \def\chinesebooktitle{硕士学位论文}
@@ -427,7 +427,7 @@
 \fi
 
 %% 博士 %%
-\ifdeg@doctor
+\iftyp@doctor
   \def\chinesedegreename{博士}
   \def\englishdegreename{Doctor}
   \def\chinesebooktitle{博士学位论文}
