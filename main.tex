@@ -3,8 +3,10 @@
 
 % 注意：请使用 TeXLive 2019 及以上版本，已在 2019 2020 2021 版本测试编译成功，已在 2018 测试编译失败
 % 如不想更新，可尝试使用 手动编译 XeLaTeX（可能出错）
-
 % WARNING: Please use TeXLive version >= 2019, This template has been tested and found available on 2019, 2020, 2021, unavailable on 2018. 
+
+% 注意：请确保自己已经完整阅读了 README.md 这一 markdown 文档，部分功能的使用方法并未在 .tex 中直接给出；如果仍有使用问题，请在 Github 上提出 issue
+% WARNING: Pleans read README.md first cause some usages are not given in .tex files.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% select the basic style of this thesis/dissertation (this document will use thesis for convenience)
@@ -47,7 +49,7 @@
 % 合作指导老师姓名 或 老师团队（合作指导老师指：1.与招生简章中一致的合作导师，2.CSC项目的合作导师）
 %（校方模板要求只能选择一个，都有则显示合作导师）
 % Name of associate advisor or adviror's team, You can use only one of them, and advisorassociate has a higher priority.
-\advisorassociate{陈尘}{副教授}{Chen Chen}{Asscociate Prof.}
+% \advisorassociate{陈尘}{副教授}{Chen Chen}{Asscociate Prof.}
 % \advisorteam{团队中文名}{English Name of the Team}
 
 % 学科名称
@@ -109,7 +111,6 @@
 % \usepackage{}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 注意：根据校方要求，以下所有页面顺序不可调整
 %% Notice: The order of these pages are defined in the requirements of the University.
@@ -153,7 +154,8 @@
 
 % [自动生成] 参考文献 默认使用 References/reference.bib，手动指定请使用可选参数 [path/to/bibfile]
 % [Auto Generate] Bibliography, Default file is References/reference.bib, use argument [path/to/bibfile] for manual specification
-\thesisbibliography
+% \thesisbibliography[References/reference.bib]{Materials/BiblographyStyles/gbt-7714-2015-author-year}
+\thesisbibliography[References/reference.bib]{Materials/BiblographyStyles/gbt-7714-2015-numerical}
 
 % 附录（有几个附录就导入几个文件（不加.tex后缀）），
 % Appendi(x/ies), argument should not have the .tex suffix
