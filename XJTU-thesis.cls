@@ -514,12 +514,12 @@
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \let\proof\undefined
 \declaretheoremstyle[%
-  spaceabove=6pt, spacebelow=6pt,
+  spaceabove=2pt, spacebelow=2pt,
   postheadspace=0.5em, headindent=0em,
-  qed={}, headpunct={},
+  headpunct={},numberwithin=section
 ]{style_theorem}
 \declaretheoremstyle[%
-  spaceabove=6pt, spacebelow=6pt,
+  spaceabove=2pt, spacebelow=2pt,
   postheadspace=0.5em, headindent=2.2em,
   qed=\qedsymbol, headpunct={:},
 ]{style_proof}
@@ -1302,8 +1302,8 @@
 %%% 参考文献 %%%
 \RequirePackage[sort&compress,numbers]{natbib}
 \renewcommand{\@biblabel}[1]{[#1]\hfill}
-\renewcommand{\thesisbibliography}[2][References/reference.bib]{
-  \bibliographystyle{#2}
+\RenewDocumentCommand {\thesisbibliography} { O{References/reference.bib} m } {
+  \bibliographystyle{Materials/BiblographyStyles/#2}
   \ifthesis@english
     \newcommand{\thesisbibname}{References}
     \pdfbookmark{\thesisbibname}{References}
