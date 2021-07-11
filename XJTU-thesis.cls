@@ -1167,13 +1167,11 @@
 
 \newcommand{\thesisglossarylist}{
 
+  \newcommand{\glsmark}{主要符号表}
   \ifthesis@english
-    \newcommand{\glsmark}{Glossary}
-    \pdfbookmark{\glsmark}{Glossary}
-  \else
-    \newcommand{\glsmark}{主要符号表}
-    \pdfbookmark{\glsmark}{Glossary-zh}
+    \renewcommand{\glsmark}{Glossary}
   \fi
+  \pdfbookmark{\glsmark}{Glossary}
 
   \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\Roman{page}}
   \markboth{\glsmark}{\glsmark}
@@ -1194,8 +1192,24 @@
 \newcommand{\itemi}{}
 
 % TODO use latex3 compress these command into on type
+
+% \ExplSyntaxOn
+
+% \seq_set_split:Nnn \l_tmpa_seq { , } { chapter,section,subsection,subsubsection }
+% \seq_new:N \l_title_seq
+% \seq_clear:N \l_title_seq
+
+% \seq_map_variable:NNn \l_tmpa_seq \i {
+%   \tl_put_right:No \l_title_seq {\tl_use:c \i}
+%   \cs_new:cpn { y \tl_use:N \i } #1 #2 { 
+%     \use:c {\tl_use:N \i {#1}}
+%   }
+% }
+
+% \ExplSyntaxOff
+
+
 \newcommand{\xchapter}[2]{
-  \hypersetup{bookmarksdepth=-2}
   \renewcommand{\itemi}{#1}
   \ifthesis@english
     \renewcommand{\itemi}{#2}
@@ -1205,12 +1219,10 @@
   \resumetocwriting
   \addchscontents{chapter}{#1}
   \addengcontents{chapter}{#2}
-  \hypersetup{bookmarksdepth=2}
   \pdfbookmark[0]{\thechapter~~\itemi}{\thechapter #2}
 }
 
 \newcommand{\xsection}[2]{
-  \hypersetup{bookmarksdepth=-2}
   \renewcommand{\itemi}{#1}
   \ifthesis@english
     \renewcommand{\itemi}{#2}
@@ -1220,12 +1232,10 @@
   \resumetocwriting
   \addchscontents{section}{#1}
   \addengcontents{section}{#2}
-  \hypersetup{bookmarksdepth=2}
   \pdfbookmark[1]{\thesection~~\itemi}{\thesection #2}
 }
 
 \newcommand{\xsubsection}[2]{
-  \hypersetup{bookmarksdepth=-2}
   \renewcommand{\itemi}{#1}
   \ifthesis@english
     \renewcommand{\itemi}{#2}
@@ -1235,7 +1245,6 @@
   \resumetocwriting
   \addchscontents{subsection}{#1}
   \addengcontents{subsection}{#2}
-  \hypersetup{bookmarksdepth=2}
   \pdfbookmark[2]{\thesubsection~~\itemi}{\thesubsection #2}
 }
 
@@ -1252,6 +1261,7 @@
     \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\arabic{page}}
     \pagestyle{fancy}
     \renewcommand{\chaptermark}[1]{\markboth{{\thechapter}\hspace{0.5em}##1}{}}
+    \hypersetup{bookmarksdepth=-2}
   }
 
   % input body
@@ -1261,6 +1271,7 @@
 
   \use:n {
     \pagecheck
+    \hypersetup{bookmarksdepth=2}
   }
 }
 \ExplSyntaxOff
@@ -1281,13 +1292,11 @@
 }
 
 \newenvironment{acknowledgement}{
+  \newcommand{\thesisacknowledgementstitle}{致~~~~谢}
   \ifthesis@english
-    \newcommand{\thesisacknowledgementstitle}{Acknowledgements}
-    \pdfbookmark{\thesisacknowledgementstitle}{Acknowledgements}
-  \else
-    \newcommand{\thesisacknowledgementstitle}{致~~~~谢}
-    \pdfbookmark{\thesisacknowledgementstitle}{Acknowledgements}
+    \renewcommand{\thesisacknowledgementstitle}{Acknowledgements}
   \fi
+  \pdfbookmark{\thesisacknowledgementstitle}{Acknowledgements}
 
   \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{致谢}
@@ -1300,35 +1309,57 @@
 
 %%% biblography %%%
 %%% 参考文献 %%%
-\RequirePackage[sort&compress,numbers]{natbib}
-\renewcommand{\@biblabel}[1]{[#1]\hfill}
-\RenewDocumentCommand {\thesisbibliography} { O{References/reference.bib} m } {
-  \bibliographystyle{Materials/BiblographyStyles/#2}
+% \RequirePackage[sort&compress,numbers]{natbib}
+
+% \renewcommand{\@biblabel}[1]{[#1]\hfill}
+% \RenewDocumentCommand {\thesisbibliography} { O{References/reference.bib} m } {
+%   \bibliographystyle{Materials/BiblographyStyles/#2}
+%   \ifthesis@english
+%     \newcommand{\thesisbibname}{References}
+%     \pdfbookmark{\thesisbibname}{References}
+%   \else
+%     \newcommand{\thesisbibname}{参考文献}
+%     \pdfbookmark{\thesisbibname}{References}
+%   \fi
+%   \hypersetup{bookmarksdepth=-2}
+%   \addcontentsline{toc}{chapter}{参考文献}
+%   \addcontentsline{toe}{chapter}{References}
+%   \hypersetup{bookmarksdepth=2}
+%   \renewcommand{\bibname}{\thesisbibname}
+%   \bibliography{#1}
+%   \nocite{*}
+%   \pagecheck
+% }
+% \pretocmd{\bibliography}{
+%   \interlinepenalty=10000
+%   \setlength{\bibsep}{0pt}
+%   \begin{spacing}{1.5}\wuhao
+% }{}{}
+% \apptocmd{\bibliography}{
+%   \end{spacing}
+% }{}{}
+
+\RequirePackage[hyperref=true,backend=biber,style=gb7714-2015,gbalign=left,]{biblatex}
+\renewcommand{\bibfont}{\zihao{5}}
+\setlength{\bibitemsep}{0ex}
+\setlength{\bibnamesep}{0ex}
+\setlength{\bibinitsep}{0ex}
+
+\RenewDocumentCommand {\thesisbibliography} {  } {
+  \newcommand{\thesisbibname}{参考文献}
   \ifthesis@english
-    \newcommand{\thesisbibname}{References}
-    \pdfbookmark{\thesisbibname}{References}
-  \else
-    \newcommand{\thesisbibname}{参考文献}
-    \pdfbookmark{\thesisbibname}{References}
+    \renewcommand{\thesisbibname}{References}
   \fi
+  \pdfbookmark{\thesisbibname}{References}
   \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{参考文献}
   \addcontentsline{toe}{chapter}{References}
   \hypersetup{bookmarksdepth=2}
-  \renewcommand{\bibname}{\thesisbibname}
-  \bibliography{#1}
   \nocite{*}
+  \printbibliography[heading=bibliography,title=\thesisbibname]
   \pagecheck
 }
 
-\pretocmd{\bibliography}{
-  \interlinepenalty=10000
-  \setlength{\bibsep}{0pt}
-  \begin{spacing}{1.5}\wuhao
-}{}{}
-\apptocmd{\bibliography}{
-  \end{spacing}
-}{}{}
 
 
 %%% Appendix %%%
@@ -1359,13 +1390,11 @@
 
   % add toc item and reformat captions
   \use:n {
+    \newcommand{\appdname}{附录}
     \ifthesis@english
-      \newcommand{\appdname}{Appendix~}
-      \pdfbookmark{\appdname}{Appendix}
-    \else
-      \newcommand{\appdname}{附录}
-      \pdfbookmark{\appdname}{Appendix}
+      \renewcommand{\appdname}{Appendix~}
     \fi
+    \pdfbookmark{\appdname}{Appendix}
 
     \titleformat{\chapter}[block]
       {\centering\fontsize{16pt}{16pt}\selectfont\thispagestyle{fancy}}{\appdname~\Alph{chapter}}{1em}{}
@@ -1423,17 +1452,16 @@
 }{\end{enumerate}}
 
 \renewcommand{\thesisachivements}{
+  \newcommand{\thesisaccomplishtitle}{攻读学位期间取得的研究成果}
   \ifthesis@english
-    \newcommand{\thesisaccomplishtitle}{Achievements}
-    \pdfbookmark{\thesisaccomplishtitle}{Achievements}
-  \else
-    \newcommand{\thesisaccomplishtitle}{攻读学位期间取得的研究成果}
-    \pdfbookmark{\thesisaccomplishtitle}{Achievements}
+    \renewcommand{\thesisaccomplishtitle}{Achievements}
   \fi
-    \hypersetup{bookmarksdepth=-2}
+  \pdfbookmark{\thesisaccomplishtitle}{Achievements}
+
+  \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{攻读学位期间取得的研究成果}
   \addcontentsline{toe}{chapter}{Achievements}
-    \hypersetup{bookmarksdepth=2}
+  \hypersetup{bookmarksdepth=2}
   \chapter*{\thesisaccomplishtitle}
   \chaptermark{\thesisaccomplishtitle}
   \input{Main_Miscellaneous/achievement.tex}
@@ -1444,13 +1472,11 @@
 %%% Decision %%%
 %%% 答辩委员会决议 %%%
 \renewcommand{\thesisdecision}{
+  \newcommand{\thesisdecisiontitle}{答辩委员会会议决议}
   \ifthesis@english
-    \newcommand{\thesisdecisiontitle}{Decision of Defense Committee}
-    \pdfbookmark{\thesisdecisiontitle}{Decision of Defense Committee}
-  \else
-    \newcommand{\thesisdecisiontitle}{答辩委员会会议决议}
-    \pdfbookmark{\thesisdecisiontitle}{Decision of Defense Committee}
+    \renewcommand{\thesisdecisiontitle}{Decision of Defense Committee}
   \fi
+  \pdfbookmark{\thesisdecisiontitle}{Decision of Defense Committee}
   \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{答辩委员会会议决议}
   \addcontentsline{toe}{chapter}{Decision of Defense Committee}
@@ -1494,13 +1520,12 @@
 
 \renewcommand{\thesisreviewers}[2]{
   \genreviewerlist
+  \newcommand{\thesisreviewerlisttitle}{常规评阅人名单}
   \ifthesis@english
-    \newcommand{\thesisreviewerlisttitle}{General Reviewers List}
-    \pdfbookmark{\thesisreviewerlisttitle}{General Reviewers List}
-  \else
-    \newcommand{\thesisreviewerlisttitle}{常规评阅人名单}
-    \pdfbookmark{\thesisreviewerlisttitle}{General Reviewers List}
+    \renewcommand{\thesisreviewerlisttitle}{General Reviewers List}
   \fi
+  \pdfbookmark{\thesisreviewerlisttitle}{General Reviewers List}
+
   \chapter*{\sanhao \thesisreviewerlisttitle}
   \chaptermark{\thesisreviewerlisttitle}
   \hypersetup{bookmarksdepth=-2}
@@ -1530,18 +1555,13 @@
   #1（签名）：\hspace{5cm}日期：\hspace{2cm}年\hspace{1cm}月\hspace{1cm}日
 }
 \renewcommand{\thesisdeclarations}{
+  \newcommand{\thesisoriginalitytitle}{声明}
   \ifthesis@english
-    \newcommand{\thesisoriginalitytitle}{Declarations}
-  \else
-    \newcommand{\thesisoriginalitytitle}{声明}
+    \renewcommand{\thesisoriginalitytitle}{Declarations}
   \fi
+  \pdfbookmark{\thesisoriginalitytitle}{Declarations}
   \chaptermark{\thesisoriginalitytitle}
   \fancyfoot[]{}
-  \ifthesis@english
-    \pdfbookmark{\thesisoriginalitytitle}{Declarations}
-  \else
-    \pdfbookmark{\thesisoriginalitytitle}{Declarations}
-  \fi
 
   \begin{center}
   \sanhao 学位论文独创性声明（1）
