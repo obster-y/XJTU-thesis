@@ -44,6 +44,8 @@
 
 表格要求采用三线表，与文字齐宽，顶线与底线线粗为 $1.5$ pt，中线线粗是 $1$ pt，如表 \ref{tab_ch2} 所示\footnote{{\color{red}注意}：图表中的变量与单位通过斜线 $/$ 隔开。}。
 
+\xsubsection{普通表格}{Normal Tables}
+
 通栏表格应使用 tabularx 环境：
 
 \begin{verbatim}
@@ -102,4 +104,42 @@
 	\end{tabularx}
 \end{table}
 
-\eqref{eqn:c1:mdl:constraint_discharge}
+\xsubsection{长表格}{Long Tables}
+
+\vspace{4cm}
+\begin{xltabular}{\textwidth}{XX}
+  \caption{左对齐}\\
+
+    \toprule
+    \textbf{Symptom} & \textbf{Metric}\\
+    \midrule
+  \endfirsthead
+
+    \multicolumn{2}{c}{续\tablename\ \thetable{}}\\
+    \toprule
+    \textbf{Symptom} & \textbf{Metric}\\
+    \midrule
+  \endhead
+
+    \bottomrule
+    \multicolumn{2}{r}{表格未完} \\
+  \endfoot
+
+    \bottomrule
+  \endlastfoot
+
+  Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
+  Class that is large and complex & WMC is high\\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper subse & \\
+\end{xltabular}
