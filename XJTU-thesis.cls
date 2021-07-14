@@ -252,7 +252,8 @@
 \setlength{\intextsep}{9pt}
 \setlength{\extrarowheight}{2pt}
 
-\linespread{1.391}
+% \linespread{1.391}
+\linespread{1.33}
 
 %%% Default fonts for different fonts %%%
 %%% 为不同平台设置默认字体 %%%
@@ -672,6 +673,7 @@
 \RequirePackage{longtable}
 \RequirePackage{tabu}
 \RequirePackage{tabularx}
+\RequirePackage{xltabular}
 \RequirePackage{booktabs}
 
 % 三线表粗细
@@ -712,6 +714,7 @@
 }
 \AtBeginEnvironment{tabular}{\wuhao}
 \AtBeginEnvironment{tabularx}{\wuhao}
+\AtBeginEnvironment{xltabular}{\wuhao}
 
 
 %%% caption %%%
