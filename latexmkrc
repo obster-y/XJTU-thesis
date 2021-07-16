@@ -4,7 +4,7 @@ $xelatex = "xelatex -synctex=1 --shell-escape -interaction=nonstopmode %O %S";
 $pdflatex = "xelatex -synctex=1 --shell-escape -interaction=nonstopmode %O %S";
 $biber = "biber --validate-datamodel %O %S";
 $preview_mode = 1;
-#$cleanup_mode = 2;
+$cleanup_mode = 2;
 
 add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
 add_cus_dep('acn', 'acr', 0, 'run_makeglossaries');

@@ -234,11 +234,9 @@ xelatex main.tex
 
 ### 参考文献
 
-使用 BibTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」的 `GBT7714-2015-numerical`，可自行替换为 `GBT7714-2015-author-year` 使用「著者-出版年制」。
+使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」」。
 
-参考文献的在文中的引用分两种：在原文中作句法成分的为直接引用，使用 `\cite` 命令；若使用 `\citing` 命令，在文中文献编号显示为上标。
-
-暂未添加 BibLaTeX 支持。
+参考文献的在文中的引用分两种：在原文中作句法成分的为直接引用，使用 `\parentcite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标。
 
 ### 附录
 
@@ -281,7 +279,7 @@ xelatex main.tex
 
 ### 算法描述
 
-算法描述使用 `algorithm` 环境，具体写法请参考范例 `main_singlefile.tex` 或 `Main_Spine\c3.tex` 。模板类自动加载 `algorithm2e` 宏包，详细的用法请参考[algorithm2e宏包文档](https://www.ctan.org/pkg/algorithm2e)。
+算法描述使用 `algorithm` 环境，具体写法请参考范例 `Main_Spine\c3.tex` 。模板类自动加载 `algorithm2e` 宏包，详细的用法请参考[algorithm2e宏包文档](https://www.ctan.org/pkg/algorithm2e)。
 
 ### 枚举环境和脚注
 
