@@ -1,86 +1,86 @@
 % !TeX root = ../main.tex
 
-% \xchapter{LaTeX 介绍}{Introduction of LaTeX}
+\xchapter{算法与代码}{Algorithm and Code}
 
-% 本章对 \LaTeX{} 排版系统做一个简要介绍，希望没有使用过 \LaTeX{} 的同学对 \LaTeX{} 有一个初步认识。
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  学校并未对 算法 或 代码 的排版格式作出限定，因此可以自行修改。
+\end{tcolorbox}
+
+\xsection{算法}{Algorithm}
+
+在仔细研究后，本模板使用了基于 \clist[columbiablue]{algorithm2e} 宏包的算法排版工具，而没有使用 \clist[columbiablue]{algorithmicx (algpseudocode)}。同时，需要提醒的是， \clist[columbiablue]{algpseudocode} 在制作竖直定界线方面有一些问题，而能够较好的实现算法自动分段；\clist[columbiablue]{algorithm2e} 则相反，且这两个宏包相互冲突。
+
+算法的具体编写方式请自行查阅宏包，即\clist{texdoc algorithm2e}，本模板已预先定义了Do-While循环即\clist{\Do{cond}{code}}。
+
+\begin{texcode}[]{}
+  \begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{this text}
+    \KwResult{how to write algorithm with \LaTeX2e }
+  
+    initialization\;
+    \While{not at end of this document}{
+      read current\;
+      \eIf{understand}{
+        go to next section\;
+        current section becomes this one\;
+        }{
+        go back to the beginning of current section\;
+        }
+      }
+    \caption{How to write algorithms}
+  \end{algorithm}
+\end{texcode}
+
+\begin{algorithm}[h]
+  \caption{Simulation-optimization heuristic}\label{algorithm}
+  \KwData{current period $t$, initial inventory $I_{t-1}$, initial capital $B_{t-1}$, demand samples}
+  \KwResult{Optimal order quantity $Q^{\ast}_{t}$}
+  $r\leftarrow t$\;
+  $\Delta B^{\ast}\leftarrow -\infty$\;
+  \While{$\Delta B\leq \Delta B^{\ast}$ and $r\leq T$}{$Q\leftarrow\arg\max_{Q\geq 0}\Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})$\;
+  $\Delta B\leftarrow \Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})/(r-t+1)$\;
+  \If{$\Delta B\geq \Delta B^{\ast}$}{$Q^{\ast}\leftarrow Q$\;
+  $\Delta B^{\ast}\leftarrow \Delta B$\;}
+  $r\leftarrow r+1$\;}
+\end{algorithm}
 
 
-% \xsection{是什么}{What}
+\begin{algorithm}[H]
+  \KwData{this text}
+  \KwResult{how to write algorithm with \LaTeX2e }
+  initialization\;
+  \While{not at end of this document}{
+    read current\;
+    \Repeat{this end condition}{
+      do these things\;
+    }
+    \eIf{understand}{
+      go to next section\;
+      current section becomes this one\;
+    }{
+      go back to the beginning of current section\;
+    }
+    \Do{this end condition}{
+      do these things\;
+    }
+  }
+  \caption{How to write algorithms}
+\end{algorithm}
 
-% \LaTeX{} 是一款排版软件，和其它排版软件 (例如 Word) 相比，\LaTeX{} 具有非常明显的优势和不足。其最大的优势是高质量、高水准的专业排版效果；最大的缺点是使用门槛高，需要具备一定的编程基础\footnote{因为 \LaTeX{} 的资源非常丰富，有许多模板可以使用，这些模板已经为用户定制好了排版格式，所以单纯从使用的角度看，使用 \LaTeX{} 的门槛其实并不算高。}。对于习惯于抽象思维的科技人员而言，与精美的排版效果相比，\LaTeX{} 的确缺点是微不足道的，只要经过短时间 (一周足已) 的学习和实践，就可以编写出高质量的科研论文。
-
-% \LaTeX{} 的基础是 \TeX，\TeX{} 诞生于 20 世纪 70 年代末到 80 年代初，用来排版高质量的书籍，特别是包含数学公式的书籍。有趣的是，这样一款排版软件并非在排版业界产生，而是由著名计算机科学家 Donald Ervin Knuth (中文名高德纳) 在修订其七卷巨著《计算机程序设计艺术》时设计的。
-
-% 虽然 \TeX{} 功能非常强大，但是多达 900 多条的排版命令让排版人员使用起来非常不便。因此 20 世纪 80 年代初，Leslie Lamport 博士给 \TeX{} 编写了一组自定义命令宏包，并取名为 \LaTeX，其中 La 是其姓名的前两个字母。\LaTeX{} 拥有比原来的 \TeX 更为规范的格式命令和一整套预定义的格式，可以让完全不懂排版技术的学者们很容易地将书籍和文稿排版出来。\LaTeX{} 一出，很快风靡全球，在 1994 年 \LaTeXe{} 完善之后，现在已经成为国际上数学、物理、计算机等科技领域专业排版的事实标准，相关专业的学术期刊也都采用 \LaTeX{} 作为投稿格式。
-
-% \xsection{为什么用 LaTeX}{Why}
-
-% 虽然论文排版是一项基本技能，但是从实际情况看，同学们经常被各种格式整得晕头转向。加之 Word 排版不够美观，版本管理麻烦，排版效率低下，因此开发 \LaTeX{} 论文模板非常重要。国际上许多著名的出版机构和学术期刊都有自己的 \LaTeX{} 模板，国内外许多高效也有自己的硕博论文 \LaTeX{} 模板。事实上，\LaTeX{} 已经成为科技出版行业的国际标准，特别是数学、物理、计算机和电子信息学科。
-
-% 采用 \LaTeX{} 排版主要有以下优点：
-% \begin{enumerate}
-% 	\item 排版质量高：主要体现在对版面尺寸的严格控制，对字距、行距和段距等间距的松紧适度掌握，对数学公式的精细设计，对插图和表格的灵活处理，对代码和算法的优美呈现，等等。
-% 	\item 安全稳定：自发布以来 \TeX{} 和 \LaTeX{} 没有发现系统漏洞，不会出现死机或者系统崩溃而导致编写的内容来不及保存。
-% 	\item 灵活方便：\LaTeX{} 的源文件是纯文本文件，文件大小比 Word 小很多，不会因为文容的增加而导致文档打开、编辑、保存和关闭等操作变慢。因为 \LaTeX{} 在编译时才将所有源文件和图表汇总，故撰写内容时可以随意增删章节和图表。并且和大部分程序设计语言一样，\LaTeX{} 具有注释功能，作者可以在源文件任何地方添加注释，而不会影响最终生成的文档。
-% 	\item 格式和内容分离：\LaTeX{} 将文档格式和文档内容分开处理，作者只要选择合适的模板，就可专心致志地撰写文档内容，文档的格式细节则由 \LaTeX{} 模板统一规划设置。特别是文献管理能力非常强大，这给撰写像博士论文一样需要大量引用参考文献的文档提供了很大便利。
-% 	\item 免费开源：\LaTeX{} 软件完全免费，源代码也全部公开，并且相应的配套软件也都采用开源的方式。
-% \end{enumerate}
-
-% 无论你是因为羡慕 LaTeX{} 漂亮的输出结果，还是因为要给学术期刊投稿而被逼上梁山，都不得不面对这样一个事实：\LaTeX{} 是一种并不简单的排版软件，不可能只点点鼠标就弄好一篇漂亮的文章。还得拿出点搞研究的精神，通过不断练习，才能编排出整齐漂亮的论文。一旦你掌握了如何使用 \LaTeX{} 撰写出精美漂亮的论文时，你会发现你的决定是明智的，你的投入是值得的。
 
 
-% \xsection{怎样用 LaTeX}{How}
+\xsection{导入代码}{Input codes}
 
-% 因为 \LaTeX{} 的资源非常丰富，大家可以在网上查找资料和并参与讨论，这样学习效率更高。我关注的两个网站是：\url{http://bbs.ctex.org/forum.php} 和 \url{http://www.latexstudio.net}；参考的两本书是 ``The Not So Short Introduction to \LaTeX'' 和 ``LaTeX2e完全学习手册''。
+从现有文件导入源码，使用 \clist[columbiablue]{lstlisting} 宏包，本模板预先定义了一基本格式 \clist{sty_basic} 以供使用，可以自定义新的样式。
 
-\xchapter{参考文献与交叉引用}{Crossreferences}
-
-\xsection{公式、图表的引用}{Ref equations, tables or figures}
-
-\xsection{参考文献}{References}
-
-\cite{barella_situ_2021}
-
-\cite{atta_enhanced_2021}
-
-\parencite{张燕2013电气自动化在电气工程中的应用探讨}
-
-\parencite{黄雪芳2012探讨电气工程中自动化技术的应用}
-\xsubsection{文档层级}{Level of this document}
-
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-
-\xsubsection{文档层级}{Level of this document}
-
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-
-\xsubsection{文档层级}{Level of this document}
-
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
+\begin{texcodeonly}
+\lstinputlisting[style=sty_basic,
+  language=matlab,
+  caption={标准粒子群算法},
+  label={lst:a_label}]{./Codes/pso.m}
+\end{texcodeonly}
+\lstinputlisting[style=sty_basic,
+                    language=matlab,
+                    caption={标准粒子群算法},
+                    label={lst:a_label}]{./Codes/pso.m}

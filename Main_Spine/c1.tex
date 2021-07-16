@@ -1,85 +1,45 @@
 % !TeX root = ../main.tex
 
-% 由于需要生成中英目录，本模板提供了 \xLEVEL{}{} 的命令，其中，
-%   LEVEL 为 chapter, section, subsection;
-%   第一个参数为中文，第二个参数为英文（不论中英文主体）
-% 由于目录只包含三级标题，因此四级及以下标题不支持双语，如论文主体为英文写作，请自行修改为英文
-% ToC only need top three levels, thus other titles need to be changed to english if you use `english' option. 
-
 \xchapter{绪论}{Introductions}
 
 \xsection{背景}{Backgrounds}
 
-本文档仅提供部分可能用到的示例，系统的学习\LaTeX 用法请参考其他书目，如 \emph{lshort}，可通过在 shell(命令行/cmd) 中执行 \clist{texdoc lshort-zh} 获得中文版
+本文档仅提供部分可能用到的示例，系统的学习 \LaTeX 用法请参考其他书目，如 \emph{lshort}，可通过在 shell(命令行/cmd) 中执行 \clist{texdoc lshort-zh} 获得中文版。
+
+同时，务必意识到 \LaTeX 的工作及使用方式与 Microsoft Word 有极大的不同，不要问「怎么在 \LaTeX 中实现 Word 的 xx 功能」。
+
+\xsection{符号说明}{Examples}
+
+为了更加清楚的说明本模板的用法，特意使用了如下四种标记方式来标记「\LaTeX 源码」及「说明」：
+
+\clist{行内的灰色字块}表示简短的代码（\LaTeX 或 shell）；
+
+\clist[columbiablue]{行内的蓝色字块}表示宏包的名称。
+
+\begin{tcolorbox}
+  灰色框用来放置有一定长度的 \LaTeX 源码
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  红色框用来放置学校的学位论文模板\textbf{格式}要求
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black]
+  蓝色框用来放置学校的学位论文模板\textbf{内容}要求
+\end{tcolorbox}
+
+
+\clearpage
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=绪论部分的要求]
+  绪论部分主要论述论文的选题意义及应用背景、国内外研究现状分析及论文的主要研究内容等。
+\end{tcolorbox}
 
 \xsection{基本功能}{Basic Functions}
 
-\xsubsection{脚注及其使用}{Footnotes}
-
-脚注\footnote{脚注序号“\ding{172}，……，\ding{180}”的字体是“正文”，不是“上标”，序号与脚注内容文字之间空1个半角字符，脚注的段落格式为：单倍行距，段前空0磅，段后空0磅，悬挂缩进1.5字符；中文用宋体，字号为小五号，英文和数字用Times New Roman字体，字号为9磅；中英文混排时，所有标点符号（例如逗号“，”、括号“（）”等）一律使用中文输入状态下的标点符号，但小数点采用英文状态下的样式“.”。}\footnote{脚注序号“\ding{172}，……，\ding{180}”的字体是“正文”，不是“上标”，序号与脚注内容文字之间空1个半角字符，脚注的段落格式为：单倍行距，段前空0磅，段后空0磅，悬挂缩进1.5字符；中文用宋体，字号为小五号，英文和数字用Times New Roman字体，字号为9磅；中英文混排时，所有标点符号（例如逗号“，”、括号“（）”等）一律使用中文输入状态下的标点符号，但小数点采用英文状态下的样式“.”。}\footnote{脚注序号“\ding{172}，……，\ding{180}”的字体是“正文”，不是“上标”，序号与脚注内容文字之间空1个半角字符，脚注的段落格式为：单倍行距，段前空0磅，段后空0磅，悬挂缩进1.5字符；中文用宋体，字号为小五号，英文和数字用Times New Roman字体，字号为9磅；中英文混排时，所有标点符号（例如逗号“，”、括号“（）”等）一律使用中文输入状态下的标点符号，但小数点采用英文状态下的样式“.”。}可以通过 \clist{\footnote{}}自动编号生成，也可使用\clist{\footnotetex{text}}手动添加脚注
-
-\xsubsection{加粗，斜体与其他字体设置}{Bold, Emph and Other Font Settings}
 \xsubsection{文档层级}{Level of this document}
 
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-
-\xsection{文档层级}{Level of this document}
-\xsubsection{文档层级}{Level of this document}
-
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-
-\xsubsection{文档层级}{Level of this document}
-
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-
-\xsubsection{文档层级}{Level of this document}
-
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-按照学校的要求，正文最多应具有七个层级，分别使用以下命令
-
-
-
-
-
-
-
-
-
+按照学校的要求，正文最多应具有七个层级，分别使用以下命令，为了方便中英目录的生成，前三层命令是由模板自定义的，同时第六层目录的命令是由模板新增的。注意，不论正文主题是中或英，目录顺序均为先中后英。
 
 \begin{table}[H]
   \begin{tabularx}{\textwidth}{YY}
@@ -97,56 +57,156 @@
   \end{tabularx}
 \end{table}
 
-示例如下
-\subsubsection{第四级标题1}
+示例如下：
 
-\paragraph{第五级标题1}
+\subsubsection{第四级标题$1$}
 
-\paragraph{第五级标题2}
+\paragraph{第五级标题$1$}
 
-\paragraph{第五级标题3}
+\paragraph{第五级标题$2$}
 
-\subparagraph{第六级标题1}
+\paragraph{第五级标题$3$}
 
-\subparagraph{第六级标题2}
+\subparagraph{第六级标题$1$}
 
-\subparagraph{第六级标题3}
+\subparagraph{第六级标题$2$}
 
-\subsubparagraph{第七级标题1}
+\subparagraph{第六级标题$3$}
 
-一些文字
+第六级下的一些文字
+
+\subsubparagraph{第七级标题$1$}
+
+第七级下的一些文字
+
+\xsubsection{加粗，斜体与其他字体设置}{Bold, Emph and Other Font Settings}
+
+在中文学位论文的写作中，不推荐使用加粗，斜体等方式突出重点。
+
+使用\clist{\textbf{text}}进行可以对字加粗；同时，请注意到在英文中，正确的强调方式不是使用加粗，而是使用斜体，即使用\clist{\emph{text}}进行强调。如：
+\begin{texcode}[]{}
+  为了突出\textbf{重点}，英文可以这样：This is the \emph{key question}.
+\end{texcode}
+
+使用\clist{\textit{text}}、\clist{\underline{text}}等实现斜体，下划线等格式。
+
+
+
+
+
+\xsubsection{脚注及其使用}{Footnotes}
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  脚注可用小号字（一般小五号宋体）列在相应正文同一页最下部并与正文部分用细线（版面宽度的1/4长）隔开。
+\end{tcolorbox}
+
+脚注\footnote{脚注序号“\ding{172}，……，\ding{180}”的字体是“正文”，不是“上标”，序号与脚注内容文字之间空$1$个半角字符，脚注的段落格式为：单倍行距，段前空$0$磅，段后空$0$磅，悬挂缩进$1.5$字符；中文用宋体，字号为小五号，英文和数字用Times New Roman字体，字号为$9$磅；中英文混排时，所有标点符号（例如逗号“，”、括号“（）”等）一律使用中文输入状态下的标点符号，但小数点采用英文状态下的样式“.”。}\footnote{脚注序号“\ding{172}，……，\ding{180}”的字体是“正文”，不是“上标”，序号与脚注内容文字之间空$1$个半角字符，脚注的段落格式为：单倍行距，段前空$0$磅，段后空$0$磅，悬挂缩进$1.5$字符；中文用宋体，字号为小五号，英文和数字用Times New Roman字体，字号为$9$磅；中英文混排时，所有标点符号（例如逗号“，”、括号“（）”等）一律使用中文输入状态下的标点符号，但小数点采用英文状态下的样式“.”。}\footnote{脚注序号“\ding{172}，……，\ding{180}”的字体是“正文”，不是“上标”，序号与脚注内容文字之间空$1$个半角字符，脚注的段落格式为：单倍行距，段前空$0$磅，段后空$0$磅，悬挂缩进$1.5$字符；中文用宋体，字号为小五号，英文和数字用Times New Roman字体，字号为$9$磅；中英文混排时，所有标点符号（例如逗号“，”、括号“（）”等）一律使用中文输入状态下的标点符号，但小数点采用英文状态下的样式“.”。}是对文中有关内容的解释、说明或补充，使用上角标（序号\ding{172}、\ding{173}、$\cdots$）进行标注。
+
+脚注可以通过 \clist{\footnote{}}自动编号生成，也可使用\clist{\footnotetex{text}}手动添加脚注。
+
+摘要中关于项目资助的标识，是使用脚注生成的：
+
+\begin{tcolorbox}
+  \lstinline|\footnotetext{*本研究得到某某基金（编号：）的资助}|
+\end{tcolorbox}
+
+
+\clearpage
 
 \xsection{数字、公式和定理环境}{Equation and Theorem}
 
 \xsubsection{数字与单位}{Numbers and Units}
 
+模板引入了\clist[columbiablue]{siunitx}宏包实现数字与单位的正确排版，具体使用细节请自行查看该宏包，即 \clist{texdoc siunitx}。
+
+为了输入不同格式及角度的数字，可以使用\clist{\num{3.45d-4}}得到\num{3.45d-4}，使用\clist{\num{-e10}}得到\num{-e10}，使用\clist{\ang{1;2;3}}得到\ang{1;2;3}，避免了手动调节格式的问题。
+
+该宏包预先定义了部分单位，可以直接调用，同时生成较为复杂的单位。如：
+
+使用\clist{\SI{10}{\hertz}}得到 \SI{10}{\hertz}。
+
 \xsubsection{公式、矩阵与数学符号}{Equations, Matrix and Mathematical Symbols}
 
-公式如下：
-\begin{equation}
-    -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}\label{eqn:c1:mdl:constraint_discharge}
-\end{equation}
-上式表示
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  \begin{enumerate}[leftmargin=0.5cm]
+    \item 公式应另起一行，居中编排，较长的公式尽可能在等号后换行，或者在“+”、“-”等符号后换行。公式中分数线的横线，长短要分清，主要的横线应与等号取平。
+    \item 公式后应注明编号，公式号应置于小括号中，如公式（2-3）。写在右边行末，中间不加虚线；
+    \item 公式下面的“式中：”两字左起顶格编排，后接符号及其解释；解释顺序为先左后右，先上后下；解释与解释之间用“；”隔开。
+    \item 公式中各物理量及量纲均按国际标准（SI）及国家规定的法定符号和法定计量单位标注，禁止使用已废弃的符号和计量单位。
+  \end{enumerate}
+\end{tcolorbox}
+
+此部分是 \LaTeX 中比较精彩的一部分，具体的使用细节请自行查阅资料，本模板未对其进行修改。
+
+\begin{texcode}[]{}
+  公式如下：
+  \begin{equation}
+      -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}\label{eqn:c1:mdl:constraint_discharge}
+  \end{equation}
+  式中：$e$为xxx；$a$为xxx。
+\end{texcode}
 
 所以如式\eqref{eqn:c1:mdl:constraint_discharge}所示：
 \begin{equation}
     -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}
 \end{equation}
 
+请注意，本模板已经定义了\clist{\diff}命令作为微分符号，请不要自己使用新的符号，使用效果如下：
+\begin{align}\label{eqn:c1:diff}
+  \biggl(\int_{-\infty}^\infty e^{-x^2}\diff x\biggr)^2 
+    &= \int_{-\infty}^\infty\int_{-\infty}^\infty e^{-(x^2+y^2)}\diff x\diff y \\
+    &= \int_0^{2\pi}\int_0^\infty e^{-r^2}r\diff r\diff\theta \\
+    &= \int_0^{2\pi}\biggl(-{e^{-r^2}\over2}\bigg\vert_{r=0}^{r=\infty}\,\biggr)\diff\theta \\
+    &= \pi
+\end{align}
+
+
+同时，定义了部分用于简化输入的命令：
+
+\begin{texcode}[sidebyside]{}
+  $\seq{x}{n}$ \\ % serise
+  $\iprod{i}{j}$ \\ % inner product
+  $\mbf{B}$ \\ % acronym of \mathbf
+  $\Re{Q},\Im{Q}$
+\end{texcode}
+
+\clearpage
+
 \xsubsection{定理相关}{Theorems}
 
-\begin{theorem}[勾股定理]
-    若 $a,b$ 为直角三角形的两条直角边，$c$ 为斜边，那么 $a^2 + b^2 + c^2.$
-\end{theorem}
+本模板通过\clist[columbiablue]{thmtools}宏包定义了以下环境，其中\textbf{证明}环境默认具有缩进，没有编号，同时使用\clist{\qedhere}结束证明，其他环境样式一致。
 
-\begin{proof}
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{YYY|YYY}
+  \toprule
+    环境 & 英文名称 & 中文名称 & 环境 & 英文名称 & 中文名称 \\
+  \midrule
+    proof & Proof & 证明 & theorem & Theorem & 定理 \\
+    axiom & Axiom & 公理 & corollary & Corollary & 推论 \\
+    lemma & Lemma & 引理 & definition & Definition & 定义 \\
+    example & Example & 例子 & proposition & Proposition & 命题 \\
+    assumption & Assumption & 假设 & remark & Remark & 注 \\
+    problem & Problem & 问题 & conjecture & Conjecture & 猜想 \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
+
+
+\begin{texcode}[]{}
+  \begin{theorem}[勾股定理]
+    若 $a,b$ 为直角三角形的两条直角边，$c$ 为斜边，那么 $a^2 + b^2 + c^2.$
+  \end{theorem}
+
+  \begin{proof}
     通过\ldots
 
     所以：
     \begin{equation*}
         G(x, y) = G(y, x).  \qedhere
     \end{equation*}
-\end{proof}
+  \end{proof}
+\end{texcode}
 
 \begin{proposition}
   所以：
@@ -171,8 +231,11 @@
 
 \xsubsection{枚举环境}{Enumerates}
 
-\begin{enumerate}
-  \item 123
-  \item 231421
-  \item 124124
-\end{enumerate}
+\begin{texcode}[]{}
+  \begin{enumerate}
+    \item 123
+    \item 231421
+    \item 124124
+  \end{enumerate}
+\end{texcode}
+
