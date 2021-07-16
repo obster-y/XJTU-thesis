@@ -2,29 +2,53 @@
 
 \xchapter{浮动体：图表}{Floating: Figures, Tables}
 
+请先注意，在\LaTeX 中，图表不一定要像 Word 一样被固定在某个区域，程序会自动根据上下文为图片选择合适的位置，同时还有具有超链接的交叉引用自动定位图片位置，因此不要强求图片或表格一定处于某个位置。如非要定位，则应在浮动体环境中使用\clist{[H]}选项指定位置。
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  \begin{enumerate}[leftmargin=0.5cm]
+    \item 图、表、公式等一律用阿拉伯数字分章连续编号，如 图1-3、表2-1、（3-2）等。图、表、公式等与正文之间间隔0.5行。
+
+    \item 图应有图题，表应有表题，并分别置于图号和表号之后，图号和图题应置于图下方的居中位置，表号和表题应置于表上方的居中位置。引用图或表应在图题或表题右上角标出文献来源。
+
+    \item 若图或表中有附注，采用英文小写字母顺序编号，附注写在图或表的下方。
+  \end{enumerate}
+\end{tcolorbox}
+
 \xsection{图}{Figures}
 
-\xsubsection{应该使用 subcaption 而不是 subfigure}{Use subcaption instead of subfigure}
 
-\begin{verbatim}
-    \begin{figure}[H]
-        \begin{subfigure}[b]{0.49\linewidth}
-            \centering
-            \includegraphics[height=5.8cm]{xjtu_blue.pdf}
-            \subcaption{蓝色校徽}
-        \end{subfigure}
-        \begin{subfigure}[b]{0.49\linewidth}
-            \centering
-            \includegraphics[height=6cm]{xjtu_gray.pdf}
-            \subcaption{灰色校徽}
-            \label{subfig:icon}
-        \end{subfigure}
-        \caption{校徽}
-    \end{figure}
-    
-\end{verbatim}
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  \begin{enumerate}[leftmargin=0.5cm]
+    \item 插图须紧跟文述。在正文中，一般应先见图号及图的内容后再见图，一般情况下不能提前见图，特殊情况须延后的插图不应跨节；
+    \item 提供照片应大小适宜，主题明确，层次清楚，金相照片一定要有比例尺；
+    \item 图应具有“自明性”，即只看图、图题和图例，不阅读正文，就可理解图意。图中的标目是说明坐标轴物理意义的项目，它是由物理量的符号或名称和相应的单位组成。物理量的符号由斜体字母标注，单位的符号使用正体字母标注，量与单位间用斜线隔开。例如：I/A，ρ/kg·m-3 ，F/N，υ/m·s-1等等；
+    \item 图中用字为五号，如排列过密，用五号字有困难时，可小于五号字，但不得小于七号字；
+    \item 图尺寸的\textbf{一般宽高比}应为\SI{6.67}{cm}$\times$\SI{5.00}{cm}。特殊情况下，也可为 \SI{9.00}{cm}$\times$\SI{6.75}{cm}，或 \SI{13.5}{cm}$\times$\SI{9.00}{cm}。总之，一篇论文中，同类图片的大小应该一致，编排美观、整齐；
+    \item 一幅图如有若干幅\textbf{分图}，均应编分图号，用(a)，(b)，(c),...... 按顺序编排，且各分图的分题注直接列在各自分图的正下方，总题注列在所有分图的下方正中「
+  \end{enumerate}
+\end{tcolorbox}
+
+\xsubsection{单张图片的使用}{Single Figure}
+
+\begin{texcodeonly}[]{}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=5.8cm]{xjtu_blue.pdf}
+    \caption{校徽}
+  \end{figure}
+\end{texcodeonly}
 
 \begin{figure}[H]
+  \centering
+  \includegraphics[height=5.8cm]{xjtu_blue.pdf}
+  \caption{校徽}
+\end{figure}
+
+
+\xsubsection{多张图片：应该使用 subcaption 而不是 subfigure}{Use subcaption instead of subfigure}
+
+\begin{texcodeonly}[]{}
+  \begin{figure}[H]
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
         \includegraphics[height=5.8cm]{xjtu_blue.pdf}
@@ -32,51 +56,95 @@
     \end{subfigure}
     \begin{subfigure}[b]{0.49\linewidth}
         \centering
-        \includegraphics[height=6cm]{xjtu_gray.pdf}
+        \includegraphics[height=5.8cm]{xjtu_gray.pdf}
         \subcaption{灰色校徽}
         \label{subfig:icon}
     \end{subfigure}
     \caption{校徽}
+  \end{figure}
+\end{texcodeonly}
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[height=5.8cm]{xjtu_blue.pdf}
+      \subcaption{蓝色校徽}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[height=5.8cm]{xjtu_gray.pdf}
+      \subcaption{灰色校徽}
+      \label{subfig:icon}
+  \end{subfigure}
+  \caption{校徽}
 \end{figure}
 
+\xsubsection{多张子图分页}{Break multiple figures}
+
+\newcommand{\subfigg}{
+  \begin{subfigure}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[height=5.8cm]{xjtu_blue.pdf}
+    \subcaption{蓝色校徽}
+  \end{subfigure}
+}
+
+\begin{texcodeonly}[]{}
+  \begin{figure}[H]
+    \subfigg    \subfigg
+    \floatcontinue
+    \subfigg    \subfigg
+    \subfigg    \subfigg
+    \caption{校徽}
+  \end{figure}
+\end{texcodeonly}
+
+\begin{figure}[h]
+  \subfigg    \subfigg
+  \floatcontinue
+  \subfigg    \subfigg
+  \subfigg    \subfigg
+  \caption{校徽}
+\end{figure}
+
+\clearpage
 
 \xsection{表}{Tables}
 
-表格要求采用三线表，与文字齐宽，顶线与底线线粗为 $1.5$ pt，中线线粗是 $1$ pt，如表 \ref{tab_ch2} 所示\footnote{{\color{red}注意}：图表中的变量与单位通过斜线 $/$ 隔开。}。
+\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
+  \begin{enumerate}[leftmargin=0.5cm]
+    \item 如某个表需要转页接排，在随后的各页上应重复表的编号。编号后跟表题（可省略）和“（续）”，如表 1-1（续），续表均应重复表头和关于单位的陈述。表格的设计应紧跟文述。表的编排一般是内容和测试项目由左至右横读，数据依序竖读，应有自明性。若为大表或作为工具使用的表格，可作为附表在附录中给出，论文中的表格参数应标明量和单位的符号；
+    \item 表中各物理量及量纲均按国际标准(SI) 及国家规定的法定符号和法定计量单位标注；
+    \item 一律使用三线表，与文字齐宽，顶线与底线线粗为 $1.5$ pt，中线线粗是 $1$ pt；
+    \item 使用他人表格须注明出处。
+    \item 表中用字为五号字体。如排列过密，用五号字有困难时，可小于五号字，但不小于七号。
+    \item 表格必须通栏，即表格宽度与正文版面平齐。
+  \end{enumerate}
+\end{tcolorbox}
+
 
 \xsubsection{普通表格}{Normal Tables}
 
-通栏表格应使用 tabularx 环境：
 
-\begin{verbatim}
-    \begin{table}[H]
-        \caption{左对齐}
-        \begin{tabularx}{\textwidth}{XX}
-        \toprule
-            \textbf{Symptom} & \textbf{Metric} \\
-        \midrule
-            Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
-            Class that is large and complex & WMC is high\\
-            Class that has a lot of methods that only operate on a proper subse&\\
-        \bottomrule
-        \end{tabularx}
-    \end{table}
-\end{verbatim}
+通栏表格应使用 tabularx 环境，其中 \clist{X,Y,Z} 分别对应初始表格的 \clist{l,c,r}
 
-\begin{table}[H]
+\begin{texcode}[]{}
+  \begin{table}[H]
     \caption{左对齐}
     \begin{tabularx}{\textwidth}{XX}
     \toprule
         \textbf{Symptom} & \textbf{Metric} \\
     \midrule
         Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
-        Class that is large and complex & WMC is high\\
-        Class that has a lot of methods that only operate on a proper subse & \\
+        Class that is large and complex & WMC is high \\
+        Class that has a lot of methods that only operate on a proper & \\
     \bottomrule
     \end{tabularx}
-\end{table}
+  \end{table}
+\end{texcode}
 
-\begin{table}[H]
+\begin{texcode}[]{}
+  \begin{table}[H]
     \caption{居中}
     \begin{tabularx}{\textwidth}{YY}
     \toprule
@@ -87,59 +155,131 @@
         Class  & TCC \\
     \bottomrule
     \end{tabularx}
-\end{table}
+  \end{table}
+\end{texcode}
 
-\begin{table}[!ht]
-	\renewcommand{\arraystretch}{1.2}
-	\centering\wuhao
-	\caption{表题也是五号字} \label{tab_ch2} \vspace{2mm}
-	\begin{tabularx}{\textwidth}{*{4}Y}
-	\toprule[1.5pt]
-		Interference & DOA / degree & Bandwidth / MHz & INR / dB \\
-	\midrule[1pt]
-		1 & $-30$ & 20 & 60 \\
-		2 & 20 & 10 & 50 \\
-		3 & 40 & 5 & 40 \\
-	\bottomrule[1.5pt]
-	\end{tabularx}
+
+\clearpage
+
+\xsubsection{复杂表格}{Complicated tables}
+
+在三线表中可以加辅助线，以适应较复杂表格的需要：
+
+\begin{texcode}[]{}
+\begin{table}[H]  
+  \centering
+  \caption{compare with other approachs}
+  \label{tab:methodcompare}
+  \begin{tabularx}{\textwidth}{*{7}Y}
+    \toprule
+    \multirow{2}*{Model} & \multicolumn{3}{c}{trigger identification} &  \multicolumn{3}{c}{Event Extraction} \\ 
+    \cline{2-7}
+    & P(\%) & R(\%) & F1(\%) & P(\%) & R(\%) & F1(\%) \\
+    \midrule 
+    Baseline1 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
+    \midrule[0.5pt]
+    Baseline2  & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
+    Baseline3  & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
+    \midrule[0.5pt]
+    {\bf Our approach}  & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} \\
+    \bottomrule
+  \end{tabularx}
 \end{table}
+\end{texcode}
+
+\clearpage
 
 \xsubsection{长表格}{Long Tables}
 
-\vspace{4cm}
-\begin{xltabular}{\textwidth}{XX}
-  \caption{左对齐}\\
+当表格过长时，使用\clist{xltabular}环境，可以自动生成续表：
+
+\begin{texcodeonly}[]{}
+  \begin{xltabular}{\textwidth}{XX}
+    \caption{左对齐} \\
+
+      \toprule
+      \textbf{Symptom} & \textbf{Metric} \\
+      \midrule
+    \endfirsthead % 以上设置第一张表表头
+
+      \multicolumn{2}{c}{\tablename\ \thetable{}（续）} \\
+      \toprule
+      \textbf{Symptom} & \textbf{Metric} \\
+      \midrule
+    \endhead % 以上设置所有续表表头
+
+      \bottomrule
+      \multicolumn{2}{r}{表格待续} \\
+    \endfoot % 以上设置第一张表结尾
+
+      \bottomrule
+    \endlastfoot % 以上设置最后一张表结尾
+
+    Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few \\
+    Class that is large and complex & WMC is high \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+    Class that has a lot of methods that only operate on a proper & \\
+  \end{xltabular}
+\end{texcodeonly}
+
+\begin{xltabular}{\textwidth}{YY}
+  \caption{长表格} \\
 
     \toprule
-    \textbf{Symptom} & \textbf{Metric}\\
+    \textbf{Symptom} & \textbf{Metric} \\
     \midrule
-  \endfirsthead
+  \endfirsthead % 以上设置第一张表表头
 
-    \multicolumn{2}{c}{续\tablename\ \thetable{}}\\
+    \multicolumn{2}{c}{\tablename\ \thetable{}（续）} \\
     \toprule
-    \textbf{Symptom} & \textbf{Metric}\\
+    \textbf{Symptom} & \textbf{Metric} \\
     \midrule
-  \endhead
+  \endhead % 以上设置所有续表表头
 
     \bottomrule
-    \multicolumn{2}{r}{表格未完} \\
-  \endfoot
+    \multicolumn{2}{r}{表格待续} \\
+  \endfoot % 以上设置第一张表结尾
 
     \bottomrule
-  \endlastfoot
+  \endlastfoot % 以上设置最后一张表结尾
 
+  % 开始表格内容
   Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
   Class that is large and complex & WMC is high\\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
-  Class that has a lot of methods that only operate on a proper subse & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
+  Class that has a lot of methods that only operate on a proper & \\
 \end{xltabular}

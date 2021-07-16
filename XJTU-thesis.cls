@@ -40,9 +40,9 @@
 %%% 文档类信息 %%%
 \NeedsTeXFormat{LaTeX2e}
 \RequirePackage{expl3}
-\ProvidesClass{XJTU-thesis}[2021/07/08 1.2.2 Xi'an Jiaotong University Template]
+\ProvidesClass{XJTU-thesis}[2021/07/16 1.2.4 Xi'an Jiaotong University Template]
 \def\xjtuthesis{XJTU-thesis}
-\def\meta@version{1.2.2}
+\def\meta@version{1.2.4}
 \def\metaversion{\meta@version}
 
 
@@ -101,18 +101,18 @@
 
 %%% color %%%
 %%% 颜色 %%%
-\RequirePackage{color}
+% \RequirePackage{color}
 \RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \definecolor{dimgray}{rgb}{0.9,0.9,0.9}
-
+\definecolor{columbiablue}{rgb}{0.61, 0.87, 1.0}
 %%% tikz %%%
 \RequirePackage{tikz}
 \RequirePackage{tikz-3dplot}
-\usetikzlibrary{shapes,arrows,positioning}
+\usetikzlibrary{shapes,arrows,positioning,calc}
 
 
 %%% chinese characters %%%
@@ -240,6 +240,7 @@
 \RequirePackage{xeCJK}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
+\RequirePackage{anyfontsize}
 \RequirePackage{mathrsfs}
 \RequirePackage{amsfonts}
 \RequirePackage[12pt]{ctex}
@@ -467,10 +468,45 @@
 \SetKwRepeat{Do}{do}{while}
 
 
+%%% colorbox %%%
+%%% colobox %%%
+
+\RequirePackage{tcolorbox}
+\tcbuselibrary{listings,skins,breakable,xparse}
+\newtcblisting{texcode}[2][]{
+  #1,
+  breakable,
+  bicolor, colbacklower=white,
+  listing options={
+    style=tcblatex,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    numbers=none,
+    numberstyle=\tiny\color{red!75!black}\emptyaccsupp,
+    emptylines=1,
+    escapeinside=
+  },
+}
+\newtcblisting{texcodeonly}[2][]{
+  #1,
+  breakable,
+  bicolor, colbacklower=white,
+  listing only,
+  listing options={
+    style=tcblatex,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black},
+    numbers=none,
+    numberstyle=\tiny\color{red!75!black}\emptyaccsupp,
+    emptylines=1,
+    escapeinside=
+  },
+}
+
 %%% codes %%%
 %%% 代码环境 %%%
 \RequirePackage{listings}
-\lstset{inputpath = {{./Codes/}},}          % 可以继续添加其他路径
+% \lstset{inputpath = {{./Codes/}},}          % 可以继续添加其他路径
 \lstset{basicstyle = \ttfamily}
 \lstdefinestyle{sty_basic}{
     % backgroundcolor=\color{backcolour},     % 颜色
@@ -497,8 +533,8 @@
 }
 
 
-\DeclareDocumentCommand{\clist}{v}{%
-    \Colorbox{dimgray}{\csname lstinline\endcsname!#1!}%
+\DeclareDocumentCommand{\clist}{O{dimgray} v}{%
+    \Colorbox{#1}{\csname lstinline\endcsname!#2!}%
 }
 
 %%% enumerate %%%
@@ -548,7 +584,7 @@
   \declaretheorem[name={例子},style=style_theorem,numberlike=theorem]{example}
   \declaretheorem[name={命题},style=style_theorem,numberlike=theorem]{proposition}
   \declaretheorem[name={假设},style=style_theorem,numberlike=theorem]{assumption}
-  \declaretheorem[name={注释},style=style_theorem,numberlike=theorem]{remark}
+  \declaretheorem[name={注},style=style_theorem,numberlike=theorem]{remark}
   \declaretheorem[name={问题},style=style_theorem,numberlike=theorem]{problem}
   \declaretheorem[name={猜想},style=style_theorem,numberlike=theorem]{conjecture}
 \fi
@@ -726,7 +762,7 @@
 \captionsetup{format=hang}
 \captionsetup{width=\textwidth - 42pt}
 
-\captionsetup[figure]{aboveskip=0pt, belowskip=0pt, labelsep=space,font=small}
+\captionsetup[figure]{aboveskip=6pt, belowskip=0pt, labelsep=space,font=small}
 \captionsetup[table]{aboveskip=6pt, belowskip=0pt, labelsep=space,font=small}
 \captionsetup[sub]{font=small, belowskip=6pt}
 \captionsetup[lstlisting]{font=small,labelfont=bf,singlelinecheck=off,labelsep=space}
@@ -737,6 +773,7 @@
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
+
 \AtBeginDocument{
   \renewcommand\thelstlisting{\arabic{chapter}-\arabic{lstlisting}}
 
@@ -991,19 +1028,6 @@
   \markboth{摘~~~~要}{摘~~~~要}
 }{\clearpage}
 
-\newcommand{\chinesekeywordstype}[2]{
-  \noindent
-  \begin{minipage}[t]{\linewidth}
-  \vspace{0.1\baselineskip}
-  \newcommand{\chskeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries 关~~键~~词：}
-  \parbox[t]{\widthof{\chskeywords}}{\chskeywords}
-  \parbox[t]{\linewidth - \widthof{\chskeywords}}{\fontsize{12pt}{12pt} #1}
-  \\[0.5\baselineskip]
-  \newcommand{\chstypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries 论文类型：}
-  \parbox[t]{\widthof{\chstypeofthesis}}{\chstypeofthesis}
-  \parbox[t]{\linewidth - \widthof{\chstypeofthesis}}{\fontsize{12pt}{12pt} #2}
-  \end{minipage}
-}
 
 \newenvironment{englishabstract}{
   \ifthesis@english
@@ -1021,19 +1045,24 @@
   \setlength{\parskip}{0.35\baselineskip}
 }{}
 
-\newcommand{\englishkeywordstype}[2]{
+\newcommand{\keywordswithtype}[4]{
   \noindent
   \begin{minipage}[t]{\linewidth}
   \vspace{0.1\baselineskip}
-  \newcommand{\engkeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries KEY WORDS:}
-  \parbox[t]{\widthof{\engkeywords}}{\engkeywords}
-  \parbox[t]{\linewidth - \widthof{\engkeywords}}{\fontsize{12pt}{12pt} #1}
-  \\[\baselineskip]
-  \newcommand{\engtypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries TYPE OF \englishthesistypea:}
-  \parbox[t]{\widthof{\engtypeofthesis}}{\engtypeofthesis}
-  \parbox[t]{\linewidth - \widthof{\engtypeofthesis}}{\fontsize{12pt}{12pt} #2}
+  \parbox[t]{\widthof{#1}}{#1}
+  \parbox[t]{\linewidth - \widthof{#1}}{\fontsize{12pt}{12pt}\selectfont #3}
+  \\[0.5\baselineskip]
+  \parbox[t]{\widthof{#2}}{#2}
+  \parbox[t]{\linewidth - \widthof{#2}}{\fontsize{12pt}{12pt}\selectfont #4}
   \end{minipage}
 }
+
+\newcommand{\chskeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries 关~~键~~词：}
+\newcommand{\chstypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries 论文类型：}
+\newcommand{\engkeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries KEY WORDS:}
+\newcommand{\engtypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries TYPE OF \englishthesistypea:}
+\newcommand{\chinesekeywordstype}[2]{\keywordswithtype{\chskeywords}{\chstypeofthesis}{#1}{#2}}
+\newcommand{\englishkeywordstype}[2]{\keywordswithtype{\engkeywords}{\engtypeofthesis}{#1}{#2}}
 
 \renewcommand{\thesisabstract}{
   \pagestyle{fancy}
@@ -1410,18 +1439,18 @@
     \renewcommand{\theequation}{\appdname\Alph{chapter}-\arabic{equation}}
     \renewcommand{\thefigure}{\arabic{figure}}
     \renewcommand{\thelstlisting}{\arabic{lstlisting}}
-    \renewcommand{\thealgocf}{\arabic{algocf}}
+    % \renewcommand{\thealgocf}{\arabic{algocf}}
 
     \ifthesis@english
       \renewcommand{\figurename}{\appdname\Alph{chapter}-Figure}
       \renewcommand{\tablename}{\appdname\Alph{chapter}-Table}
       \renewcommand{\lstlistingname}{\appdname\Alph{chapter}-Code}
-      \SetAlgorithmName{\appdname\Alph{chapter}-Algorithm}{\appdname\Alph{chapter}-Algorithm}{List of Algorithms}
+      % \SetAlgorithmName{\appdname\Alph{chapter}-Algorithm}{\appdname\Alph{chapter}-Algorithm}{List of Algorithms}
     \else
       \renewcommand{\figurename}{\appdname\Alph{chapter}-图}
       \renewcommand{\tablename}{\appdname\Alph{chapter}-表}
       \renewcommand{\lstlistingname}{\appdname\Alph{chapter}-源码}
-      \SetAlgorithmName{\appdname\Alph{chapter}-算法}{\appdname\Alph{chapter}-算法}{算法列表}
+      % \SetAlgorithmName{\appdname\Alph{chapter}-算法}{\appdname\Alph{chapter}-算法}{算法列表}
     \fi
     \appendix
     \renewcommand{\thechapter}{\appdname~\Alph{chapter}}
