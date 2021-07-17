@@ -49,6 +49,7 @@
 %%% cls options %%%
 %%% 文档类参数 %%%
 \newif\iftyp@report           \typ@reportfalse
+\newif\iftyp@slide            \typ@slidefalse
 \newif\iftyp@bachelor         \typ@bachelorfalse
 \newif\iftyp@master           \typ@masterfalse
 \newif\iftyp@doctor           \typ@doctorfalse
@@ -70,13 +71,14 @@
 \ProcessOptions\relax
 
 \LoadClass[12pt,twoside,openany]{book}
-
-\iftyp@report\relax\else
-  \iftyp@bachelor\relax\else
-    \iftyp@master\relax\else
-      \iftyp@doctor\relax\else
-        \ClassError{XJTU-thesis}%
-          {You have to assign one of these options for this document: report, bachelor, master or doctor.}{}
+\iftyp@slide\relax\else
+  \iftyp@report\relax\else
+    \iftyp@bachelor\relax\else
+      \iftyp@master\relax\else
+        \iftyp@doctor\relax\else
+          \ClassError{XJTU-thesis}%
+            {You have to assign one of these options for this document: report, slide, bachelor, master or doctor.}{}
+        \fi
       \fi
     \fi
   \fi
@@ -175,9 +177,9 @@
 
 \renewcommand{\Re}{\mathrm{Re}}
 \renewcommand{\Im}{\mathrm{Im}}
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
 \newcommand{\mbf}[1]{\mathbf{#1}}
 \newcommand{\Exp}{\mathrm{E}}
-\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
 \newcommand{\seq}[2]{#1_1,#1_2,\cdots,#1_#2}
 \newcommand{\iprod}[2]{\langle #1,#2 \rangle}
 
@@ -227,7 +229,6 @@
 }
 
 
-% 英文
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -253,7 +254,6 @@
 \setlength{\intextsep}{9pt}
 \setlength{\extrarowheight}{2pt}
 
-% \linespread{1.391}
 \linespread{1.33}
 
 %%% Default fonts for different fonts %%%
@@ -266,24 +266,24 @@
   \newfontfamily{\songti@letter}{SimSun}
   \setallmainfonts{Times New Roman}
 \else
-\ifmacosx
-  \setCJKmainfont[AutoFakeBold=true]{Songti SC}
-  \newCJKfontfamily{\heiti}{STHeiti}
-  \newfontfamily{\heiti@letter}{STHeiti}
-  \newCJKfontfamily{\songti}{Songti SC}
-  \newfontfamily{\songti@letter}{Songti SC}
-  \setallmainfonts{Times New Roman}
-\else
-\setCJKmainfont[AutoFakeBold=true,Path=Materials/Fonts/]{fzsong.ttf}
-\newfontfamily{\heiti@letter}[Path=Materials/Fonts/]{fzhei.ttf}
-\newfontfamily{\songti@letter}[Path=Materials/Fonts/]{fzsong.ttf}
-\setallmainfonts[
-  BoldFont=timesbd.ttf,
-  ItalicFont=timesi.ttf,
-  BoldItalicFont=timesbi.ttf,
-  Path=Materials/Fonts/,
-]{times.ttf}
-\fi
+  \ifmacosx
+    \setCJKmainfont[AutoFakeBold=true]{Songti SC}
+    \newCJKfontfamily{\heiti}{STHeiti}
+    \newfontfamily{\heiti@letter}{STHeiti}
+    \newCJKfontfamily{\songti}{Songti SC}
+    \newfontfamily{\songti@letter}{Songti SC}
+    \setallmainfonts{Times New Roman}
+  \else
+    \setCJKmainfont[AutoFakeBold=true,Path=Materials/Fonts/]{fzsong.ttf}
+    \newfontfamily{\heiti@letter}[Path=Materials/Fonts/]{fzhei.ttf}
+    \newfontfamily{\songti@letter}[Path=Materials/Fonts/]{fzsong.ttf}
+    \setallmainfonts[
+      BoldFont=timesbd.ttf,
+      ItalicFont=timesi.ttf,
+      BoldItalicFont=timesbi.ttf,
+      Path=Materials/Fonts/,
+    ]{times.ttf}
+  \fi
 \fi
 
 
@@ -294,7 +294,7 @@
 \newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}       % 四号, 1.0倍行距
 \newcommand{\xiaosi}{\fontsize{12pt}{12pt}\selectfont}      % 小四, 1.0倍行距
 \newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}   % 五号, 1.0倍行距
-\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}        % 小五, 1.0倍行
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}        % 小五, 1.0倍行距
 
 
 
@@ -470,7 +470,6 @@
 
 %%% colorbox %%%
 %%% colobox %%%
-
 \RequirePackage{tcolorbox}
 \tcbuselibrary{listings,skins,breakable,xparse}
 \newtcblisting{texcode}[2][]{
@@ -546,7 +545,6 @@
 
 %%% theorem and proof %%%
 %%% 定理与证明环境 %%%
-
 \theoremstyle{plain}
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \let\proof\undefined
@@ -712,9 +710,9 @@
 \RequirePackage{xltabular}
 \RequirePackage{booktabs}
 
-% 三线表粗细
+% 三线表样式
 \setlength{\heavyrulewidth}{1.5pt}
-\setlength{\lightrulewidth}{1pt}
+\setlength{\lightrulewidth}{1.0pt}
 \setlength{\arrayrulewidth}{0.5pt}
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
@@ -803,8 +801,6 @@
 
 %%% CROSSREF & HYPERLINK %%%
 %%% 交叉引用和超链接 %%%
-% \RequirePackage{cite}
-\newcommand{\citing}[1]{\textsuperscript{\cite{#1}}}
 \setlist{noitemsep}
 \setlist{nolistsep}
 
@@ -816,7 +812,6 @@
     bookmarksnumbered=true,
     bookmarksopen=true,
     bookmarksdepth=2,
-    % bookmarks=false,
     breaklinks=true,
     pdfborder={0 0 0},
     citebordercolor={0 0 1},
@@ -940,7 +935,6 @@
 
 \tl_set:Nn \g_dc_tabular_tl {\sanhao}
 
-
 \box_new:N \l_bp_set_to_box
 \cs_new_protected:Npn \bp_box_set_to:NNn #1 #2 #3
   {
@@ -961,8 +955,6 @@
   \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \l_dcc_tl 1}
 
   \tl_gput_right:Nn \g_dc_tabular_tl {{\clist_item:Nn \l_dcc_tl 1 \clist_item:Nn \l_dcc_tl 3}：&\sanhao\underline{\parbox[t]{10em}{\clist_item:Nn \l_dcc_tl 2}}\xiaowu（注：主席）\\}
-
-
 
   \seq_map_variable:NNn \g_defense_committee_seq \i {
     \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \i 2}
@@ -1221,8 +1213,6 @@
 \makeglossaries
 \glsaddall
 
-\newcommand{\itemi}{}
-
 % TODO use latex3 compress these command into on type
 
 % \ExplSyntaxOn
@@ -1240,6 +1230,8 @@
 
 % \ExplSyntaxOff
 
+
+\newcommand{\itemi}{}
 
 \newcommand{\xchapter}[2]{
   \renewcommand{\itemi}{#1}
@@ -1480,7 +1472,7 @@
 %%% 完成成果 %%%
 \newenvironment{achievelist}{
   \wuhao\selectfont
-	\begin{enumerate}[label={[\arabic*]},itemsep=1ex,align=left]
+  \begin{enumerate}[label={[\arabic*]},itemsep=1ex,align=left]
 }{\end{enumerate}}
 
 \renewcommand{\thesisachivements}{
