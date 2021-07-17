@@ -605,15 +605,15 @@
 \renewcommand{\small}{\fontsize{10.5pt}{12.6pt}\selectfont}
 \renewcommand\footnotelayout{\fontsize{9pt}{11.7pt}\selectfont}
 
-\newcommand{\astfootnote}[1]{
-  \let\oldthefootnote=\thefootnote
-  \let\oldfootnotelayout=\footnotelayout
-  \renewcommand\footnotelayout{\fontsize{10.7pt}{10.7pt}\selectfont}
-  \renewcommand{\thefootnote}{$\ast$}
-  \hspace{-0.5em}\footnote{#1}\hspace{-0.15em}
-  \let\thefootnote=\oldthefootnote
-  \let\footnotelayout=\oldfootnotelayout
-}
+% \newcommand{\astfootnote}[1]{
+%   \let\oldthefootnote=\thefootnote
+%   \let\oldfootnotelayout=\footnotelayout
+%   \renewcommand\footnotelayout{\fontsize{10.7pt}{10.7pt}\selectfont}
+%   \renewcommand{\thefootnote}{$\ast$}
+%   \hspace{-0.5em}\footnote{#1}\hspace{-0.15em}
+%   \let\thefootnote=\oldthefootnote
+%   \let\footnotelayout=\oldfootnotelayout
+% }
 
 \def\@makefntext #1{
   \ifFN@hangfoot
@@ -1363,7 +1363,7 @@
 %   \end{spacing}
 % }{}{}
 
-\RequirePackage[hyperref=true,backend=biber,style=gb7714-2015,gbalign=left,]{biblatex}
+\RequirePackage[hyperref=true,backend=biber,style=gb7714-2015,gbalign=left]{biblatex}
 \renewcommand{\bibfont}{\zihao{5}}
 \setlength{\bibitemsep}{0ex}
 \setlength{\bibnamesep}{0ex}
