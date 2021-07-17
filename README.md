@@ -4,12 +4,13 @@
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
 
-本项目为非官方的西安交通大学学位论文的 LaTeX 模板（提供 XJTU-thesis.cls）（提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求，同时模板作者5年内不会弃坑，会随时更新。
+[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的官方 LaTeX 模板（提供 XJTU-thesis.cls）（提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求，同时模板作者 5 年内不会弃坑，会随时更新。
 
 ## 更新记录
 
 - 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
 - 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
+- 2021.07.17：提交至学位办，等待正式发布
 
 ## 基本信息
 
@@ -44,6 +45,12 @@
 
 如果对模板使用或格式有相关问题，请在 github 上提交 issue，如果发现 bug，欢迎提交 PR。
 
+## 后续更新内容
+
+- 添加学士学位模板支持
+- 添加报告类型
+- 添加演示文稿类型
+- 逐步将部分类似命令用 LaTeX3 简化
 
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
@@ -54,6 +61,7 @@
 
 - 2021.06.09: Specified formats not mentioned in the template given by University Library, then made some changes.
 - 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
+- 2021.07.17: Submit a release to the Degree Office.
 
 
 ## Basic Information
@@ -88,6 +96,13 @@ This project make these adjustments/improvements:
 
 If you have any questions about the template, please submit an issue directly on github. If you find a bug, please submit a pull request.
 
+## Upcoming updates
+
+- Provide support of bachelor degree thesis
+- Provide support of daily report
+- Provide support of slides
+- Refactor some similar command with LaTeX3
+
 -----
 
 ## 注意事项
@@ -101,8 +116,11 @@ If you have any questions about the template, please submit an issue directly on
 
 ## 使用方法
 
+**！！！特别提示：本模板分别在 README.md 及各个 .tex 文件中均有使用说明及范例，请务必全部读完。**
+
 ### 基本环境
-使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本大于等于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在与主 tex 文件同一路径下。
+
+使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在与主 tex 文件同一路径下。
 
 模板采用 LaTeX 类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
 
@@ -153,7 +171,7 @@ xelatex main.tex
 #### 软件编译
 请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用非正版的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
 
-在使用 Latexmk 时，可以自行修改 latexmkrc 中的内容，实现自定义编译流程。
+在使用 Latexmk 时，可以自行修改 latexmkrc 中的内容，实现自定义编译流程。比如要让编译速度提升（不每次都重新生成辅助文件），可以注释掉 latexmkrc 中的 cleanup_mode 一项。
 
 ```text
 当前，在编译开始时，首先自动清除辅助文件 `$cleanup_mode = 2;`
@@ -179,7 +197,7 @@ xelatex main.tex
 
 ### 主要符号表
 
-主要符号表通过修改添加 `Main_Miscellaneous/glossary.tex` 中的文字，使用 `\thesisglossarylist` 在正文中生成。
+主要符号表通过修改添加 `Main_Miscellaneous/glossary.tex` 中的文字，使用 `\thesisglossarylist` 生成。
 
 定义专有词汇或符号使用 `\newglossaryentry{<label>}{<description>}` 命令，例如：
 ```latex
@@ -210,7 +228,7 @@ xelatex main.tex
 
 ### 论文主体
 
-论文主体的写作参考一般的LaTeX教程（如中文版的[lshort](https://www.ctan.org/pkg/lshort-zh-cn)），可以自由添加章节，章节内添加所需要的内容，分小节，插入公式、表格和图片。
+论文主体的写作参考一般的 LaTeX 教程（如中文版的[lshort](https://www.ctan.org/pkg/lshort-zh-cn)），可以自由添加章节，章节内添加所需要的内容，分小节，插入公式、表格和图片。
 
 各个章节通过 `\thesisbody{c1,c2,c3}` 命令引入，注意此命令只应使用一次，且注意参数顺序。
 
@@ -218,15 +236,15 @@ xelatex main.tex
 
 数学环境的字体加粗可以使用 `\mathbf` 命令，使用斜体粗体的符号。由于 Times New Roman 字体的拉丁字母字形修长，偶尔会出现字符粘连的情况。这种情况下可以使用占位符波浪号调整距离，如 `$f^{~l}$` 和 `$\hat{f~}$` 。
 
-注意，本模板已经定义了 `\diff` 命令产生标准的微分符号，请不要再自行使用其他符号（微分号是正体的d，与后面内容间距稍小）
+注意，本模板已经定义了 `\diff` 命令产生标准的微分符号，请不要再自行使用其他符号（微分号是正体的 d，与后面内容间距稍小）
 
 ### 单位与国际标准
 
 本模板引入了 `siunitx` 宏包输出正确的数字和单位，使用方法为 `\SI{#1}{#2}`，其中 `#1` 为数值，`#2` 为单位，如 `共有\SI{100}{kg}` 。
 
-### 代码
+### 代码抄录
 
-本模板提供了一套基本样式 `sty_basic`，使用者也可以自定义喜欢的样式
+本模板提供了一套基本样式 `sty_basic`，使用者也可以自定义喜欢的样式。
 
 ### 致谢
 
@@ -236,7 +254,7 @@ xelatex main.tex
 
 使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」」。
 
-参考文献的在文中的引用分两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标。
+参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标。
 
 ### 附录
 
@@ -266,8 +284,7 @@ xelatex main.tex
 
 若子图过多需要跨页则在间断处插入 `\floatcontinue` 命令，具体使用可自行查询。
 
-图片文件可以统一放在 `./Figure` 目录下，可以直接将图片放在其下，容易整理，工程也看起来清爽。具体插入图片和表格的代码参考范例 `main.tex`。
-
+图片文件可以统一放在 `./Figure/` 目录下，可以直接将图片放在其下，容易整理，工程也看起来清爽。具体插入图片和表格的代码参考范例 `main.tex`。
 
 插入表格使用 `table` 环境，自动调整表格前后的间距和默认的字体大小。
 
@@ -275,7 +292,7 @@ xelatex main.tex
 
 ### 定理环境
 
-数学定理请使用模板提供的定义（definition）、公理（axiom）、证明（proof）、定理（theorem）、推论（corollary）、命题（proposition）、引理（lemma）和例子（example）环境。
+模板提供了各类预定义的环境，具体请查看 `c1.tex` 文件。
 
 ### 算法描述
 
