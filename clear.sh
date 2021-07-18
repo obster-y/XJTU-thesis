@@ -31,3 +31,4 @@ rm -f *.slo
 rm -f *.sls
 rm -f *.toe
 rm -f *.xdy
+rm -f *.listing
