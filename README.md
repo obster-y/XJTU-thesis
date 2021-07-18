@@ -111,8 +111,8 @@ If you have any questions about the template, please submit an issue directly on
 - 本项目目前**不能完成**学士学位论文的排版。
 - 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用。
 - 建议安装以下提示的相关环境、软件，放弃老旧的软件。
-- 本项目只提供多文档结构的模板
-- 建议使用本工程提供的 latexmk 脚本，不然需要手动编译 glossary。
+- 本项目只提供多文档结构的模板。
+- 建议使用本工程提供的 latexmk 脚本。
 
 ## 使用方法
 
@@ -120,7 +120,7 @@ If you have any questions about the template, please submit an issue directly on
 
 ### 基本环境
 
-使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在与主 tex 文件同一路径下。
+使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在对应同一路径下。
 
 模板采用 LaTeX 类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
 
@@ -133,15 +133,14 @@ If you have any questions about the template, please submit an issue directly on
 - Figures: 放置使用的图片
 - Main_Spine: 放置正文章节
 - Main_Miscellaneous: 放置非正文章节的文字内容
-- Reference: 放置参考文献数据库文件(.bib)
+- Reference: 放置参考文献数据库文件（.bib）
 - Materials: 放置模板相关资源
-  - Materials/BiblographyStyles: 放置参考文献样式（已修改过确保中英文献时`等`能正确显示）
-  - Materials/Fonts: 放置字体文件（以防未安装字体）
+  - Materials/BiblographyStyles: 放置参考文献样式（.bst .bcx 等）
+  - Materials/Fonts: 放置字体文件（考虑到版权问题，在未安装宋体、黑体等字体的系统上请自行安装或复制 .ttf 至 ./ThesisMaterials/Fonts/ 目录下）
   - Materials/Icons: 放置学校的相关标识
-  - Materials/Requirement: 放置校方要求
+  - Materials/Requirement: 放置校方要求（包括学科、专业的标准翻译文件）
   - Materials/MS-Word-Templates: 放置校方提供的 Microsoft Word 模板
   - Materials/Tools: 放置由作者提供的简单小脚本
-- Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/: 放置学科、专业的标准翻译文件
 
 **文件**
 - clear.bat/sh: 清理临时文件脚本
@@ -162,15 +161,6 @@ latexmk main.tex
 ```
 即可自动调用相关程序进行编译，处理各种文件依赖并自动预览。执行 `latexmk -c` 命令清理所有缓存文件。
 
-或执行
-```bash
-xelatex main.tex
-```
-命令即可，若文档内部有交叉引用或录入参考文献则需要编译两次。
-
-#### 软件编译
-请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用非正版的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
-
 在使用 Latexmk 时，可以自行修改 latexmkrc 中的内容，实现自定义编译流程。比如要让编译速度提升（不每次都重新生成辅助文件），可以注释掉 latexmkrc 中的 cleanup_mode 一项。
 
 ```text
@@ -179,13 +169,23 @@ xelatex main.tex
 而后进行其他编译流程；
 
 最后，打开一个 pdf 浏览器阅读生成的 pdf 文件 `$preview_mode = 1;`
+``
+
+或执行
+```bash
+xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xelate main.tex 
 ```
+命令即可。
+
+#### 软件编译
+
+请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
 
 ## 论文排版指南
 
 ### 论文封面
 
-论文真正的封面不应由此文档生成，应当在打印时取得。本模板能通过 `\thesistitles` 产生`标题页`。
+论文真正的封面不应由此文档生成，应当在进行纸质版本打印时取得。本模板能通过 `\thesistitles` 产生`标题页`。
 
 ### 中英文摘要
 
@@ -197,7 +197,7 @@ xelatex main.tex
 
 ### 主要符号表
 
-主要符号表通过修改添加 `Main_Miscellaneous/glossary.tex` 中的文字，使用 `\thesisglossarylist` 生成。
+主要符号表通过修改添加 `Main_Miscellaneous/glossary.tex` 中的内容，使用 `\thesisglossarylist` 生成。
 
 定义专有词汇或符号使用 `\newglossaryentry{<label>}{<description>}` 命令，例如：
 ```latex
@@ -254,7 +254,7 @@ xelatex main.tex
 
 使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」」。
 
-参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用三种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标；若使用 `\footfullcite` 命令，显示为注释(脚注)。
+参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标。
 
 ### 附录
 
