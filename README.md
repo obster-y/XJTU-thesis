@@ -55,6 +55,10 @@
 - 添加演示文稿类型
 - 逐步将部分类似命令用 LaTeX3 简化
 
+## 特别感谢
+
+- 某不愿透露姓名的赵同学：为模板的改进和测试做了很多工作
+
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
