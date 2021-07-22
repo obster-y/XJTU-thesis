@@ -15,7 +15,7 @@
 \documentclass[
     doctor,     % 必选项：   {master, doctor} 此处不区分专业/学术学位，在下面学科类型处区分
                 % Mandatory: {master, doctor} No difference between Academic degree and Professional degree,
-                %                             but be careful about the arguments in `\degree' and `\subject'
+                %                             but be careful about arguments in `\degree' and `\subject'
     % english,  % 可选项：   英文正文请选择此项
                 % Optional:  For english main content, It will change some auto-generated matter into English
     % blind,    % 可选项：   论文用于盲审请选择此项，将不会产生致谢(内容)、答辩委员会会议决议(内容)、
@@ -34,9 +34,12 @@
 % Title, Make sure you have an acceptable capitalization
 \title{这是一个不超过三十五个字的名字比较长的关于如何开展XXX的研究}{English Title and English Title and English Title}
 
-% 学位类型（请按照 'Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/' 路径下文档正确填写
+% 学位类型
 % Type of your degree, Translate it from documents in `Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/'
-\degree{航空宇航科学与技术}{Aeronautical and Astronautical Science and Technology}
+%\degree{硕士}{Engineering} % 学术型(Academic)硕士请基于 '学术学位名称.txt' 填写
+\degree{硕士}{Engineering} % 专业型(Professional)硕士请基于 '专业学位（领域）英文标准翻译.pdf' 填写
+%\degree{博士}{Philosophy}  % 学术型(Academic Doc)博士请填写 '{博士}{Philosophy}'
+%\degree{博士}{Engineering} % 专业型(Professional Doc)博士请基于 '专业学位（领域）英文标准翻译.pdf' 填写
 
 % 作者姓名（注意：所有人名英文均为「名在前，姓在后」，如果只有外文名，请在两个参数都填写外文名称）
 % If you have only foreign name, put it as both first and second argument
@@ -52,7 +55,7 @@
 % \advisorassociate{陈尘}{副教授}{Chen Chen}{Asscociate Prof.}
 % \advisorteam{团队中文名}{English Name of the Team}
 
-% 学科名称
+% 学科名称，请基于 '学科（专业）英文标准翻译.pdf' 填写
 % Name of the subject, also get it from that file
 \subject{航空宇航科学与技术}{Aeronautical and Astronautical Science and Technology}
 
@@ -170,7 +173,7 @@
 % Decision, Rewrite your content in Main_Miscellaneous/decision.tex
 \thesisdecision
 
-% [自动生成] 常规评阅人名单 需要手动指定两个数字
+% [自动生成] 常规评阅人名单 需要手动指定两个数字作为'本学位论文共接受 {#1} 位专家评阅，其中常规评阅人 {2}名'内容参数
 % [Auto Generate] Reviewer List, set two number as the content in this page 
 \thesisreviewers{7}{5}
 

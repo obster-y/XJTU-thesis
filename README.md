@@ -11,17 +11,18 @@
 - 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
 - 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
 - 2021.07.17：提交至学位办，等待正式发布
+- 2021.07.22：发布成为正式模板
 
 ## 基本信息
 
-[研究生院提供的 LaTeX 模板](http://gs.xjtu.edu.cn/info/1209/7605.htm)
+[研究生院模板及要求](http://gs.xjtu.edu.cn/info/1209/7605.htm)
 
 [学校的硕博学位论文要求](http://www.lib.xjtu.edu.cn/info/1102/1217.htm)
 
 此链接的页面内容会更新，但链接不变，目前采用的版本是 2021 年 5 月 8 日 发布的模板与要求。
 
 
-本模板在制作前阅读了以下五个学位论文模板的相关内容：
+本模板在制作前阅读了并在制作是部分参考了以下五个学位论文模板的相关内容：
 
 - [电子科技大学毕业论文模板](https://github.com/x-magus/ThesisUESTC)
 - [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
@@ -29,9 +30,9 @@
 - [XJTUthesis-master-2020](https://github.com/kohillyang/XJTUthesis-master-2020)
 - [xjtuthesis-x](https://github.com/Tedxz/xjtuthesis-x)
 
-经过阅读研究，发现上述模板或有疏漏之处，或使用说明不够详尽，或使用的包过于老旧，或工程架构不够清晰。
+经过阅读研究，发现上述模板或有疏漏之处，或使用说明不够详尽，或使用的包过于老旧，或工程架构不够清晰，或与校方要求有出入。
 
-为了修复这些问题，方便大家的使用，同时增加新的功能，编写了 XJTU-thesis.cls 文件，添加了较为详尽的注释，可以方便的按照以后学校要求进行更新（或扩展到其他学校使用）。
+为了修复这些问题，方便大家的使用，同时增加新的功能，编写了 `XJTU-thesis.cls` 文件，添加了较为详尽的注释，可以方便的按照以后学校要求进行更新（或扩展到其他学校使用）。
 
 除根据校方要求作出的调整外，同时并修改/添加了以下内容：
 - 重构工程结构，方便人类使用和阅读，进一步将内容与形式分离
@@ -42,6 +43,8 @@
 - 提供了 latexmk 脚本
 - 提供了可能会有用的两个小脚本（pdf 批量裁图和转换）
 - 提供了自动生成答辩委员会、常规评阅人名单的方案 (LaTeX3 实现)
+
+本模板将保持 master 分支与研究生院上的版本一致，dev 分支保持基本内容同研究生院版本一致但开发新功能，请注意区分。
 
 如果对模板使用或格式有相关问题，请在 github 上提交 issue，如果发现 bug，欢迎提交 PR。
 
@@ -62,19 +65,20 @@
 - 2021.06.09: Specified formats not mentioned in the template given by University Library, then made some changes.
 - 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
 - 2021.07.17: Submit a release to the Degree Office.
+- 2022.07.22: Published on the Degree Office site.
 
 
 ## Basic Information
 
-This project is an unofficial LaTeX template (document class) for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university. 
+This project is an official LaTeX template (document class) for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
 
 [Templates from Univerisity's Degree Office](http://gs.xjtu.edu.cn/info/1209/7605.htm)
 
-[Requirements from Library](http://www.lib.xjtu.edu.cn/info/1102/1217.htm).
+[Requirements from Library(same as degree office)](http://www.lib.xjtu.edu.cn/info/1102/1217.htm).
 
 The content of this link will update but keep the link unchanged, This template now using the requirement released on May 8th 2021.
 
-This template is modified and improved based on these five projects:
+Some parts of this template are developed based on some parts of these five projects:
 
 - [ThesisUESTC](https://github.com/x-magus/ThesisUESTC)
 - [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
@@ -94,6 +98,8 @@ This project make these adjustments/improvements:
 - Provied two may-useful script for pdf cropping and transforming
 - Provide functions to generate committee member list and reviewr list
 
+This template will keep master branch same with the version on Degree Office, and making new developments on dev branch.
+
 If you have any questions about the template, please submit an issue directly on github. If you find a bug, please submit a pull request.
 
 ## Upcoming updates
@@ -106,7 +112,7 @@ If you have any questions about the template, please submit an issue directly on
 -----
 
 ## 注意事项
-- 本项目**不是**官方模板，并且只能生成 PDF 文件，如果想要获得 DOC 文档只能进行二次转换。
+- 本项目只能生成 PDF 文件，如果想要获得 DOC 文档只能进行二次转换。
 - 本项目**未受到**任何形式的任何资助。
 - 本项目目前**不能完成**学士学位论文的排版。
 - 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用。
@@ -169,7 +175,7 @@ latexmk main.tex
 而后进行其他编译流程；
 
 最后，打开一个 pdf 浏览器阅读生成的 pdf 文件 `$preview_mode = 1;`
-``
+```
 
 或执行
 ```bash
@@ -179,13 +185,13 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 #### 软件编译
 
-请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
+请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt 等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
 
 ## 论文排版指南
 
 ### 论文封面
 
-论文真正的封面不应由此文档生成，应当在进行纸质版本打印时取得。本模板能通过 `\thesistitles` 产生`标题页`。
+论文真正的封面不应由此文档生成，应当在进行纸质版本打印时取得。本模板能通过 `\thesistitles` 产生 `标题页` 。
 
 ### 中英文摘要
 
@@ -230,7 +236,7 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 论文主体的写作参考一般的 LaTeX 教程（如中文版的[lshort](https://www.ctan.org/pkg/lshort-zh-cn)），可以自由添加章节，章节内添加所需要的内容，分小节，插入公式、表格和图片。
 
-各个章节通过 `\thesisbody{c1,c2,c3}` 命令引入，注意此命令只应使用一次，且注意参数顺序。
+各个章节通过 `\thesisbody{Main_Spine/c1,Main_Spine/c2,Main_Spine/c3}` 命令引入，注意此命令只应使用一次，且注意参数顺序。
 
 ### 数学环境
 
@@ -254,7 +260,7 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」」。
 
-参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标。
+参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标；若使用 `\footfullcite` 命令，参考文献著录将以脚注形式显示在本页。
 
 ### 附录
 
@@ -282,13 +288,15 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 \end{figure}
 ```
 
-若子图过多需要跨页则在间断处插入 `\floatcontinue` 命令，具体使用可自行查询。
+若子图过多需要跨页则在间断处插入 `\floatcontinue{tb}` 命令，参数可自行设置，实现细节可查阅 XJTU-thesis.cls。
 
 图片文件可以统一放在 `./Figure/` 目录下，可以直接将图片放在其下，容易整理，工程也看起来清爽。具体插入图片和表格的代码参考范例 `main.tex`。
 
 插入表格使用 `table` 环境，自动调整表格前后的间距和默认的字体大小。
 
 根据学校要求，所有表格必须通栏，因此请使用 `tabularx` 环境生成表格，列格式 `X Y Z` 分别代表 `左对齐 居中 右对齐`。三线表默认宽度也已进行调整，不必手动更改。
+
+若表格过长，请使用 `xltabular` 环境，具体用法可参考 `使用手册.pdf`。
 
 ### 定理环境
 
