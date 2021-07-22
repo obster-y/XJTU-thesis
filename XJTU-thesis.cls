@@ -765,7 +765,7 @@
 \captionsetup[sub]{font=small, belowskip=6pt}
 \captionsetup[lstlisting]{font=small,labelfont=bf,singlelinecheck=off,labelsep=space}
 
-\newcommand{\floatcontinue}{\end{figure}\clearpage\begin{figure}[tb]\ContinuedFloat}
+\newcommand{\floatcontinue}[1]{\end{figure}\clearpage\begin{figure}[#1]\ContinuedFloat}
 
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
@@ -1566,6 +1566,8 @@
     \end{tabular}
     \end{table}
     \renewcommand{\arraystretch}{1}
+    % \vspace{\baselineskip}
+    % {\color{red} 用于双盲评审的论文，此页内容全部隐去。}
     \vfill
   \fi
   \pagecheck
