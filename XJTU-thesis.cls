@@ -1380,7 +1380,7 @@
   \addcontentsline{toc}{chapter}{参考文献}
   \addcontentsline{toe}{chapter}{References}
   \hypersetup{bookmarksdepth=2}
-  \nocite{*}
+%   \nocite{*}
   \printbibliography[heading=bibliography,title=\thesisbibname]
   \pagecheck
 }
