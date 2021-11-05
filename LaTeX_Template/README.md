@@ -1,26 +1,12 @@
-# XJTU-thesis 西安交通大学学位论文模板 </br> XJTU-thesis: A Degree Thesis Template for Xi'an Jiaotong University
+# XJTU-thesis 西安交通大学学位论文模板 </br> XJTU-thesis: A LaTeX Degree Thesis Template for Xi'an Jiaotong University
 
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
 
-[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的官方 LaTeX 模板（提供 XJTU-thesis.cls）（提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求，同时模板作者 5 年内不会弃坑，会随时更新。
-
-## 更新记录
-
-- 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
-- 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
-- 2021.07.17：提交至学位办，等待正式发布
-- 2021.07.22：发布成为正式模板
+[本项目](https://github.com/obster-y/XJTU-thesis/LaTeX_Template)为西安交通大学硕博学位论文的官方 LaTeX 模板（提供 XJTU-thesis.cls）（提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求，同时模板作者 5 年内不会弃坑，会随时更新。
 
 ## 基本信息
-
-[研究生院模板及要求](http://gs.xjtu.edu.cn/info/1209/7605.htm)
-
-[学校的硕博学位论文要求](http://www.lib.xjtu.edu.cn/info/1102/1217.htm)
-
-此链接的页面内容会更新，但链接不变，目前采用的版本是 2021 年 5 月 8 日 发布的模板与要求。
-
 
 本模板在制作前阅读了并在制作是部分参考了以下五个学位论文模板的相关内容：
 
@@ -64,25 +50,10 @@
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
 
 
-## Update Log
-
-- 2021.06.09: Specified formats not mentioned in the template given by University Library, then made some changes.
-- 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
-- 2021.07.17: Submit a release to the Degree Office.
-- 2022.07.22: Published on the Degree Office site.
-
 
 ## Basic Information
 
-This project is an official LaTeX template (document class) for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
-
-[Templates from Univerisity's Degree Office](http://gs.xjtu.edu.cn/info/1209/7605.htm)
-
-[Requirements from Library(same as degree office)](http://www.lib.xjtu.edu.cn/info/1102/1217.htm).
-
-The content of this link will update but keep the link unchanged, This template now using the requirement released on May 8th 2021.
-
-Some parts of this template are developed based on some parts of these five projects:
+Some parts of this template are developed based on some parts from these five projects:
 
 - [ThesisUESTC](https://github.com/x-magus/ThesisUESTC)
 - [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
@@ -116,13 +87,13 @@ If you have any questions about the template, please submit an issue directly on
 -----
 
 ## 注意事项
-- 本项目只能生成 PDF 文件，如果想要获得 DOC 文档只能进行二次转换。
+- 本项目只能生成 PDF 文件，如有 Word 需求请使用 Word 模板。
 - 本项目**未受到**任何形式的任何资助。
 - 本项目目前**不能完成**学士学位论文的排版。
 - 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用。
 - 建议安装以下提示的相关环境、软件，放弃老旧的软件。
 - 本项目只提供多文档结构的模板。
-- 建议使用本工程提供的 latexmk 脚本。
+- 请没有丰富 LaTeX 使用经验的使用者，务必使用本工程提供的 latexmk 脚本（即使用 latexmk 编译，不要自己手动编译）。
 
 ## 使用方法
 
@@ -148,8 +119,6 @@ If you have any questions about the template, please submit an issue directly on
   - Materials/BiblographyStyles: 放置参考文献样式（.bst .bcx 等）
   - Materials/Fonts: 放置字体文件（考虑到版权问题，在未安装宋体、黑体等字体的系统上请自行安装或复制 .ttf 至 ./ThesisMaterials/Fonts/ 目录下）
   - Materials/Icons: 放置学校的相关标识
-  - Materials/Requirement: 放置校方要求（包括学科、专业的标准翻译文件）
-  - Materials/MS-Word-Templates: 放置校方提供的 Microsoft Word 模板
   - Materials/Tools: 放置由作者提供的简单小脚本
 
 **文件**
@@ -164,8 +133,14 @@ If you have any questions about the template, please submit an issue directly on
 
 ### 文档编译
 
+#### 软件编译
+
+请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。**使用 TeXstudio、Texmaker 或 WinEdt 等编辑环境请将编译引擎设置成 latexmk**，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
+
+
 #### 手动编译
-编译文档请使用 XeLaTeX 引擎。模版提供 latexmkrc 用于自动编译。请将工作目录切换到本项目文件夹下，执行
+
+编译文档请使用 XeTeX 引擎。模版提供 latexmkrc 用于自动编译。请将工作目录切换到本项目文件夹下，执行
 ```bash
 latexmk main.tex
 ```
@@ -187,9 +162,6 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 ```
 命令即可。
 
-#### 软件编译
-
-请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。使用 TeXstudio、Texmaker 或 WinEdt 等编辑环境请将编译引擎设置成 latexmk，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
 
 ## 论文排版指南
 
@@ -241,6 +213,8 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 论文主体的写作参考一般的 LaTeX 教程（如中文版的[lshort](https://www.ctan.org/pkg/lshort-zh-cn)），可以自由添加章节，章节内添加所需要的内容，分小节，插入公式、表格和图片。
 
 各个章节通过 `\thesisbody{Main_Spine/c1,Main_Spine/c2,Main_Spine/c3}` 命令引入，注意此命令只应使用一次，且注意参数顺序。
+
+在 TeXStudio 中不能直接通过点击此命令中的参数跳转到正文 .tex 文件。
 
 ### 数学环境
 
