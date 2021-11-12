@@ -218,7 +218,7 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 ### 数学环境
 
-数学环境的字体加粗可以使用 `\mathbf` 命令，使用斜体粗体的符号。由于 Times New Roman 字体的拉丁字母字形修长，偶尔会出现字符粘连的情况。这种情况下可以使用占位符波浪号调整距离，如 `$f^{~l}$` 和 `$\hat{f~}$` 。
+数学环境的字体调整请使用 `unicode-math` 提供的 `\symup, \symbfup, \symit, \symbfit` 等命令，使用斜体粗体的符号。也可使用 `\clist{\boldsymbol}` 加粗。具体请查看「使用手册」。
 
 注意，本模板已经定义了 `\diff` 命令产生标准的微分符号，请不要再自行使用其他符号（微分号是正体的 d，与后面内容间距稍小）
 
@@ -236,9 +236,19 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 ### 参考文献
 
-使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」」。
+使用 Biber 作为后端，基于 BibLaTeX 录入参考文献，由 `\thesisbibliography` 命令导入正文，默认导入 `References/reference.bib` 文件数据库，也可在导言区通过 `\addreferenceresource{References/reference}` 手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」。
 
 参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标；若使用 `\footfullcite` 命令，参考文献著录将以脚注形式显示在本页。
+
+如果出现不能正常显示参考文献编号，请查看此 [issue](https://github.com/obster-y/XJTU-thesis/issues/4)。
+
+### 攻读学位期间取得的研究成果
+
+在攻读学位期间取得的研究成果章节中，可以通过在导言区使用 `\addachivementresource{References/achievement}` 添加成果数据库，并使用 `\thesisachivements[auto]` 自动生成成果。
+
+在成果数据库的各条记录中，如果含有 `AUTHOR+an = {X=highlight}` 字段，则此条目的第 `X` 位作者将会被加粗标注。
+
+不添加 `[auto]` 参数则导入 `Main_Miscellaneous/achievement.tex` 此文件的内容，可以在其中手动添加条目。
 
 ### 附录
 

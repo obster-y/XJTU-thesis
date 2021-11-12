@@ -1366,13 +1366,25 @@
 %   \end{spacing}
 % }{}{}
 
-\RequirePackage[hyperref=true,backend=biber,style=gb7714-2015,gbalign=left]{biblatex}
+\RequirePackage[hyperref=true,backend=biber,style=gb7714-2015,gbalign=left,defernumbers=true]{biblatex}
 \renewcommand{\bibfont}{\zihao{5}}
 \setlength{\bibitemsep}{0ex}
 \setlength{\bibnamesep}{0ex}
 \setlength{\bibinitsep}{0ex}
 
-\RenewDocumentCommand {\thesisbibliography} {  } {
+\newcommand{\addreferenceresource}[1]{
+  \addbibresource{#1.bib}
+  \DeclareSourcemap{
+    \maps[datatype=bibtex]{
+      \map[overwrite]{
+        \perdatasource{#1.bib}
+        \step[fieldset=keywords, fieldvalue={,references}, append]
+      }
+    }
+  }
+}
+
+\RenewDocumentCommand {\thesisbibliography} { } {
   \newcommand{\thesisbibname}{参考文献}
   \ifthesis@english
     \renewcommand{\thesisbibname}{References}
@@ -1383,7 +1395,7 @@
   \addcontentsline{toe}{chapter}{References}
   \hypersetup{bookmarksdepth=2}
 %   \nocite{*}
-  \printbibliography[heading=bibliography,title=\thesisbibname]
+  \printbibliography[heading=bibliography,title=\thesisbibname,keyword={references},resetnumbers=true]
   \pagecheck
 }
 
@@ -1478,23 +1490,44 @@
   \begin{enumerate}[label={[\arabic*]},itemsep=1ex,align=left]
 }{\end{enumerate}}
 
-\renewcommand{\thesisachivements}{
-  \newcommand{\thesisaccomplishtitle}{攻读学位期间取得的研究成果}
-  \ifthesis@english
-    \renewcommand{\thesisaccomplishtitle}{Achievements}
-  \fi
-  \pdfbookmark{\thesisaccomplishtitle}{Achievements}
+\newcommand{\addachivementresource}[1]{
+  \addbibresource{#1.bib}
+  \DeclareSourcemap{
+    \maps[datatype=bibtex]{
+      \map[overwrite]{
+        \perdatasource{#1.bib}
+        \step[fieldset=keywords, fieldvalue={,achievements}, append]
+      }
+    }
+  }
+}
 
+% 标注指定的作者
+\renewcommand*{\mkbibnamegiven}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
+\renewcommand*{\mkbibnamefamily}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
+
+\RenewDocumentCommand {\thesisachivements} { o } {
+  \renewcommand{\thesisbibname}{攻读学位期间取得的研究成果}
+  \ifthesis@english
+    \renewcommand{\thesisbibname}{Achievements}
+  \fi
+  \pdfbookmark{\thesisbibname}{Achievements}
   \hypersetup{bookmarksdepth=-2}
   \addcontentsline{toc}{chapter}{攻读学位期间取得的研究成果}
   \addcontentsline{toe}{chapter}{Achievements}
   \hypersetup{bookmarksdepth=2}
-  \chapter*{\thesisaccomplishtitle}
-  \chaptermark{\thesisaccomplishtitle}
-  \input{Main_Miscellaneous/achievement.tex}
+  \IfNoValueTF {#1} {
+    \chapter*{\thesisbibname}
+    \chaptermark{\thesisbibname}
+    \input{Main_Miscellaneous/achievement.tex}
+  }{
+    \begin{refsection}
+      \nocite{*}
+      \printbibliography[heading=bibliography,title=\thesisbibname,keyword={achievements},resetnumbers=true]
+    \end{refsection}
+  }
   \pagecheck
 }
-
 
 %%% Decision %%%
 %%% 答辩委员会决议 %%%

@@ -105,7 +105,12 @@
 % Administrative class, unused now
 % \adminclass{电气7xx班}{}
 
-\addbibresource{References/reference.bib}
+% 参考文献源 参数中不要添加 .bib
+% 请使用 \addreferenceresource 添加数据库(可导入多个参考文献数据库)
+% 若自动化导入攻读学位期间的成果则使用 \addachivementresource
+\addreferenceresource{References/reference}
+\addreferenceresource{References/reference}
+\addachivementresource{References/achievement}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 如果有使用其他包，请在这里添加
@@ -165,9 +170,12 @@
 \thesisappendix{Main_Miscellaneous/appendix_a,
                 Main_Miscellaneous/appendix_b}
 
-% 攻读学位期间取得的研究成果 修改 Main_Miscellaneous/achievement.tex 中的内容 注意盲审时需要手动修改格式
-% Achievement, Rewrite your content in Main_Miscellaneous/achievement.tex
-\thesisachivements
+% 攻读学位期间取得的研究成果
+% 添加 [auto] 参数则读取通过 \addachivementresource 添加的数据库，否则读取 Main_Miscellaneous/achievement.tex 的内容 注意盲审时需要手动修改格式
+% 自动读取的数据库中 若条目含有 AUTHOR+an = {X=highlight} 则第 X 位作者会被加粗
+% Achievement, argument [auto] will load data from database added by \addachivementresource, or the data from Main_Miscellaneous/achievement.tex
+% \thesisachivements
+\thesisachivements[auto]
 
 % 答辩委员会决议 修改 Main_Miscellaneous/decision.tex 中的内容
 % Decision, Rewrite your content in Main_Miscellaneous/decision.tex
