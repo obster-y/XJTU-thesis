@@ -275,9 +275,13 @@
     \setmainfont{Times New Roman}
     \setmathfont{XITS Math}
   \else
-    \setCJKmainfont[AutoFakeBold=true,Path=/usr/local/share/fonts/]{fzsong.ttf}
-    \newfontfamily{\heiti@letter}[Path=/usr/local/share/fonts/]{fzhei.ttf}
-    \newfontfamily{\songti@letter}[Path=/usr/local/share/fonts/]{fzsong.ttf}
+    % 若使用方正字体需要自行下载并配置路径
+    % \setCJKmainfont[AutoFakeBold=true,Path=/usr/local/share/fonts/]{fzsong.ttf}
+    % \newfontfamily{\heiti@letter}[Path=/usr/local/share/fonts/]{fzhei.ttf}
+    % \newfontfamily{\songti@letter}[Path=/usr/local/share/fonts/]{fzsong.ttf}
+    \setCJKmainfont[AutoFakeBold=true]{FandolSong}
+    \newfontfamily{\heiti@letter}{FandolHei}
+    \newfontfamily{\songti@letter}{FandolSong}
     \setmainfont[
       BoldFont=timesbd.ttf,
       ItalicFont=timesi.ttf,

@@ -1,4 +1,4 @@
-# XJTU-thesis 西安交通大学学位论文模板 </br> XJTU-thesis: A LaTeX Degree Thesis Template for Xi'an Jiaotong University
+# XJTU-thesis：西安交通大学学位论文模板 </br> XJTU-thesis: A LaTeX Degree Thesis Template for Xi'an Jiaotong University
 
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
@@ -26,13 +26,14 @@
 - 浮动体环境使用 `subcaption` 替代了 `subfig` 或 `subfigure`
 - 引入 `siunitx` 正确生成数字和单位
 - 为不同操作系统设置了自动的字体导入方案
+- 提供了自动导入成果数据库生成成果页，并自动对指定作者加粗的方案
 - 提供了 latexmk 脚本
 - 提供了可能会有用的两个小脚本（pdf 批量裁图和转换）
 - 提供了自动生成答辩委员会、常规评阅人名单的方案 (LaTeX3 实现)
 
-本模板将保持 master 分支与研究生院上的版本一致，dev 分支保持基本内容同研究生院版本一致但开发新功能，请注意区分。
+**本模板将保持 master 分支与研究生院上的版本一致，dev 分支保持基本内容同研究生院版本一致但开发新功能，请注意区分。**
 
-如果对模板使用或格式有相关问题，请在 github 上提交 issue，如果发现 bug，欢迎提交 PR。
+如果对模板使用或格式有相关问题，请先确保已仔细阅读了使用手册和相关说明及以前的 issues 后，再在 Github 上提交 issue，如果发现 bug，欢迎提交 PR。
 
 ## 后续更新内容
 
@@ -101,7 +102,7 @@ If you have any questions about the template, please submit an issue directly on
 
 ### 基本环境
 
-使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在对应同一路径下。
+使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在对应同一路径下，同时 Linux 默认使用 Fandol 宋体与黑体，和方正的有细微的区别，如果想更换，请自己下载字体并配置路径。
 
 模板采用 LaTeX 类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
 

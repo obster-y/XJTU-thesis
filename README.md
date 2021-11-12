@@ -17,12 +17,12 @@ This project is an official (LaTeX and Microsoft Word) template for Xi'an Jiaoto
 
 [学校的硕博学位论文要求](http://www.lib.xjtu.edu.cn/info/1102/1217.htm)
 
-[Requirements from Library(same as degree office)](http://www.lib.xjtu.edu.cn/info/1102/1217.htm)
+[Requirements from the Library(same as which from the Degree Office)](http://www.lib.xjtu.edu.cn/info/1102/1217.htm)
 
 
-此链接的页面内容会更新，但链接不变，目前采用的版本是 2021 年 5 月 8 日 发布的模板与要求。
+此链接的页面内容会更新，但链接不变，目前基于的版本是 2021 年 5 月 8 日 发布的模板与要求。
 
-The content of these links will be updated while keep links unchanged, This template now using the requirement released on May 8th 2021.
+The content of these links will be updated while keep links unchanged, this template now using the requirement released on May 8th 2021.
 
 ## 更新记录 / Update Log
 
@@ -38,15 +38,15 @@ The content of these links will be updated while keep links unchanged, This temp
 - 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
 - 2021.07.17: Submit a release to the Degree Office.
 - 2022.07.22: Published on the Degree Office site.
-- 2021.11.04：Add Word template and submitted to the DO.
-- 2021.11.X：Published as the official template.
+- 2021.11.04: Add Word template and submitted to the DO.
+- 2021.11.X: Published as the official template.
 
 ## LaTeX 模板 / LaTeX Template
 
 具体 LaTeX 模板的使用介绍请查看 [LaTeX_Template/README.md](LaTeX_Template/README.md)
 
-Detailed manual are put in [LaTeX_Template/README.md](LaTeX_Template/README.md)
+Detailed manuals are put in [LaTeX_Template/README.md](LaTeX_Template/README.md)
 
 ## Word 模板
 
-具体 Word 模板的使用介绍请查看 [Word_Template/使用手册.docx](Word_Template/西安交通大学博士、硕士学位论文模板（2021版）使用手册.dotx)（GitHub 不能预览，请下载后查看）
+具体 Word 模板的使用介绍请查看 [Word_Template/使用手册.dotx](Word_Template/西安交通大学博士、硕士学位论文模板（2021版）使用手册.docx)（GitHub 不能预览，请下载后查看）
