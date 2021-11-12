@@ -137,7 +137,7 @@
   \end{enumerate}
 \end{tcolorbox}
 
-此部分是 \LaTeX 中比较精彩的一部分，具体的使用细节请自行查阅资料，本模板未对其进行修改。
+此部分是 \LaTeX 中比较有趣的一部分，具体的使用细节请自行查阅资料。
 
 \begin{texcode}[]{}
   公式如下：
@@ -151,6 +151,24 @@
 \begin{equation}
     -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}
 \end{equation}
+
+其中，数学公式可以使用\clist{\boldmath..\unboldmath}对整体进行加粗：
+
+\begin{texcode}[]{}
+\boldmath
+\begin{equation}
+  \biggl(\int_{-\infty}^\infty e^{-x^2}\diff x\biggr)^2 
+\end{equation}
+\unboldmath
+\end{texcode}
+
+如果只需对某个元素调整，可以通过\clist{\boldsymbol}，或使用\clist[columbiablue]{unicode-math}提供的，以\clist{\sym}开始的命令族，如\clist{\symup, \symbfup, \symit, \symbfit}：
+\begin{texcode}[]{}
+  \begin{equation}
+    \biggl(\int_{-\infty}^\infty \symbfit{e}^{-\symup{x}^2}\diff \symbfup{x}\biggr)^2 
+  \end{equation}
+\end{texcode}
+不建议再使用标准 \LaTeX 及 amsmath 扩展提供的 \clist{\mathbf}、\clist{\mathcal} 等输入不同样式的字母，可能会导致使用文本字体而非数学字体(的粗体形式)。
 
 请注意，本模板已经定义了\clist{\diff}命令作为微分符号，请不要自己使用新的符号，使用效果如下：
 \begin{align}\label{eqn:c1:diff}
@@ -167,11 +185,8 @@
 \begin{texcode}[sidebyside]{}
   $\seq{x}{n}$ \\ % serise
   $\iprod{i}{j}$ \\ % inner product
-  $\mbf{B}$ \\ % acronym of \mathbf
-  $\Re{Q},\Im{Q}$
+  $\mbs{B}$  % \boldsymbol
 \end{texcode}
-
-\clearpage
 
 \xsubsection{定理相关}{Theorems}
 

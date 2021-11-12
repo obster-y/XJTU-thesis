@@ -159,7 +159,8 @@
 
 %%% AMS %%%
 \RequirePackage[tbtags]{amsmath}
-\RequirePackage{amssymb}
+\RequirePackage{unicode-math}
+% \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
 \RequirePackage[xindy,symbols,order=letter,nogroupskip]{glossaries}
@@ -173,12 +174,10 @@
 \RequirePackage{commath}
 \RequirePackage{siunitx}
 \RequirePackage{mathtools}
-\RequirePackage{mathspec}
+% \RequirePackage{mathspec}
 
-\renewcommand{\Re}{\mathrm{Re}}
-\renewcommand{\Im}{\mathrm{Im}}
 \newcommand*{\diff}{\mathop{}\!\mathrm{d}}
-\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mbs}[1]{\boldsymbol{#1}}
 \newcommand{\Exp}{\mathrm{E}}
 \newcommand{\seq}[2]{#1_1,#1_2,\cdots,#1_#2}
 \newcommand{\iprod}[2]{\langle #1,#2 \rangle}
@@ -264,7 +263,8 @@
   \newfontfamily{\heiti@letter}{SimHei}
   \newfontfamily{\kaiti@letter}{KaiTi}
   \newfontfamily{\songti@letter}{SimSun}
-  \setallmainfonts{Times New Roman}
+  \setmainfont{Times New Roman}
+  \setmathfont{XITS Math}
 \else
   \ifmacosx
     \setCJKmainfont[AutoFakeBold=true]{Songti SC}
@@ -272,17 +272,19 @@
     \newfontfamily{\heiti@letter}{STHeiti}
     \newCJKfontfamily{\songti}{Songti SC}
     \newfontfamily{\songti@letter}{Songti SC}
-    \setallmainfonts{Times New Roman}
+    \setmainfont{Times New Roman}
+    \setmathfont{XITS Math}
   \else
-    \setCJKmainfont[AutoFakeBold=true,Path=Materials/Fonts/]{fzsong.ttf}
-    \newfontfamily{\heiti@letter}[Path=Materials/Fonts/]{fzhei.ttf}
-    \newfontfamily{\songti@letter}[Path=Materials/Fonts/]{fzsong.ttf}
-    \setallmainfonts[
+    \setCJKmainfont[AutoFakeBold=true,Path=/usr/local/share/fonts/]{fzsong.ttf}
+    \newfontfamily{\heiti@letter}[Path=/usr/local/share/fonts/]{fzhei.ttf}
+    \newfontfamily{\songti@letter}[Path=/usr/local/share/fonts/]{fzsong.ttf}
+    \setmainfont[
       BoldFont=timesbd.ttf,
       ItalicFont=timesi.ttf,
       BoldItalicFont=timesbi.ttf,
-      Path=Materials/Fonts/,
+      Path=/usr/local/share/fonts/,
     ]{times.ttf}
+    \setmathfont{XITS Math}
   \fi
 \fi
 
@@ -545,8 +547,8 @@
 
 %%% theorem and proof %%%
 %%% 定理与证明环境 %%%
-\theoremstyle{plain}
-\renewcommand{\qedsymbol}{$\blacksquare$}
+% \theoremstyle{plain}
+\renewcommand{\qedsymbol}{$\symbol{"025FC}$}
 \let\proof\undefined
 \let\theorem\undefined
 \declaretheoremstyle[%
