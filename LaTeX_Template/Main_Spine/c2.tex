@@ -86,10 +86,53 @@
 \newcommand{\subfigg}{
   \begin{subfigure}[b]{0.49\linewidth}
     \centering
-    \includegraphics[height=5.8cm]{xjtu_blue.pdf}
+    \includegraphics[height=4cm]{xjtu_blue.pdf}
     \subcaption{蓝色校徽}
   \end{subfigure}
 }
+
+为了简化叙述，定义一个命令 \clist{\subfigg} 代表插入一个子图：
+\begin{texcodeonly}[]{}
+  \newcommand{\subfigg}{
+    \begin{subfigure}[b]{0.49\linewidth}
+      \centering
+      \includegraphics[height=4cm]{xjtu_blue.pdf}
+      \subcaption{蓝色校徽}
+    \end{subfigure}
+  }
+\end{texcodeonly}
+
+在\clist[columbiablue]{subfig}宏包中提供了\clist{\ContinuedFloat}命令，使一个浮动体环境与其内子图的编号跟随前一个子图，此时两个浮动体环境可以分别设置标题，若具有相同的标题，或后续图的标题设置为 \clist{（续）}，则可以实现子图分页的效果。同时，模板提供了 \clist{\floatcontinue} ，通过包装\clist{\ContinuedFloat}使得子图在此命令处断页，不产生图标题，并在下一页生成图题。此两种命令均可使用，按照喜欢或需求使用。
+\clearpage
+\subsubsection{使用 ContinuedFloat}
+
+\begin{texcodeonly}[]{}
+  \begin{figure}[h]
+    \subfigg    \subfigg
+    \caption{校徽}
+  \end{figure}
+  
+  \begin{figure}[h]
+    \ContinuedFloat
+    \subfigg    \subfigg
+    \subfigg    \subfigg
+    \caption{校徽} % 或 \caption{（续）}
+  \end{figure}
+\end{texcodeonly}
+
+\begin{figure}[h]
+  \subfigg    \subfigg
+  \caption{校徽}
+\end{figure}
+
+\begin{figure}[H]
+  \ContinuedFloat
+  \subfigg    \subfigg
+  \subfigg    \subfigg
+  \caption{校徽} % 或 \caption{（续）}
+\end{figure}
+
+\subsubsection{使用 floatcontinue}
 
 \begin{texcodeonly}[]{}
   \begin{figure}[H]
@@ -101,13 +144,14 @@
   \end{figure}
 \end{texcodeonly}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \subfigg    \subfigg
   \floatcontinue{tb}
   \subfigg    \subfigg
   \subfigg    \subfigg
   \caption{校徽}
 \end{figure}
+
 
 \clearpage
 
