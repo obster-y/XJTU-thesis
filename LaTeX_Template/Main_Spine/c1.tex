@@ -142,13 +142,13 @@
 \begin{texcode}[]{}
   公式如下：
   \begin{equation}
-      -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}\label{eqn:c1:mdl:constraint_discharge}
+      -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}\label{equation:c1:mdl:cstr_dis}
   \end{equation}
   式中：$e$为xxx；$a$为xxx。
 \end{texcode}
 
-所以如式\eqref{eqn:c1:mdl:constraint_discharge}所示：
-\begin{equation}
+所以如\cref{equation:c1:mdl:cstr_dis}所示：
+\begin{equation}\label{equation:c1:exp}
     -e^{\max}_\text{dis} \leq a_t \leq e^{\max}_\text{ch}
 \end{equation}
 
@@ -171,7 +171,7 @@
 不建议再使用标准 \LaTeX 及 amsmath 扩展提供的 \clist{\mathbf}、\clist{\mathcal} 等输入不同样式的字母，可能会导致使用文本字体而非数学字体(的粗体形式)。
 
 请注意，本模板已经定义了\clist{\diff}命令作为微分符号，请不要自己使用新的符号，使用效果如下：
-\begin{align}\label{eqn:c1:diff}
+\begin{align}\label{equation:c1:diff}
   \biggl(\int_{-\infty}^\infty e^{-x^2}\diff x\biggr)^2 
     &= \int_{-\infty}^\infty\int_{-\infty}^\infty e^{-(x^2+y^2)}\diff x\diff y \\
     &= \int_0^{2\pi}\int_0^\infty e^{-r^2}r\diff r\diff\theta \\
@@ -188,7 +188,7 @@
   $\mbs{B}$  % \boldsymbol
 \end{texcode}
 
-\xsubsection{定理相关}{Theorems}
+\xsubsection{定理相关}{Theorems}\label{section:Environments for math}
 
 本模板通过\clist[columbiablue]{thmtools}宏包定义了以下环境，其中\textbf{证明}环境默认具有缩进，没有编号，同时使用\clist{\qedhere}结束证明，其他环境样式一致。
 
@@ -209,7 +209,7 @@
 
 
 \begin{texcode}[]{}
-  \begin{theorem}[勾股定理]
+  \begin{theorem}[勾股定理]\label{theorem:pt}
     若 $a,b$ 为直角三角形的两条直角边，$c$ 为斜边，那么 $a^2 + b^2 + c^2.$
   \end{theorem}
 

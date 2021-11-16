@@ -2,31 +2,38 @@
 
 \xchapter{参考文献与交叉引用}{Crossreferences}
 
-注意，当引用时出现 [?] 时，请注意查看辅助文件是否正常生成，此种问题不是模板造成的，请自行解决。
+注意，当引用时出现 [?] 时，可能有有多种原因造成，首先请确定是否使用了 biber 编译模板，再请注意查看辅助文件是否正常生成，此种问题大部分情况是使用不当而非模板设置造成的。
 
-\xsection{公式、图表的引用}{Ref equations, tables or figures}
+\xsection{基于 Label 的引用}{Ref labels}
 
-\xsubsection{引用公式}{Ref equations}
+% \xsubsection{引用公式}{Ref equations}
 
-引用公式使用 \clist{\eqref{label}} 命令，将引用公式的编号（带括号）：
+% 引用公式使用 \clist{\eqref{label}} 命令，将引用公式的编号（带括号）：
+
+% \begin{texcode}[]{}
+%   如式 \eqref{eqn:c1:diff} 所示
+% \end{texcode}
+
+% \xsubsection{引用其他内容}{Ref other labels}
+
+基于 \clist{\label{}} 编号的引用，可以通过 \clist[columbiablue]{cleveref} 提供的 \clist{\cref} 实现，它可以通过识别 label 的类型，自动为引用添加前缀。具体的使用方法可以查看该宏包的文档。
+
+应当这样使用 \clist{\label{TYPE:NAME}}，其中 TYPE 指此标签的类型，应当使用模板提供的或自行指定；NAME 为此标签的名称，可以自行定义，不应当重复。模板为所有举例过的环境预设了类型，其中在\cref{section:Environments for math}中预设了 $12$种数学环境，则其 TYPE 与该环境的「环境」列保持一致，其余类型的定义见下：
 
 \begin{texcode}[]{}
-  如式 \eqref{eqn:c1:diff} 所示
+  如\cref{equation:c1:diff} 所示 \\
+  如\crefrange{equation:c1:exp}{equation:c1:diff} 所示 \\
+  如\cref{equation:c1:diff,equation:c1:exp,equation:c1:mdl:cstr_dis} 所示 \\
+  如\cref{figure:icon} 所示，如\cref{subfigure:icon} 所示 \\
+  如\cref{table:methodcompare} 所示 \\
+  如\cref{algorithm:SOH} 所示 \\
+  如\cref{listing:a_label} 所示 \\
+  如\cref{theorem:pt} 所示
 \end{texcode}
 
-\xsubsection{引用其他内容}{Ref other floatings}
-
-其他浮动体引用请使用 \clist{\ref{label}} 命令，将引用其编号（无括号）：
-
-\begin{texcode}[]{}
-  如图 \ref{subfig:icon} 所示 \\
-  如表 \ref{tab:methodcompare} 所示 \\
-  如算法 \ref{algorithm} 所示 \\
-  如源码 \ref{lst:a_label} 所示
-\end{texcode}
+模板只对数学公式设置了多种引用时的样式，并未对其他类型设置，如果有使用的需要，请自行查看手册与模板文件模仿修改。
 
 \xsection{参考文献}{References}
-
 
 \begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]
   \begin{enumerate}[leftmargin=0.5cm]

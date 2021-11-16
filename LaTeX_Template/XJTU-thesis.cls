@@ -832,6 +832,53 @@
 \pdfstringdefDisableCommands{\let\backslash\textbackslash}
 \hypersetup{bookmarksdepth=2}
 
+% Cleveref and its configuration
+\RequirePackage{cleveref}
+\ifthesis@english
+  \crefname{figure}{Figure}{Figures}
+  \crefname{subfigure}{Sub-figure}{Sub-figures}
+  \crefname{table}{Table}{Tables}
+  \crefname{subtable}{Sub-table}{Sub-tables}
+  \crefname{algorithm}{Algorithm}{Algorithms}
+  \crefname{listing}{Code}{Codes}
+  \crefname{proof}{Proof}{Proofs}
+  \crefname{theorem}{Theorem}{Theorems}
+  \crefname{axiom}{Axiom}{Axioms}
+  \crefname{corollary}{Corollary}{Corollaries}
+  \crefname{lemma}{Lemma}{Lemmas}
+  \crefname{definition}{Definition}{Definitions}
+  \crefname{example}{Example}{Examples}
+  \crefname{proposition}{Proposition}{Propositions}
+  \crefname{assumption}{Assumption}{Assumptions}
+  \crefname{remark}{Remark}{Remarks}
+  \crefname{problem}{Problem}{Problems}
+  \crefname{conjecture}{Conjecture}{Conjectures}
+\else
+  \crefformat{chapter}{第~#2#1#3~章}
+  \crefformat{section}{第~#2#1#3~节}
+  \crefformat{subsection}{第~#2#1#3~节}
+  \crefformat{equation}{式~(#2#1#3)}
+  \crefrangeformat{equation}{式~(#3#1#4)$\sim$(#5#2#6)}
+  \crefmultiformat{equation}{式~(#2#1#3)}{与式~(#2#1#3)}{，式~(#2#1#3)}{与式~(#2#1#3)}
+  \crefname{figure}{图}{图}
+  \crefname{subfigure}{子图}{子图}
+  \crefname{table}{表}{表}
+  \crefname{subtable}{子表}{子表}
+  \crefname{algorithm}{算法}{算法}
+  \crefname{listing}{源码}{源码}
+  \crefname{proof}{证明}{证明}
+  \crefname{theorem}{定理}{定理}
+  \crefname{axiom}{公理}{公理}
+  \crefname{corollary}{推论}{推论}
+  \crefname{lemma}{引理}{引理}
+  \crefname{definition}{定义}{定义}
+  \crefname{example}{例子}{例子}
+  \crefname{proposition}{命题}{命题}
+  \crefname{assumption}{假设}{假设}
+  \crefname{remark}{注}{注}
+  \crefname{problem}{问题}{问题}
+  \crefname{conjecture}{猜想}{猜想}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
