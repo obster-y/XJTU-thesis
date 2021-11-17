@@ -26,6 +26,7 @@
 - 浮动体环境使用 `subcaption` 替代了 `subfig` 或 `subfigure`
 - 引入 `siunitx` 正确生成数字和单位
 - 为不同操作系统设置了自动的字体导入方案
+- 增加了 `cleveref` 以更方便的进行引用
 - 提供了自动导入成果数据库生成成果页，并自动对指定作者加粗的方案
 - 提供了 latexmk 脚本
 - 提供了可能会有用的两个小脚本（pdf 批量裁图和转换）
@@ -70,6 +71,7 @@ This project make these adjustments/improvements:
 - Substitute `subfig` or `subfigure` with `subcaption`
 - Introduce `siunitx` for units
 - Make font setting suits different OS
+- Introduce `cleveref` for better ref experience
 - Provied a latexmk configuration
 - Provied two may-useful script for pdf cropping and transforming
 - Provide functions to generate committee member list and reviewr list
@@ -112,15 +114,15 @@ If you have any questions about the template, please submit an issue directly on
 
 **文件夹**
 - Codes: 放置使用的代码
-- Figures: 放置使用的图片
+- Figures: 放置使用的图片（没有可自行新建）
 - Main_Spine: 放置正文章节
 - Main_Miscellaneous: 放置非正文章节的文字内容
-- Reference: 放置参考文献数据库文件（.bib）
+- References: 放置参考文献数据库文件（.bib）
 - Materials: 放置模板相关资源
   - Materials/BiblographyStyles: 放置参考文献样式（.bst .bcx 等）
-  - Materials/Fonts: 放置字体文件（考虑到版权问题，在未安装宋体、黑体等字体的系统上请自行安装或复制 .ttf 至 ./ThesisMaterials/Fonts/ 目录下）
+  - Materials/Fonts: 放置字体文件（考虑到版权问题，在未安装宋体、黑体等字体的系统上请自行安装或复制 .ttf 至 ./Materials/Fonts/ 目录下）
   - Materials/Icons: 放置学校的相关标识
-  - Materials/Tools: 放置由作者提供的简单小脚本
+  - Materials/Tools: 放置由作者提供的简单小脚本及其他内容
 
 **文件**
 - clear.bat/sh: 清理临时文件脚本
@@ -131,6 +133,7 @@ If you have any questions about the template, please submit an issue directly on
 - LICENSE: 版权说明
 - Materials/Tools/batch_pdfcrop.bat/sh: 批量裁剪 pdf 白边并重命名
 - Materials/Tools/pdf2jpg.py: 批量转换 pdf 至 jpg 以避免查重到无意义的重复如表头之类的（需下载 pdfbox）
+- Materials/Tools/configuration_for_vscode.json: 可以使用的 VS Code 部分设置
 
 ### 文档编译
 
@@ -147,22 +150,46 @@ latexmk main.tex
 ```
 即可自动调用相关程序进行编译，处理各种文件依赖并自动预览。执行 `latexmk -c` 命令清理所有缓存文件。
 
-在使用 Latexmk 时，可以自行修改 latexmkrc 中的内容，实现自定义编译流程。比如要让编译速度提升（不每次都重新生成辅助文件），可以注释掉 latexmkrc 中的 cleanup_mode 一项。
-
-```text
-当前，在编译开始时，首先自动清除辅助文件 `$cleanup_mode = 2;`
-
-而后进行其他编译流程；
-
-最后，打开一个 pdf 浏览器阅读生成的 pdf 文件 `$preview_mode = 1;`
-```
-
 或执行
 ```bash
 xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xelate main.tex 
 ```
 命令即可。
 
+#### 调整 latexmkrc 文件
+
+使用 latexmk 进行编译时，最重要的文件是 latexmkrc 文件，模板已经给出了可以使用的一份。
+
+在此基础上，可以通过其进一步控制编译器的工作顺序，具体的使用方法请自行查询 `latexmk` 宏包。
+
+只建议大家根据自己需求修改其中的一条内容，`$clean_mode = X`，其中 `X` 可以设置为 `0~3` 的某一个值，它控制在每次编译开始前，对于编译生成的相关文件的清理，值的具体含义为：
+- 0：不进行任何清理
+- 1：清理所有文件
+- 2：清理除 .pdf/.ps/.dvi 外所有文件
+- 3：清理除 .dep/.aux 外所有文件
+
+具体的使用可以表现为，如果设置为 0，在有时编译出错后需要手动（或通过 VS Code）设置清理辅助文件以重新生成，但可以提高编译速度。
+如果设置为 1，则会每次重新生成所有文件，速度会受到一定影响，但是不会受到以前留存的辅助文件的影响，建议在做完修改后使用此种方式重新生成。
+
+## 设置 VS Code
+
+这里只讨论使用2021年之后版本的 VS Code 搭配 LaTeX Workshop 的设置。而 VS Code 的设置实质是修改 settings.json 文件的内容。模板提供了部分可以参考的设置，放置在 `Materials/Tools/configuration_for_vscode.json`。
+
+LaTeX Workshop 主要影响的参数包括
+
+- latex-workshop.latex.tools 与 latex-workshop.latex.recipes
+
+tools 提供最基本的指令，比如 latexmk 或 xelatex，而 recipes 通过组合 tool 提供的指令实现多种编译方式
+
+- latex-workshop.latex.clean.fileTypes 与 latex-workshop.latex.autoClean.run
+
+fileTypes 设置要清理的文件扩展名，按照 shell 语法展开；autoClean.run 设置编译结束后的清理行为，可以设置为不清理/每次清理或失败后清理
+
+- pdf.internal.synctex.keybinding 与 pdf-tex 跳转
+
+keybinding 设置了从 .pdf 文件到 .tex 源文件的跳转方式，可以设置为无/双击/Ctrl-点击
+
+实现从 .tex 到 .pdf 的跳转，可以通过点击 LaTeX Workshop-Navigate-SyncTeX，也可以设置键盘快捷键，具体实现可自己查询
 
 ## 论文排版指南
 
@@ -215,7 +242,22 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 各个章节通过 `\thesisbody{Main_Spine/c1,Main_Spine/c2,Main_Spine/c3}` 命令引入，注意此命令只应使用一次，且注意参数顺序。
 
-在 TeXStudio 中不能直接通过点击此命令中的参数跳转到正文 .tex 文件。
+此外，模板还提供了另外一组命令以导入正文
+```latex
+\thesisbodybegin
+\include{Main_Spine/c1}
+\include{Main_Spine/c2}
+\include{Main_Spine/c3}
+\include{Main_Spine/c4}
+\include{Main_Spine/c5}
+\include{Main_Spine/c6}
+\thesisbodyend
+```
+
+此时，可以通过注释或导言区的 `\includeonly` 命令只编译部分章节，同时保持章节编号。
+
+> 具体地说，首先请自己学习 \includeonly 命令的具体使用方法。\includeonly 的实质是跳过编译 .tex 文件，直接读取 .aux 文件调整计数器等设置。因此如果想要使用此命令，首先要确保一次全部内容的编译，以生成 .aux 文件；还要确保编译成功后此文件不被清理（VS Code）；还要确保编译开始前此文件不被清理（latexmkrc $cleanup_mode=0）
+> 但是请注意，使用\includeonly 导入部分章节的命令后，目录可能不能正确的生成（包含所有章节而非导入的章节），但不影响最后的提交
 
 ### 数学环境
 

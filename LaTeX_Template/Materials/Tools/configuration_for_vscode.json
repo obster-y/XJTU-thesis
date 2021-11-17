@@ -1,0 +1,82 @@
+"latex-workshop.latex.recipes": [
+    {
+        "name": "latexmk",
+        "tools": [
+            "latexmk"
+        ]
+    },
+],
+"latex-workshop.latex.tools": [
+    {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "-outdir=%OUTDIR%",
+            "%DOC%"
+        ],
+        "env": {}
+    },
+    {
+        "name": "latexmk_rconly",
+        "command": "latexmk",
+        "args": [
+            "%DOC%"
+        ],
+        "env": {}
+    },
+],
+"latex-workshop.view.pdf.viewer": "tab",
+"latex-workshop.latex.clean.fileTypes": [
+  "**/*.aux",
+  "*.bbl",
+  "*.blg",
+  "*.idx",
+  "*.ind",
+  "*.lof",
+  "*.lot",
+  "*.out",
+  "*.toc",
+  "*.acn",
+  "*.acr",
+  "*.alg",
+  "*.glg",
+  "*.glo",
+  "*.gls",
+  "*.fls",
+  "*.log",
+  "*.fdb_latexmk",
+  "*.snm",
+  "*.synctex(busy)",
+  "*.synctex.gz(busy)",
+  "*.nav",
+  "*.glsdefs",
+  "*.ist",
+  "*.thm",
+  "*.xdy",
+  "*.xdv",
+  "*.zld",
+  "*.zlg",
+  "*.zln",
+  "*.toe",
+  "*.tec",
+  "*.sls",
+  "*.slo",
+  "*.slg",
+  "*.bcf",
+  "*.listing",
+  "*.run.xml",
+  "*.loe",
+  "*.glsdefs",
+  "*.ilg",
+  "*.mw",
+  "*.nlo",
+  "*.nls",
+],
+"latex-workshop.latex.rootFile.useSubFile": false,
+"latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+"latex-workshop.intellisense.citation.backend": "biblatex",
+"latex-workshop.latex.autoClean.run": "onFailed",
