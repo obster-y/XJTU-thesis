@@ -894,6 +894,8 @@
 \newcommand{\thesistableofcontens}{}
 \newcommand{\thesisglossaries}{}
 \newcommand{\thesisbody}{}
+\newcommand{\thesisbodybegin}{}
+\newcommand{\thesisbodyend}{}
 \newcommand{\thesisacknowledegment}{}
 \newcommand{\thesisbibliography}{}
 \newcommand{\thesisappendix}{}
@@ -1354,6 +1356,19 @@
 }
 \ExplSyntaxOff
 
+\renewcommand{\thesisbodybegin}{
+  \setcounter{page}{1}
+  \pagenumbering{arabic}
+  \fancyfoot[LE,RO]{\fontsize{9pt}{10.8pt}\selectfont\arabic{page}}
+  \pagestyle{fancy}
+  \renewcommand{\chaptermark}[1]{\markboth{{\thechapter}\hspace{0.5em}##1}{}}
+  \hypersetup{bookmarksdepth=-2}
+}
+
+\renewcommand{\thesisbodyend}{
+  \pagecheck
+  \hypersetup{bookmarksdepth=2}
+}
 
 %%% acknowledgement %%%
 %%% 致谢 %%%
@@ -1435,8 +1450,9 @@
   }
 }
 
+\newcommand{\thesisbibname}{}
 \RenewDocumentCommand {\thesisbibliography} { } {
-  \newcommand{\thesisbibname}{参考文献}
+  \renewcommand{\thesisbibname}{参考文献}
   \ifthesis@english
     \renewcommand{\thesisbibname}{References}
   \fi

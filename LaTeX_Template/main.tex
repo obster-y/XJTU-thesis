@@ -13,7 +13,7 @@
 %% 选择论文的基本类型
 
 \documentclass[
-    doctor,     % 必选项：   {master, doctor} 此处不区分专业/学术学位，在下面学科类型处区分
+    master,     % 必选项：   {master, doctor} 此处不区分专业/学术学位，在下面学科类型处区分
                 % Mandatory: {master, doctor} No difference between Academic degree and Professional degree,
                 %                             but be careful about arguments in `\degree' and `\subject'
     % english,  % 可选项：   英文正文请选择此项
@@ -123,6 +123,18 @@
 %% 注意：根据校方要求，以下所有页面顺序不可调整
 %% Notice: The order of these pages are defined in the requirements of the University.
 
+%% 但在最终提交前，可以通过注释所有 \thesis 开始的命令设置是否生成各个部分
+%% 或根据说明调整 latexmkrc 文件，使用 \includeonly 命令导入部分章节。
+
+% \includeonly{
+%   Main_Spine/c1,
+%   Main_Spine/c2,
+%   Main_Spine/c3,
+%   Main_Spine/c4,
+%   Main_Spine/c5,
+%   Main_Spine/c6,
+% }
+
 \begin{document}
 % [自动生成] 中英题名页
 % [Auto Generate] Chinese English Title Page
@@ -136,26 +148,37 @@
 % Abstract, Rewrite your content in Main_Miscellaneous/abstract_chs/eng.tex
 \thesisabstract
 
-% 中英目录页
-% Table of Contents
+% [自动生成] 中英目录页
+% [Auto Generate] Table of Contents
 \thesistableofcontens
 
 % 主要符号表 修改 Main_Miscellaneous/glossary.tex 中的内容
 % Glossaries Page, Rewrite your content in Main_Miscellaneous/glossary.tex
 \thesisglossarylist
 
-% 正文 注意：英文正文写作时，中、英标题还是先中后英标题；同时，下面参数的顺序有意义，不要乱放
+% 正文 注意英文正文写作时，中、英标题还是先中后英标题；同时，下面参数的顺序有意义，不要乱放
 % Main contents, X of cX is the chapter of the thesis, you can change it if you want, the order matters
 % and KEEP Chinese Title as the FIRST argument, English Titile as the SECOND, if you use `english' option
 
-\thesisbody{
-    Main_Spine/c1,
-    Main_Spine/c2,
-    Main_Spine/c3,
-    Main_Spine/c4,
-    Main_Spine/c5,
-    Main_Spine/c6
-}
+% 可以通过 \thesisbody 直接导入各部分正文，但也可通过 \thesisbodybegin & \include & \thesisbodyend 组合导入正文
+
+% \thesisbody{
+%     Main_Spine/c1,
+%     Main_Spine/c2,
+%     Main_Spine/c3,
+%     Main_Spine/c4,
+%     Main_Spine/c5,
+%     Main_Spine/c6
+% }
+
+\thesisbodybegin
+\include{Main_Spine/c1}
+\include{Main_Spine/c2}
+\include{Main_Spine/c3}
+\include{Main_Spine/c4}
+\include{Main_Spine/c5}
+\include{Main_Spine/c6}
+\thesisbodyend
 
 % 致谢 修改 Main_Miscellaneous/acknowledegment.tex 中的内容
 % Acknowledgement, Rewrite your content in Main_Miscellaneous/acknowledegment.tex
