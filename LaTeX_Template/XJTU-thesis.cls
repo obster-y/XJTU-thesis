@@ -160,7 +160,6 @@
 %%% AMS %%%
 \RequirePackage[tbtags]{amsmath}
 \RequirePackage{unicode-math}
-% \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
 \RequirePackage[xindy,symbols,order=letter,nogroupskip]{glossaries}
@@ -245,15 +244,14 @@
 \RequirePackage{amsfonts}
 \RequirePackage[12pt]{ctex}
 
-\renewcommand{\baselinestretch}{1.4}
 \renewcommand{\CJKglue}{\hskip 0.56pt plus 0.08\baselineskip}
 
 \setlength{\parindent}{2.1em}
-\setlength{\parskip}{3pt plus1pt minus1pt}
-\setlength{\intextsep}{9pt}
+\setlength{\parskip}{8pt}
+\setlength{\intextsep}{6pt}
 \setlength{\extrarowheight}{2pt}
 
-\linespread{1.33}
+\linespread{1.2}
 
 %%% Default fonts for different fonts %%%
 %%% 为不同平台设置默认字体 %%%
@@ -686,25 +684,25 @@
 \titleformat{\chapter}[block]
   {\centering\fontsize{16pt}{16pt}\selectfont\thispagestyle{fancy}}{\arabic{chapter}}{1em}{}
 \titleformat{\section}[block]
-  {\fontsize{15pt}{15pt}\selectfont}{\arabic{chapter}.\arabic{section}}{7pt}{}
+  {\fontsize{15pt}{15pt}\selectfont}{\arabic{chapter}.\arabic{section}}{3pt}{}
 \titleformat{\subsection}[block]
-  {\fontsize{14pt}{14pt}\selectfont}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{7pt}{}
+  {\fontsize{14pt}{14pt}\selectfont}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{3pt}{}
 \titleformat{\subsubsection}[block]
-  {\fontsize{12pt}{12pt}\selectfont}{\arabic{subsubsection}）}{6pt}{}
+  {\fontsize{12pt}{12pt}\selectfont}{\arabic{subsubsection}）}{3pt}{}
 \titleformat{\paragraph}[block]
-  {\fontsize{12pt}{12pt}\selectfont}{（\arabic{paragraph}）}{6pt}{}
+  {\fontsize{12pt}{12pt}\selectfont}{（\arabic{paragraph}）}{3pt}{}
 \titleformat{\subparagraph}[block]
-  {\fontsize{12pt}{12pt}\selectfont}{\alph{subparagraph}）}{6pt}{}
+  {\fontsize{12pt}{12pt}\selectfont}{\alph{subparagraph}）}{3pt}{}
 \titleformat{\subsubparagraph}[block]
-  {\fontsize{12pt}{12pt}\selectfont}{（\alph{subsubparagraph}）}{6pt}{}
+  {\fontsize{12pt}{12pt}\selectfont}{（\alph{subsubparagraph}）}{3pt}{}
 
-\titlespacing{\chapter}{0pt}{0mm}{14pt}
-\titlespacing{\section}{0pt}{18pt}{6pt}
-\titlespacing{\subsection}{2em}{12pt}{6pt}
-\titlespacing{\subsubsection}{2em}{12pt}{6pt}
-\titlespacing{\paragraph}{2em}{12pt}{6pt}
-\titlespacing{\subparagraph}{2em}{12pt}{6pt}
-\titlespacing{\subsubparagraph}{2em}{12pt}{6pt}
+\titlespacing{\chapter}{0pt}{-\baselineskip}{4pt}
+\titlespacing{\section}{0pt}{6pt}{0pt}
+\titlespacing{\subsection}{2em}{4pt}{0pt}
+\titlespacing{\subsubsection}{2em}{4pt}{0pt}
+\titlespacing{\paragraph}{2em}{4pt}{0pt}
+\titlespacing{\subparagraph}{2em}{4pt}{0pt}
+\titlespacing{\subsubparagraph}{2em}{4pt}{0pt}
 
 %%% float %%%
 %%% 浮动体 %%%
@@ -767,10 +765,10 @@
 \captionsetup{format=hang}
 \captionsetup{width=\textwidth - 42pt}
 
-\captionsetup[figure]{aboveskip=6pt, belowskip=0pt, labelsep=space,font=small}
-\captionsetup[table]{aboveskip=6pt, belowskip=0pt, labelsep=space,font=small}
+\captionsetup[figure]{aboveskip=6pt, belowskip=0pt, labelsep=space, font=small}
+\captionsetup[table]{aboveskip=6pt, belowskip=0pt, labelsep=space, font=small}
 \captionsetup[sub]{font=small, belowskip=6pt}
-\captionsetup[lstlisting]{font=small,labelfont=bf,singlelinecheck=off,labelsep=space}
+\captionsetup[lstlisting]{font=small, labelfont=bf, singlelinecheck=off, labelsep=space}
 
 \newcommand{\floatcontinue}[1]{\end{figure}\clearpage\begin{figure}[#1]\ContinuedFloat}
 
@@ -1066,7 +1064,7 @@
   \else
     \pdfbookmark{摘~~~~要}{ABSTRACT (Chinese)}
   \fi
-  \setlength{\parskip}{0.25\baselineskip}
+  % \setlength{\parskip}{0.25\baselineskip}
   \chapter*{摘~~~~要}
 
   \hypersetup{bookmarksdepth=-2}
@@ -1374,13 +1372,11 @@
 %%% 致谢 %%%
 \renewcommand{\thesisacknowledegment}{
   \renewcommand{\thechapter}{}
-  \begin{spacing}{1.5}
   \begin{acknowledgement}
   \ifthesis@blind\else
     \input{Main_Miscellaneous/acknowledegment}
   \fi
   \end{acknowledgement}
-  \end{spacing}
   \pagecheck
 }
 
@@ -1432,7 +1428,7 @@
 %   \end{spacing}
 % }{}{}
 
-\RequirePackage[hyperref=true,backend=biber,style=gb7714-2015,gbalign=left,defernumbers=true]{biblatex}
+\RequirePackage[hyperref=true,backend=biber,defernumbers=true,style=gb7714-2015,gbalign=left,gbpub=false]{biblatex}
 \renewcommand{\bibfont}{\zihao{5}}
 \setlength{\bibitemsep}{0ex}
 \setlength{\bibnamesep}{0ex}
@@ -1664,9 +1660,9 @@
     \renewcommand{\arraystretch}{1.5}
     \begin{table}[H]
       \centering
-    \begin{tabular}{ccc}
+    \begin{tabularx}{0.863\textwidth}{p{0.2157\textwidth}<{\centering}p{0.2157\textwidth}<{\centering}p{0.4315\textwidth}<{\centering}}
       \generalreviewerlist
-    \end{tabular}
+    \end{tabularx}
     \end{table}
     \renewcommand{\arraystretch}{1}
     % \vspace{\baselineskip}
