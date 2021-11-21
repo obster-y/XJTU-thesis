@@ -44,7 +44,9 @@
 - 提供了可能会有用的两个小脚本（pdf 批量裁图和转换）
 - 提供了自动生成答辩委员会、常规评阅人名单的方案 (LaTeX3 实现)
 
-本模板将保持 master 分支与研究生院上的版本一致，dev 分支保持基本内容同研究生院版本一致但开发新功能，请注意区分。
+**本模板将保持 master 分支与研究生院上的版本一致。**
+
+**考虑到研究生院模板不便于经常更新，请看到这里后使用 dev 分支的最新发布内容，除特殊说明外将向下兼容，dev 分支增添了更自动化的 Word 模板，同时修复可能出现的问题并开发新功能。**
 
 如果对模板使用或格式有相关问题，请在 github 上提交 issue，如果发现 bug，欢迎提交 PR。
 
@@ -102,7 +104,9 @@ This project make these adjustments/improvements:
 - Provied two may-useful script for pdf cropping and transforming
 - Provide functions to generate committee member list and reviewr list
 
-This template will keep master branch same with the version on Degree Office, and making new developments on dev branch.
+**This template will keep master branch same with the version on Degree Office.**
+
+**This template will fix bugs and develop on dev branch.**
 
 If you have any questions about the template, please submit an issue directly on github. If you find a bug, please submit a pull request.
 
