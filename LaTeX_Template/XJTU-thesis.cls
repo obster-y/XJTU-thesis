@@ -1146,9 +1146,9 @@
 \setlength{\cftbeforechapskip}{0pt}
 
 \cftsetindents{chap}{0em}{0.9em}
-\cftsetindents{sec}{0.7em}{1.5em}
-\cftsetindents{subsec}{1.4em}{2.3em}
-\cftsetindents{subsubsec}{2.1em}{3.2em}
+\cftsetindents{sec}{1em}{1.5em}
+\cftsetindents{subsec}{2em}{2.3em}
+\cftsetindents{subsubsec}{3em}{3.2em}
 
 % 实在不想这样 但是没办法 手动添加 `声明'
 \renewcommand\contentsname{目~~~~录}
