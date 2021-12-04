@@ -247,7 +247,7 @@
 \renewcommand{\CJKglue}{\hskip 0.56pt plus 0.08\baselineskip}
 
 \setlength{\parindent}{2.1em}
-\setlength{\parskip}{8pt}
+\setlength{\parskip}{0pt}
 \setlength{\intextsep}{6pt}
 \setlength{\extrarowheight}{2pt}
 
