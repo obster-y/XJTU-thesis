@@ -280,12 +280,7 @@
     \setCJKmainfont[AutoFakeBold=true]{FandolSong}
     \newfontfamily{\heiti@letter}{FandolHei}
     \newfontfamily{\songti@letter}{FandolSong}
-    \setmainfont[
-      BoldFont=timesbd.ttf,
-      ItalicFont=timesi.ttf,
-      BoldItalicFont=timesbi.ttf,
-      Path=/usr/local/share/fonts/,
-    ]{times.ttf}
+    \setmainfont{XITS}
     \setmathfont{XITS Math}
   \fi
 \fi
