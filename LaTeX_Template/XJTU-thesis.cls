@@ -1601,12 +1601,15 @@
   \hypersetup{bookmarksdepth=2}
   \chapter*{\sanhao \thesisdecisiontitle}
   \chaptermark{\thesisdecisiontitle}
+  % 单独设置答辩委员会决议奇数页眉，以匹配官方 Word 模板
+  \fancyhead[CO]{\fontsize{10.5pt}{12.6pt}\selectfont 答辩委员会决议}
   \ifthesis@blind\else
     \begin{spacing}{1.5}
     \input{Main_Miscellaneous/decision.tex}
     \end{spacing}
   \fi
   \pagecheck
+  \fancyhead[CO]{\fontsize{10.5pt}{12.6pt}\selectfont\nouppercase\leftmark}
 }
 
 
