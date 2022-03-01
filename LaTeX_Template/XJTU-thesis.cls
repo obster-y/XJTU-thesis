@@ -266,9 +266,7 @@
 \else
   \ifmacosx
     \setCJKmainfont[AutoFakeBold=true]{Songti SC}
-    \newCJKfontfamily{\heiti}{STHeiti}
     \newfontfamily{\heiti@letter}{STHeiti}
-    \newCJKfontfamily{\songti}{Songti SC}
     \newfontfamily{\songti@letter}{Songti SC}
     \setmainfont{Times New Roman}
     \setmathfont{XITS Math}
