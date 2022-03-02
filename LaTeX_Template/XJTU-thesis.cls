@@ -251,7 +251,7 @@
 \setlength{\intextsep}{6pt}
 \setlength{\extrarowheight}{2pt}
 
-\linespread{1.2}
+\linespread{1.296}
 
 %%% Default fonts for different fonts %%%
 %%% 为不同平台设置默认字体 %%%
@@ -690,8 +690,8 @@
   {\fontsize{12pt}{12pt}\selectfont}{（\alph{subsubparagraph}）}{3pt}{}
 
 \titlespacing{\chapter}{0pt}{-\baselineskip}{4pt}
-\titlespacing{\section}{0pt}{6pt}{0pt}
-\titlespacing{\subsection}{2em}{4pt}{0pt}
+\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\subsection}{2em}{6pt}{0pt}
 \titlespacing{\subsubsection}{2em}{4pt}{0pt}
 \titlespacing{\paragraph}{2em}{4pt}{0pt}
 \titlespacing{\subparagraph}{2em}{4pt}{0pt}
@@ -1081,7 +1081,6 @@
   \hypersetup{bookmarksdepth=2}
   \markboth{ABSTRACT}{ABSTRACT}
   \setlength{\parindent}{0em}
-  \setlength{\parskip}{0.35\baselineskip}
 }{}
 
 \newcommand{\keywordswithtype}[4]{
@@ -1134,9 +1133,9 @@
 % 目录前后距离
 \renewcommand{\cftchapfont}{}
 \renewcommand{\cftchappagefont}{}
-\setlength{\cftbeforesecskip}{0pt}
-\setlength{\cftbeforesubsecskip}{0pt}
-\setlength{\cftbeforechapskip}{0pt}
+\setlength{\cftbeforechapskip}{3pt}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{3pt}
 
 \cftsetindents{chap}{0em}{0.9em}
 \cftsetindents{sec}{1em}{1.5em}
@@ -1160,6 +1159,7 @@
   \pdfbookmark{目~~~~录}{CONTENTS-zh}
   \@starttoc{toc}
   \if@restonecol\twocolumn\fi
+  \vspace{\cftbeforechapskip}
   \noindent 声明
 }
 
@@ -1178,7 +1178,8 @@
     }{\MakeUppercase\engcontentsname}}
   \pdfbookmark{\engcontentsname}{\engcontentsname}
   \@starttoc{toe}
-  \if@restonecol\twocolumn\fi  
+  \if@restonecol\twocolumn\fi
+  \vspace{\cftbeforechapskip}
   \noindent Declarations
 }
 \newcommand\addengcontents[2]{%
