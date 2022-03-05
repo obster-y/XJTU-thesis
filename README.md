@@ -266,7 +266,7 @@ xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xel
 
 ### 参考文献
 
-使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」」。
+使用 BibLaTeX 录入参考文献由 `\thesisbibliography` 命令导入，默认导入 `References/reference.bib` 文件数据库，也可手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」。
 
 参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标；若使用 `\footfullcite` 命令，参考文献著录将以脚注形式显示在本页。
 
