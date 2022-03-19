@@ -321,6 +321,7 @@
 \newcommand{\zh@themajor}{\chinesespace}
 \newcommand{\zh@theadminclass}{\chinesespace}
 \newcommand{\zh@theschool}{\chinesespace}
+\newcommand{\zh@thesubjectdisplay}{\chinesespace}
 
 %% 英文 %%
 \newcommand{\en@thetitle}{\chinesespace}
@@ -335,6 +336,7 @@
 \newcommand{\en@themajor}{\chinesespace}
 \newcommand{\en@theadminclass}{\chinesespace}
 \newcommand{\en@theschool}{\chinesespace}
+\newcommand{\en@thesubjectdisplay}{\chinesespace}
 
 %% 不区分中英文或只有一种 %%
 \newcommand{\zh@thedefensedate}{\chinesespace}
@@ -346,9 +348,18 @@
   \renewcommand{\zh@thetitle}{#1}
   \renewcommand{\en@thetitle}{#2}
 }
-\newcommand{\degree}[2]{
-  \renewcommand{\zh@thedegree}{#1}
-  \renewcommand{\en@thedegree}{#2}
+\newcommand{\degree}[3][A]{ % 默认学术学位
+  \renewcommand{\zh@thedegree}{#2}
+  \renewcommand{\en@thedegree}{#3}
+  \ifthenelse{
+      \equal{#1}{A}
+    }{
+      \renewcommand{\zh@thesubjectdisplay}{学科名称： \zh@thesubject}
+      \renewcommand{\en@thesubjectdisplay}{\en@thesubject}
+    }{
+      \renewcommand{\zh@thesubjectdisplay}{类别（领域）： \zh@thedegree（\zh@thesubject）}
+      \renewcommand{\en@thesubjectdisplay}{\en@thedegree（\en@thesubject）}
+    }
 }
 \renewcommand{\author}[2]{
   \renewcommand{\zh@theauthor}{#1}
@@ -933,7 +944,7 @@
       学位申请人： \zh@theauthor\\
       指导教师： \zh@theadvisor\\
       \zhasscociateinfo
-      学科名称： \zh@thesubject\\
+      \zh@thesubjectdisplay\\
       \zh@thesubmitdate\\
     \end{spacing}
   \end{center}
@@ -953,7 +964,7 @@
       \en@UNIV\\
       in partial fulfillment of the requirements\\
       for the degree of\\
-      \englishdegreename~of \en@thedegree\\
+      \en@thedegree\\
     \end{spacing}
     \vskip 6cm
     \begin{spacing}{2}\sanhao
@@ -961,7 +972,7 @@
       \en@theauthor\\
       Supervisor: \en@theadvisor\\
       \enasscociateinfo
-      \en@thesubject\\
+      \en@thesubjectdisplay\\
       \en@thesubmitdate\\
     \end{spacing}
   \end{center}
