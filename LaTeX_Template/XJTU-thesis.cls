@@ -910,7 +910,7 @@
 %%% 题名页 %%%
 \newcommand{\zhasscociateinfo}{
   \ifthenelse{\equal{\zh@theadvisorassociate}{\chinesespace}}{
-    \ifthenelse{\equal{\zh@theadvisorteam}{\chinesespace}}{~}{
+    \ifthenelse{\equal{\zh@theadvisorteam}{\chinesespace}}{ }{
       导师团队：\zh@theadvisorteam\linebreak
     }
   }{
@@ -919,7 +919,7 @@
 }
 \newcommand{\enasscociateinfo}{
   \ifthenelse{\equal{\en@theadvisorassociate}{\chinesespace}}{
-    \ifthenelse{\equal{\en@theadvisorteam}{\chinesespace}}{~}{
+    \ifthenelse{\equal{\en@theadvisorteam}{\chinesespace}}{ }{
       Supervisor Team: \en@theadvisorteam\linebreak
     }
   }{
