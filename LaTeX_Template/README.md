@@ -104,7 +104,9 @@ If you have any questions about the template, please submit an issue directly on
 
 ### 基本环境
 
-使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 2019，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在对应同一路径下，同时 Linux 默认使用 Fandol 宋体与黑体，和方正的有细微的区别，如果想更换，请自己下载字体并配置路径。
+**相比于 master 分支，dev 分支需要不低于 TeXLive 2020 的发行版。**
+
+使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 **2020**，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在对应同一路径下，同时 Linux 默认使用 Fandol 宋体与黑体，和方正的有细微的区别，如果想更换，请自己下载字体并配置路径。
 
 模板采用 LaTeX 类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
 
