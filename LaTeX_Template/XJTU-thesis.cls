@@ -765,14 +765,20 @@
 \RequirePackage{caption}
 \RequirePackage[labelformat=simple]{subcaption}
 
-\captionsetup{figurewithin=chapter}
-\captionsetup{format=hang}
-\captionsetup{width=\textwidth - 42pt}
+\captionsetup{
+  figurewithin   = chapter,
+  justification  = centering,
+  width          = \textwidth - 42pt,
+  font           = {small,stretch=1.2},
+  labelsep       = space,
+  aboveskip      = 6pt,
+  belowskip      = 0pt,
+  figureposition = bottom,
+  tableposition  = top,
+}
 
-\captionsetup[figure]{aboveskip=6pt, belowskip=0pt, labelsep=space, font=small}
-\captionsetup[table]{aboveskip=6pt, belowskip=0pt, labelsep=space, font=small}
-\captionsetup[sub]{font=small, belowskip=6pt}
-\captionsetup[lstlisting]{font=small, labelfont=bf, singlelinecheck=off, labelsep=space}
+\captionsetup[sub]{belowskip=6pt}
+\captionsetup[lstlisting]{labelfont=bf, singlelinecheck=off}
 
 \newcommand{\floatcontinue}[1]{\end{figure}\clearpage\begin{figure}[#1]\ContinuedFloat}
 
