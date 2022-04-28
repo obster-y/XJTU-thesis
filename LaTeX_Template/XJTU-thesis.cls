@@ -263,6 +263,7 @@
   \newfontfamily{\songti@letter}{SimSun}
   \setmainfont{Times New Roman}
   \setmathfont{XITS Math}
+  \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
 \else
   \ifmacosx
     \setCJKmainfont[AutoFakeBold=true]{Songti SC}
@@ -270,6 +271,7 @@
     \newfontfamily{\songti@letter}{Songti SC}
     \setmainfont{Times New Roman}
     \setmathfont{XITS Math}
+    \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
   \else
     % 若使用方正字体需要自行下载并配置路径
     % \setCJKmainfont[AutoFakeBold=true,Path=/usr/local/share/fonts/]{fzsong.ttf}
@@ -280,6 +282,7 @@
     \newfontfamily{\songti@letter}{FandolSong}
     \setmainfont{XITS}
     \setmathfont{XITS Math}
+    \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
   \fi
 \fi
 
