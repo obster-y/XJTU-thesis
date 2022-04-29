@@ -770,9 +770,9 @@
 
 \captionsetup{
   figurewithin   = chapter,
-  justification  = centering,
+  justification  = centerlast,
   width          = \textwidth - 42pt,
-  font           = {small,stretch=1.2},
+  font           = {stretch=1.2,small},
   labelsep       = space,
   aboveskip      = 6pt,
   belowskip      = 0pt,
