@@ -1109,7 +1109,7 @@
   \vspace{0.1\baselineskip}
   \parbox[t]{\widthof{#1}}{#1}
   \parbox[t]{\linewidth - \widthof{#1}}{\fontsize{12pt}{12pt}\selectfont #3}
-  \\[0.5\baselineskip]
+  \\[\baselineskip]
   \parbox[t]{\widthof{#2}}{#2}
   \parbox[t]{\linewidth - \widthof{#2}}{\fontsize{12pt}{12pt}\selectfont #4}
   \end{minipage}
