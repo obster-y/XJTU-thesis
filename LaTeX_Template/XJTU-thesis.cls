@@ -944,7 +944,7 @@
   \fi
   \parbox[t][1.2cm]{2.5cm}{}
   \begin{center}
-    \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\[1.7cm]
+    \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\[0.8cm]
     \fontsize{22pt}{22pt}\selectfont \chinesedegreename 学位论文\\
     \vskip 3.5cm
     \sanhao {\bfseries \zh@thetitle}\\
@@ -964,19 +964,19 @@
   \else
     \pdfbookmark{Title Page}{Title Page (English)}
   \fi
+  \parbox[t][0.7cm]{2.5cm}{}
   \begin{center}
-    \vskip 1.2cm
     \sanhao {\bfseries \en@thetitle}\\
     \vskip 3.5cm
-    \begin{spacing}{2}\sanhao
+    \begin{spacing}{1.8}\sanhao
       \englishthesistype ~submitted to\\
       \en@UNIV\\
       in partial fulfillment of the requirements\\
       for the degree of\\
       \en@thedegree\\
     \end{spacing}
-    \vskip 6cm
-    \begin{spacing}{2}\sanhao
+    \vskip 4cm
+    \begin{spacing}{1.8}\sanhao
       By\\
       \en@theauthor\\
       Supervisor: \en@theadvisor\\
