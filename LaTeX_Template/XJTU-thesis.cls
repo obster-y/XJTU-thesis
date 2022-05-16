@@ -774,13 +774,13 @@
   width          = \textwidth - 42pt,
   font           = {stretch=1.2,small},
   labelsep       = space,
-  aboveskip      = -6pt,
+  aboveskip      = 0pt,
   belowskip      = 0pt,
   figureposition = top,
   tableposition  = bottom,
 }
 
-\captionsetup[sub]{belowskip=0pt}
+\captionsetup[figure]{aboveskip=-8pt}
 \captionsetup[lstlisting]{labelfont=bf, singlelinecheck=off}
 
 \newcommand{\floatcontinue}[1]{\end{figure}\clearpage\begin{figure}[#1]\ContinuedFloat}
