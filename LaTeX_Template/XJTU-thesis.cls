@@ -703,7 +703,7 @@
 \titleformat{\subsubparagraph}[block]
   {\fontsize{12pt}{12pt}\selectfont}{（\alph{subsubparagraph}）}{3pt}{}
 
-\titlespacing{\chapter}{0pt}{-\baselineskip}{4pt}
+\titlespacing{\chapter}{0pt}{0pt}{14pt}
 \titlespacing{\section}{0pt}{12pt}{6pt}
 \titlespacing{\subsection}{2em}{6pt}{0pt}
 \titlespacing{\subsubsection}{2em}{4pt}{0pt}
