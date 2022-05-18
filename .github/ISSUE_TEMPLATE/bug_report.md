@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: 提交 Bug 报告（不是询问使用方法）
-title: "[BUG] [TeX/Word] 请填写简短的 Bug 说明"
+title: "[BUG] 请填写简短的 Bug 说明"
 labels: bug
 assignees: ''
 
@@ -17,7 +17,6 @@ assignees: ''
  - 模板版本：「1.2.7(master分支) / dev分支最新 / ...」
  - TeX 编辑器：「TeXStudio / WinEdt / VS Code / ...」
  - TeX 编译方式：「latexmk / xelatex+biber / pdflatex / ...」
- - Word 版本：「2016 / 2019 / 365 / 2021 / ...」
 
 **Bug 说明（每项非必需填写，请尽量明了易懂）**
 为了实现 XX 功能/效果
@@ -31,4 +30,3 @@ assignees: ''
 非必要不要上传代码截图
 
 **其他说明**
-
