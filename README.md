@@ -4,9 +4,9 @@
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
 
-[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的官方模板（提供 LaTeX 与 Word 两种类型）（LaTeX 提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求。
+[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的官方模板（提供 LaTeX 提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求。
 
-This project is an official (LaTeX and Microsoft Word) template for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
+This project is an official (LaTeX) template for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
 
 ## 基本信息
 
@@ -30,14 +30,12 @@ The content of these links will be updated while keep links unchanged, this temp
 - 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
 - 2021.07.17：提交至学位办，等待正式发布
 - 2021.07.22：发布成为正式模板
-- 2021.11.04：更新 Word 模板并提交至学位办
 
 
 - 2021.06.09: Specified formats not mentioned in the template given by University Library, then made some changes.
 - 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
 - 2021.07.17: Submit a release to the Degree Office.
 - 2022.07.22: Published on the Degree Office site.
-- 2021.11.04: Add Word template and submitted to the DO.
 
 ## LaTeX 模板 / LaTeX Template
 
