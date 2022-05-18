@@ -781,6 +781,7 @@
 }
 
 \captionsetup[figure]{aboveskip=-8pt}
+\captionsetup[sub]{aboveskip=0pt}
 \captionsetup[lstlisting]{labelfont=bf, singlelinecheck=off}
 
 \newcommand{\floatcontinue}[1]{\end{figure}\clearpage\begin{figure}[#1]\ContinuedFloat}
