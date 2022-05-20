@@ -1693,9 +1693,15 @@
 
 %%% Declarations %%%
 %%% 声明页 %%%
-\newcommand{\signline}[1]{
-  \vspace{0.5\baselineskip}
-  #1（签名）：\hspace{5cm}日期：\hspace{2cm}年\hspace{1cm}月\hspace{1cm}日
+\newcommand{\signline}[2]{
+  \vspace{#1\baselineskip}
+  #2（签名）：\hspace{5cm}日期：\hspace{2cm}年\hspace{1cm}月\hspace{1cm}日
+}
+\newcommand{\declareline}[2]{
+  \begin{center}
+    \vspace*{#1pt}
+    \sanhao #2
+  \end{center}
 }
 \renewcommand{\thesisdeclarations}{
   \newcommand{\thesisoriginalitytitle}{声明}
@@ -1706,25 +1712,21 @@
   \chaptermark{\thesisoriginalitytitle}
   \fancyfoot[]{}
 
-  \begin{center}
-  \sanhao 学位论文独创性声明（1）
-  \end{center}
+  \declareline{4}{学位论文独创性声明（1）}
 
   本人声明：所呈交的学位论文系在导师指导下本人独立完成的研究成果。文中依法引用他人的成果，均已做出明确标注或得到许可。论文内容未包含法律意义上已属于他人的任何形式的研究成果，也不包含本人已用于其他学位申请的论文或成果。
 
   本人如违反上述声明，愿意承担以下责任和后果：
-  \begin{enumerate}
+  \begin{enumerate}[leftmargin=0pt, itemindent=3.2em]
   \item 交回学校授予的学位证书；
   \item 学校可在相关媒体上对作者本人的行为进行通报；
   \item 本人按照学校规定的方式，对因不当取得学位给学校造成的名誉损害，进行公开道歉。
   \item 本人负责因论文成果不实产生的法律纠纷。
   \end{enumerate}
 
-  \signline{论文作者}
+  \signline{0.7}{论文作者}
 
-  \begin{center}
-  \sanhao 学位论文独创性声明（2）
-  \end{center}
+  \declareline{6}{学位论文独创性声明（2）}
 
   本人声明：研究生\hskip 2cm 所提交的本篇学位论文已经本人审阅，确系在本人指导下由该生独立完成的研究成果。
 
@@ -1735,19 +1737,17 @@
   \item 本人接受学校按照有关规定做出的任何处理。
   \end{enumerate}
 
-  \signline{指导教师}
+  \signline{0.7}{指导教师}
 
-  \begin{center}
-  \sanhao 学位论文知识产权权属声明
-  \end{center}
+  \declareline{6}{学位论文知识产权权属声明}
 
   我们声明，我们提交的学位论文及相关的职务作品，知识产权归属学校。学校享有以任何方式发表、复制、公开阅览、借阅以及申请专利等权利。学位论文作者离校后，或学位论文导师因故离校后，发表或使用学位论文或与该论文直接相关的学术论文或成果时，署名单位仍然为西安交通大学。
 
-  \signline{论文作者}
+  \signline{0.7}{论文作者}
 
-  \signline{指导教师}
+  \signline{0}{指导教师}
 
-  \vspace{0.7\baselineskip}
+  \vspace{\baselineskip}
 
   \noindent （本声明的版权归西安交通大学所有，未经许可，任何单位及任何个人不得擅自使用）
   \clearpage
