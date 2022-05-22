@@ -1051,11 +1051,19 @@
 }
 
 \newcommand{\chskeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries 关~~键~~词：}
-\newcommand{\chstypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries 论文类型：}
 \newcommand{\engkeywords}{\fontsize{12pt}{12pt}\selectfont \bfseries KEY WORDS:}
-\newcommand{\engtypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries TYPE OF \englishthesistypea:}
-\newcommand{\chinesekeywordstype}[2]{\keywordswithtype{\chskeywords}{\chstypeofthesis}{#1}{#2}}
-\newcommand{\englishkeywordstype}[2]{\keywordswithtype{\engkeywords}{\engtypeofthesis}{#1}{#2}}
+
+\iftyp@bachelor
+  \newcommand{\chstypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries}
+  \newcommand{\engtypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries}
+  \newcommand{\chinesekeywordstype}[2]{\keywordswithtype{\chskeywords}{\chstypeofthesis}{#1}}
+  \newcommand{\englishkeywordstype}[2]{\keywordswithtype{\engkeywords}{\engtypeofthesis}{#1}}
+\else
+  \newcommand{\chstypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries 论文类型：}
+  \newcommand{\engtypeofthesis}{\fontsize{12pt}{12pt}\selectfont \bfseries TYPE OF \englishthesistypea:}
+  \newcommand{\chinesekeywordstype}[2]{\keywordswithtype{\chskeywords}{\chstypeofthesis}{#1}{#2}}
+  \newcommand{\englishkeywordstype}[2]{\keywordswithtype{\engkeywords}{\engtypeofthesis}{#1}{#2}}
+\fi
 
 \renewcommand{\thesisabstract}{
   \pagestyle{fancy}
