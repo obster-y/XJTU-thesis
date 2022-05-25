@@ -1155,9 +1155,9 @@
 % 目录前后距离
 \renewcommand{\cftchapfont}{}
 \renewcommand{\cftchappagefont}{}
-\setlength{\cftbeforechapskip}{3pt}
-\setlength{\cftbeforesecskip}{3pt}
-\setlength{\cftbeforesubsecskip}{3pt}
+\setlength{\cftbeforechapskip}{4pt}
+\setlength{\cftbeforesecskip}{4pt}
+\setlength{\cftbeforesubsecskip}{4pt}
 
 \cftsetindents{chap}{0em}{0.9em}
 \cftsetindents{sec}{1em}{1.5em}
