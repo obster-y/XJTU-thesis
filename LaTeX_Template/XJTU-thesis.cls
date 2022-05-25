@@ -781,8 +781,8 @@
   tableposition  = bottom,
 }
 
-\captionsetup[figure]{aboveskip=-5pt}
-\captionsetup[table]{aboveskip=5pt}
+% \captionsetup[figure]{aboveskip=-5pt}
+% \captionsetup[table]{aboveskip=2.5pt}
 \captionsetup[sub]{aboveskip=0pt}
 \captionsetup[lstlisting]{labelfont=bf, singlelinecheck=off}
 
