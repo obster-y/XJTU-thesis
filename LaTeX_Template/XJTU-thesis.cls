@@ -200,6 +200,7 @@
   right=26mm,
   top=2.1cm,
   bottom=2cm,
+  headsep=0.3cm,
   includehead,
   includefoot,
   asymmetric,
