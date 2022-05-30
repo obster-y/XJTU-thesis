@@ -159,10 +159,10 @@
 
 %%% AMS %%%
 \RequirePackage[tbtags]{amsmath}
-\RequirePackage{unicode-math}
+\RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
 \RequirePackage{amsthm}
 \RequirePackage{thmtools}
-\RequirePackage[xindy,symbols,order=letter,nogroupskip]{glossaries}
+\RequirePackage[xindy,symbols,order=letter,nogroupskip,nowarn]{glossaries}
 
 
 %%% Symbols %%%

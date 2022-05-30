@@ -1,8 +1,8 @@
 
 $pdf_mode = 5;
 $xelatex = "xelatex -synctex=1 --shell-escape -interaction=nonstopmode %O %S";
-$biber = "biber --validate-datamodel %O %S";
-$preview_mode = 1;
+$biber = "biber --quiet %O %S";
+$preview_mode = 0;
 $cleanup_mode = 0;
 
 add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
