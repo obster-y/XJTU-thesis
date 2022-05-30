@@ -1156,6 +1156,20 @@
 % 目录前后距离
 \renewcommand{\cftchapfont}{}
 \renewcommand{\cftchappagefont}{}
+% 取消点与页码间的距离
+\renewcommand{\cftchapfillnum}[1]{%
+  {\cftchapleader}\nobreak
+  {\cftchappagefont #1}\cftchapafterpnum\par
+}
+\renewcommand{\cftsecfillnum}[1]{%
+  {\cftsecleader}\nobreak
+  {\cftsecpagefont #1}\cftsecafterpnum\par
+}
+\renewcommand{\cftsubsecfillnum}[1]{%
+  {\cftsubsecleader}\nobreak
+  {\cftsubsecpagefont #1}\cftsubsecafterpnum\par
+}
+
 \setlength{\cftbeforechapskip}{4pt}
 \setlength{\cftbeforesecskip}{4pt}
 \setlength{\cftbeforesubsecskip}{4pt}
