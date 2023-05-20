@@ -1,7 +1,7 @@
 
 $pdf_mode = 5;
 $xelatex = "xelatex -synctex=1 --shell-escape -interaction=nonstopmode %O %S";
-$biber = "biber --quiet %O %S";
+$biber = "biber %O %S";
 $preview_mode = 0;
 $cleanup_mode = 0;
 
