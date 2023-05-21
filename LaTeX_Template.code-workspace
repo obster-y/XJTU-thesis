@@ -3,6 +3,10 @@
     {
       "name": "XJTU-thesis",
       "path": "./LaTeX_Template"
+    },
+    {
+      "name": "生成的文件",
+      "path": "./build"
     }
   ],
   "settings": {
@@ -36,6 +40,7 @@
         "env": {}
       },
     ],
+    "latex-workshop.latex.outDir": "../build",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.clean.fileTypes": [
       "**/*.aux",
