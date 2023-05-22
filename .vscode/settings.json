@@ -1,0 +1,80 @@
+{
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.aux",
+        "*.bbl",
+        "*.bcf",
+        "*.blg",
+        "*.brf",
+        "*.fdb_latexmk",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.hd",
+        "*.idx",
+        "*.ilg",
+        "*.ind",
+        "*.ist",
+        "*.lof",
+        "*.log",
+        "*.lot",
+        "*.out",
+        "*.run.xml",
+        "*.thm",
+        "*.toc",
+        "*.toe",
+        "*.dvi",
+        "*.slg",
+        "*.slo",
+        "*.sls",
+        "*.xdv",
+        "*.listing",
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-r",
+                "latexmkrc",
+                "%DOC%",
+            ],
+        },
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-shell-escape",
+                "%DOC%"
+            ],
+        },
+        {
+            "name": "biblatex",
+            "command": "biber",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "fast(xe)",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "full(ltxmk)",
+            "tools": [
+                "latexmk"
+            ]
+        },
+    ],
+}
