@@ -8,65 +8,48 @@
 
 \xsection{算法}{Algorithm}
 
-在仔细研究后，本模板使用了基于 \clist[columbiablue]{algorithm2e} 宏包的算法排版工具，而没有使用 \clist[columbiablue]{algorithmicx (algpseudocode)}。同时，需要提醒的是， \clist[columbiablue]{algpseudocode} 在制作竖直定界线方面有一些问题，而能够较好的实现算法自动分段；\clist[columbiablue]{algorithm2e} 则相反，且这两个宏包相互冲突。
+考虑到实际使用需求，即长算法分段和注释功能，模板不再使用 \clist[columbiablue]{algorithm2e} 作为默认算法排版工具，改为调用 \clist[columbiablue]{algpseudocode}。注意，这两个宏包相互冲突。算法的具体编写方式请自行查阅宏包，即\clist{texdoc algpseudocode}。
 
-算法的具体编写方式请自行查阅宏包，即\clist{texdoc algorithm2e}，本模板已预先定义了Do-While循环即\clist{\Do{cond}{code}}。
+\begin{texcode}[]{}
+\begin{algorithm}[H]
+  \caption{How to write algorithms}
+  \begin{algorithmic}[1]
+      \State \textbf{Input:} this text
+      \State \textbf{Output:} how to write algorithm with \LaTeX2e \Comment{Just a comment}
+      \State initialization
+      \While{not at end of this document}
+        \State read current
+        \If{understand}
+          \State go to next section
+          \State current section becomes this one
+        \Else{$k\geq k^\text{max}$}
+          \State go back to the beginning of current section
+        \EndIf
+      \EndWhile
+  \end{algorithmic}
+\end{algorithm}
+\end{texcode}
 
 \begin{texcode}[]{}
   \begin{algorithm}[H]
-    \SetAlgoLined
-    \KwData{this text}
-    \KwResult{how to write algorithm with \LaTeX2e }
-  
-    initialization\;
-    \While{not at end of this document}{
-      read current\;
-      \eIf{understand}{
-        go to next section\;
-        current section becomes this one\;
-        }{
-        go back to the beginning of current section\;
-        }
-      }
-    \caption{How to write algorithms}
+    \caption{Simulation-optimization heuristic}\label{algorithm:SOH}
+    \begin{algorithmic}[1]
+        \State \textbf{Data:} current period $t$, initial inventory $I_{t-1}$, initial capital $B_{t-1}$, demand samples
+        \State \textbf{Output:} Optimal order quantity $Q^{\ast}_{t}$
+        \State $r\leftarrow t$
+        \State $\Delta B^{\ast}\leftarrow -\infty$
+        \While{$\Delta B\leq \Delta B^{\ast}$ and $r\leq T$}
+          \State $Q\leftarrow\arg\max_{Q\geq 0}\Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})$
+          \State $\Delta B\leftarrow \Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})/(r-t+1)$
+          \If{$\Delta B\geq \Delta B^{\ast}$}
+            \State $Q^{\ast}\leftarrow Q$
+            \State $\Delta B^{\ast}\leftarrow \Delta B$
+          \EndIf
+          \State $r\leftarrow r+1$
+        \EndWhile
+    \end{algorithmic}
   \end{algorithm}
 \end{texcode}
-
-\begin{algorithm}[h]
-  \caption{Simulation-optimization heuristic}\label{algorithm:SOH}
-  \KwData{current period $t$, initial inventory $I_{t-1}$, initial capital $B_{t-1}$, demand samples}
-  \KwResult{Optimal order quantity $Q^{\ast}_{t}$}
-  $r\leftarrow t$\;
-  $\Delta B^{\ast}\leftarrow -\infty$\;
-  \While{$\Delta B\leq \Delta B^{\ast}$ and $r\leq T$}{$Q\leftarrow\arg\max_{Q\geq 0}\Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})$\;
-  $\Delta B\leftarrow \Delta B^{Q}_{t,r}(I_{t-1},B_{t-1})/(r-t+1)$\;
-  \If{$\Delta B\geq \Delta B^{\ast}$}{$Q^{\ast}\leftarrow Q$\;
-  $\Delta B^{\ast}\leftarrow \Delta B$\;}
-  $r\leftarrow r+1$\;}
-\end{algorithm}
-
-
-\begin{algorithm}[H]
-  \KwData{this text}
-  \KwResult{how to write algorithm with \LaTeX2e }
-  initialization\;
-  \While{not at end of this document}{
-    read current\;
-    \Repeat{this end condition}{
-      do these things\;
-    }
-    \eIf{understand}{
-      go to next section\;
-      current section becomes this one\;
-    }{
-      go back to the beginning of current section\;
-    }
-    \Do{this end condition}{
-      do these things\;
-    }
-  }
-  \caption{How to write algorithms}
-\end{algorithm}
 
 
 

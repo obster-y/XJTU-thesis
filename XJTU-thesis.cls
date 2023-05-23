@@ -476,8 +476,9 @@
 
 %%% algorithm %%%
 %%% 算法环境 %%%
-\RequirePackage[ruled, algochapter,linesnumbered]{algorithm2e}
-\SetKwRepeat{Do}{do}{while}
+\RequirePackage[chapter]{algorithm}
+\RequirePackage{algpseudocode}
+\floatname{algorithm}{算法}
 
 
 %%% colorbox %%%
@@ -797,7 +798,7 @@
   \renewcommand\thelstlisting{\arabic{chapter}-\arabic{lstlisting}}
 
 }
-\renewcommand{\thealgocf}{\arabic{chapter}-\arabic{algocf}}
+\renewcommand{\thealgorithm}{\arabic{chapter}-\arabic{algorithm}}
 
 \ifthesis@english
   \renewcommand{\figurename}{Figure}
@@ -805,19 +806,15 @@
   \renewcommand{\listfigurename}{List of Figures}
   \renewcommand{\listtablename}{List of Tables}
   \renewcommand{\lstlistingname}{Code}
-  \SetAlgorithmName{Algorithm}{Algorithm}{List of Algorithms}
+  \renewcommand{\listofalgorithms}{List of Algorithms}
 \else
   \renewcommand{\figurename}{图}
   \renewcommand{\tablename}{表}
   \renewcommand{\listfigurename}{图目录}
   \renewcommand{\listtablename}{表目录}
   \renewcommand{\lstlistingname}{源码}
-  \SetAlgorithmName{算法}{算法}{算法列表}
+  \renewcommand{\listofalgorithms}{算法列表}
 \fi
-
-\SetAlgoCaptionSeparator{\null}
-\newcommand{\AlgoCapNameFmt}[1]{\fontsize{10.5pt}{10.5pt}\selectfont #1}
-\SetAlgoCaptionLayout{AlgoCapNameFmt}
 
 
 %%% CROSSREF & HYPERLINK %%%
@@ -1555,12 +1552,12 @@
       \renewcommand{\figurename}{\appdname\Alph{chapter}-Figure}
       \renewcommand{\tablename}{\appdname\Alph{chapter}-Table}
       \renewcommand{\lstlistingname}{\appdname\Alph{chapter}-Code}
-      % \SetAlgorithmName{\appdname\Alph{chapter}-Algorithm}{\appdname\Alph{chapter}-Algorithm}{List of Algorithms}
+      \renewcommand{\listofalgorithms}{\appdname\Alph{chapter}-Algorithm}
     \else
       \renewcommand{\figurename}{\appdname\Alph{chapter}-图}
       \renewcommand{\tablename}{\appdname\Alph{chapter}-表}
       \renewcommand{\lstlistingname}{\appdname\Alph{chapter}-源码}
-      % \SetAlgorithmName{\appdname\Alph{chapter}-算法}{\appdname\Alph{chapter}-算法}{算法列表}
+      \renewcommand{\listofalgorithms}{\appdname\Alph{chapter}-算法}
     \fi
     \appendix
     \renewcommand{\thechapter}{\appdname~\Alph{chapter}}
