@@ -122,7 +122,7 @@
         "command": "${workspaceFolder}/clear.sh",
         "type": "shell",
         "args": [],
-        "group": "tex",
+        "group": "none",
         "problemMatcher": [],
         "options": {
           "cwd": "${workspaceFolder}/../build"
