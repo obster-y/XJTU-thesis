@@ -576,29 +576,29 @@
 \ifthesis@english
   \declaretheorem[name={Proof},style=style_proof,unnumbered,preheadhook={\setlength{\parindent}{5.4em}}]{proof}
   \declaretheorem[name={Theorem},style=style_theorem,numberwithin=chapter]{theorem}
-  \declaretheorem[name={Axiom},style=style_theorem,numberlike=theorem]{axiom}
-  \declaretheorem[name={Corollary},style=style_theorem,numberlike=theorem]{corollary}
-  \declaretheorem[name={Lemma},style=style_theorem,numberlike=theorem]{lemma}
-  \declaretheorem[name={Definition},style=style_theorem,numberlike=theorem]{definition}
-  \declaretheorem[name={Example},style=style_theorem,numberlike=theorem]{example}
-  \declaretheorem[name={Proposition},style=style_theorem,numberlike=theorem]{proposition}
-  \declaretheorem[name={Assumption},style=style_theorem,numberlike=theorem]{assumption}
-  \declaretheorem[name={Remark},style=style_theorem,numberlike=theorem]{remark}
-  \declaretheorem[name={Problem},style=style_theorem,numberlike=theorem]{problem}
-  \declaretheorem[name={Conjecture},style=style_theorem,numberlike=theorem]{conjecture}
+  \declaretheorem[name={Axiom},style=style_theorem,numberwithin=chapter]{axiom}
+  \declaretheorem[name={Corollary},style=style_theorem,numberwithin=chapter]{corollary}
+  \declaretheorem[name={Lemma},style=style_theorem,numberwithin=chapter]{lemma}
+  \declaretheorem[name={Definition},style=style_theorem,numberwithin=chapter]{definition}
+  \declaretheorem[name={Example},style=style_theorem,numberwithin=chapter]{example}
+  \declaretheorem[name={Proposition},style=style_theorem,numberwithin=chapter]{proposition}
+  \declaretheorem[name={Assumption},style=style_theorem,numberwithin=chapter]{assumption}
+  \declaretheorem[name={Remark},style=style_theorem,numberwithin=chapter]{remark}
+  \declaretheorem[name={Problem},style=style_theorem,numberwithin=chapter]{problem}
+  \declaretheorem[name={Conjecture},style=style_theorem,numberwithin=chapter]{conjecture}
 \else
   \declaretheorem[name={证明},style=style_proof,unnumbered,preheadhook={\setlength{\parindent}{5.1em}}]{proof}
   \declaretheorem[name={定理},style=style_theorem,numberwithin=chapter]{theorem}
-  \declaretheorem[name={公理},style=style_theorem,numberlike=theorem]{axiom}
-  \declaretheorem[name={推论},style=style_theorem,numberlike=theorem]{corollary}
-  \declaretheorem[name={引理},style=style_theorem,numberlike=theorem]{lemma}
-  \declaretheorem[name={定义},style=style_theorem,numberlike=theorem]{definition}
-  \declaretheorem[name={例子},style=style_theorem,numberlike=theorem]{example}
-  \declaretheorem[name={命题},style=style_theorem,numberlike=theorem]{proposition}
-  \declaretheorem[name={假设},style=style_theorem,numberlike=theorem]{assumption}
-  \declaretheorem[name={注},style=style_theorem,numberlike=theorem]{remark}
-  \declaretheorem[name={问题},style=style_theorem,numberlike=theorem]{problem}
-  \declaretheorem[name={猜想},style=style_theorem,numberlike=theorem]{conjecture}
+  \declaretheorem[name={公理},style=style_theorem,numberwithin=chapter]{axiom}
+  \declaretheorem[name={推论},style=style_theorem,numberwithin=chapter]{corollary}
+  \declaretheorem[name={引理},style=style_theorem,numberwithin=chapter]{lemma}
+  \declaretheorem[name={定义},style=style_theorem,numberwithin=chapter]{definition}
+  \declaretheorem[name={例子},style=style_theorem,numberwithin=chapter]{example}
+  \declaretheorem[name={命题},style=style_theorem,numberwithin=chapter]{proposition}
+  \declaretheorem[name={假设},style=style_theorem,numberwithin=chapter]{assumption}
+  \declaretheorem[name={注},style=style_theorem,numberwithin=chapter]{remark}
+  \declaretheorem[name={问题},style=style_theorem,numberwithin=chapter]{problem}
+  \declaretheorem[name={猜想},style=style_theorem,numberwithin=chapter]{conjecture}
 \fi
 
 
