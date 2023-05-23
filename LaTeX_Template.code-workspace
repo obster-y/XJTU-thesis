@@ -16,10 +16,23 @@
   "settings": {
     "latex-workshop.latex.recipes": [
       {
-        "name": "latexmk",
+        "name": "latexmk ➞ copyPDF (Windows)",
         "tools": [
           "latexmk",
-          "copy_result"
+          "copy_result_windows"
+        ]
+      },
+      {
+        "name": "latexmk ➞ copyPDF (Linux)",
+        "tools": [
+          "latexmk",
+          "copy_result_linux"
+        ]
+      },
+      {
+        "name": "latexmk",
+        "tools": [
+          "latexmk"
         ]
       },
     ],
@@ -45,10 +58,18 @@
         "env": {}
       },
       {
-        "name": "copy_result",
+        "name": "copy_result_windows",
         "command": "powershell.exe",
         "args": [
           "copy '%OUTDIR%/%DOCFILE%.pdf' ../out",
+        ],
+        "env": {}
+      },
+      {
+        "name": "copy_result_linux",
+        "command": "cp",
+        "args": [
+          "'%OUTDIR%/%DOCFILE%.pdf' ../out",
         ],
         "env": {}
       }
@@ -109,25 +130,6 @@
   "extensions": {
     "recommendations": [
       "James-Yu.latex-workshop"
-    ]
-  },
-  "tasks": {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "清除临时文件",
-        "windows": {
-          "command": "${workspaceFolder}/clear.bat"
-        },
-        "command": "${workspaceFolder}/clear.sh",
-        "type": "shell",
-        "args": [],
-        "group": "none",
-        "problemMatcher": [],
-        "options": {
-          "cwd": "${workspaceFolder}/../build"
-        }
-      }
     ]
   }
 }
