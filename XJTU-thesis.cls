@@ -55,6 +55,7 @@
 \newif\iftyp@doctor           \typ@doctorfalse
 \newif\ifthesis@blind         \thesis@blindfalse
 \newif\ifthesis@english       \thesis@englishfalse
+\newif\ifthesis@plgck         \thesis@plgckfalse
 % \newif\ifthesis@pdflinks      \thesis@pdflinksfalse
 % \newif\ifthesis@colorlinks    \thesis@colorlinksfalse
 
@@ -64,9 +65,10 @@
 \DeclareOption{doctor}      {\typ@doctortrue}
 \DeclareOption{blind}       {\thesis@blindtrue}
 \DeclareOption{english}     {\thesis@englishtrue}
+\DeclareOption{plgck}       {\thesis@plgcktrue}
 
 \DeclareOption*{%
-    \PassOptionsToClass{\CurrentOption}{book}
+  \PassOptionsToClass{\CurrentOption}{book}
 }
 \ProcessOptions\relax
 
@@ -470,6 +472,9 @@
 
 %%% figures %%%
 %%% 图片 %%%
+\ifthesis@plgck
+  \PassOptionsToPackage{draft}{graphicx}
+\fi
 \RequirePackage{graphicx}
 \graphicspath{{./Figures/},{./Materials/Icons/}}
 
@@ -935,6 +940,8 @@
     Associate Supervisor: \en@theadvisorassociate\linebreak
   }
 }
+
+\ifthesis@plgck\else
 \renewcommand{\thesistitles}{
   \thispagestyle{empty}
   \ifthesis@english
@@ -995,7 +1002,7 @@
   \end{center}
   \cleardoublepage
 }
-
+\fi
 
 %%% Defense Committee Pages %%%
 %%% 答辩委员会页 %%%
@@ -1072,6 +1079,7 @@
 }
 \ExplSyntaxOff
 
+\ifthesis@plgck\else
 \renewcommand{\thesiscommittes}{
   \gencommitteelist
   \thispagestyle{empty}
@@ -1094,7 +1102,7 @@
   \end{center}
   \cleardoublepage
 }
-
+\fi
 
 %%% abstract %%%
 %%% 摘要 %%%
@@ -1626,6 +1634,7 @@
 \renewcommand*{\mkbibnamefamily}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
 
 \RenewDocumentCommand {\thesisachivements} { o } {
+  \ifthesis@plgck\else
   \renewcommand{\thesisbibname}{攻读学位期间取得的研究成果}
   \ifthesis@english
     \renewcommand{\thesisbibname}{Achievements}
@@ -1646,10 +1655,12 @@
     \end{refsection}
   }
   \pagecheck
+  \fi
 }
 
 %%% Decision %%%
 %%% 答辩委员会决议 %%%
+\ifthesis@plgck\else
 \renewcommand{\thesisdecision}{
   \newcommand{\thesisdecisiontitle}{答辩委员会会议决议}
   \ifthesis@english
@@ -1672,7 +1683,7 @@
   \pagecheck
   \fancyhead[CO]{\fontsize{10.5pt}{12.6pt}\selectfont\nouppercase\leftmark}
 }
-
+\fi
 
 %%% General Reviewers List %%%
 %%% 常规评阅人名单 %%%
@@ -1707,6 +1718,7 @@
 \ExplSyntaxOff
 
 \renewcommand{\thesisreviewers}[2]{
+  \ifthesis@plgck\else
   \genreviewerlist
   \newcommand{\thesisreviewerlisttitle}{常规评阅人名单}
   \ifthesis@english
@@ -1733,6 +1745,7 @@
     \vfill
   \fi
   \pagecheck
+  \fi
 }
 
 
@@ -1748,6 +1761,7 @@
     \sanhao #2
   \end{center}
 }
+\ifthesis@plgck\else
 \renewcommand{\thesisdeclarations}{
   \newcommand{\thesisoriginalitytitle}{声明}
   \ifthesis@english
@@ -1797,6 +1811,7 @@
   \noindent （本声明的版权归西安交通大学所有，未经许可，任何单位及任何个人不得擅自使用）
   \clearpage
 }
+\fi
 
 \makeatother
 
