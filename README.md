@@ -1,4 +1,4 @@
-# XJTU-thesis 西安交通大学学位论文模板 </br> XJTU-thesis: A Degree Thesis Template for Xi'an Jiaotong University
+# XJTU-thesis：西安交通大学学位论文模板 </br> XJTU-thesis: A LaTeX Degree Thesis Template for Xi'an Jiaotong University
 
 [![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
@@ -8,7 +8,7 @@
 
 This project is an official (LaTeX) template for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
 
-## 基本信息
+## 学校要求
 
 [研究生院模板及要求](http://gs.xjtu.edu.cn/info/1209/7605.htm)
 
@@ -37,12 +37,349 @@ The content of these links will be updated while keep links unchanged, this temp
 - 2021.07.17: Submit a release to the Degree Office.
 - 2022.07.22: Published on the Degree Office site.
 
-## LaTeX 模板 / LaTeX Template
-
-具体 LaTeX 模板的使用介绍请查看 [LaTeX_Template/README.md](LaTeX_Template/README.md)
-
-Detailed manuals are put in [LaTeX_Template/README.md](LaTeX_Template/README.md)
-
 ## Word 模板
 
 Word 模板已移至新项目 [XJTU-thesis-office](https://github.com/obster-y/XJTU-thesis-office)，具体使用请查看该仓库
+
+## 基本信息
+
+本模板在制作前阅读了并在制作是部分参考了以下五个学位论文模板的相关内容：
+
+- [电子科技大学毕业论文模板](https://github.com/x-magus/ThesisUESTC)
+- [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
+- [XJTUthesis](https://github.com/Aetf/xjtuthesis)
+- [XJTUthesis-master-2020](https://github.com/kohillyang/XJTUthesis-master-2020)
+- [xjtuthesis-x](https://github.com/Tedxz/xjtuthesis-x)
+
+经过阅读研究，发现上述模板或有疏漏之处，或使用说明不够详尽，或使用的包过于老旧，或工程架构不够清晰，或与校方要求有出入。
+
+为了修复这些问题，方便大家的使用，同时增加新的功能，编写了 `XJTU-thesis.cls` 文件，添加了较为详尽的注释，可以方便的按照以后学校要求进行更新（或扩展到其他学校使用）。
+
+除根据校方要求作出的调整外，同时并修改/添加了以下内容：
+- 重构工程结构，方便人类使用和阅读，进一步将内容与形式分离
+- 为英文撰写的学位论文提供支持：正文内容的切换、自动生成英文 pdf 书签
+- 浮动体环境使用 `subcaption` 替代了 `subfig` 或 `subfigure`
+- 引入 `siunitx` 正确生成数字和单位
+- 为不同操作系统设置了自动的字体导入方案
+- 增加了 `cleveref` 以更方便的进行引用
+- 提供了自动导入成果数据库生成成果页，并自动对指定作者加粗的方案
+- 提供了 latexmk 脚本
+- 提供了可能会有用的两个小脚本（pdf 批量裁图和转换）
+- 提供了自动生成答辩委员会、常规评阅人名单的方案 (LaTeX3 实现)
+
+**本模板将保持 master 分支与研究生院上的版本一致，dev 分支保持基本内容同研究生院版本一致但开发新功能，请注意区分。**
+
+如果对模板使用或格式有相关问题，请先确保已仔细阅读了使用手册和相关说明及以前的 issues 后，再在 Github 上提交 issue，如果发现 bug，欢迎提交 PR。
+
+## 后续更新内容
+
+- 添加学士学位模板支持
+- 添加报告类型
+- 添加演示文稿类型
+- 逐步将部分类似命令用 LaTeX3 简化
+
+## 特别感谢
+
+- 某不愿透露姓名的赵同学：为模板的改进和测试做了很多工作
+
+[![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
+[![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
+[![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
+
+
+
+## Basic Information
+
+Some parts of this template are developed based on some parts from these five projects:
+
+- [ThesisUESTC](https://github.com/x-magus/ThesisUESTC)
+- [XJTU-Thesis-Template](https://github.com/Ming-Zhang-XJTU/XJTU-Thesis-Template)
+- [XJTUthesis](https://github.com/Aetf/xjtuthesis)
+- [XJTUthesis-master-2020](https://github.com/kohillyang/XJTUthesis-master-2020)
+- [xjtuthesis-x](https://github.com/Tedxz/xjtuthesis-x)
+
+All the projects above have some problems, that's why this project exsiss.
+
+This project make these adjustments/improvements:
+- Refactor the structure of the project, make it more human-readable and decoupled
+- Support writing in english: auto change some matter into english, support english pdf bookmark
+- Substitute `subfig` or `subfigure` with `subcaption`
+- Introduce `siunitx` for units
+- Make font setting suits different OS
+- Introduce `cleveref` for better ref experience
+- Provied a latexmk configuration
+- Provied two may-useful script for pdf cropping and transforming
+- Provide functions to generate committee member list and reviewr list
+
+This template will keep master branch same with the version on Degree Office, and making new developments on dev branch.
+
+If you have any questions about the template, please submit an issue directly on github. If you find a bug, please submit a pull request.
+
+## Upcoming updates
+
+- Provide support of bachelor degree thesis
+- Provide support of daily report
+- Provide support of slides
+- Refactor some similar command with LaTeX3
+
+-----
+
+## 注意事项
+- 本项目只能生成 PDF 文件，如有 Word 需求请使用 Word 模板。
+- 本项目**未受到**任何形式的任何资助。
+- 本项目目前**不能完成**学士学位论文的排版。
+- 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用。
+- 建议安装以下提示的相关环境、软件，放弃老旧的软件。
+- 本项目只提供多文档结构的模板。
+- 请没有丰富 LaTeX 使用经验的使用者，务必使用本工程提供的 latexmk 脚本（即使用 latexmk 编译，不要自己手动编译）。
+
+## 使用方法
+
+**！！！特别提示：本模板分别在 README.md 及各个 .tex 文件中均有使用说明及范例，请务必全部读完。**
+
+### 基本环境
+
+**相比于 master 分支，dev 分支需要不低于 TeXLive 2023 的发行版。**
+
+使用模板需要系统安装一种 TeX 环境，如 [TeXLive](http://mirror.ctan.org/systems/texlive/Images/)（不要用 CTeX）（TeXLive 需要版本不低于 **2020**，否则会出错），安装有 SimSun 和 SimHei 字体（其实就是宋体和黑体）以及 Times New Roman 英文字体。在 MacOS 系统下编译会自动识别操作系统，使用 Songti SC 和 STHeiti 字体，但需要启用 `--shell-escape` 编译选项。Linux 如果出现字体问题，需要下载放在对应同一路径下，同时 Linux 默认使用 Fandol 宋体与黑体，和方正的有细微的区别，如果想更换，请自己下载字体并配置路径。
+
+模板采用 LaTeX 类的形式封装，导入模板只需要把 `XJTU-thesis.cls` 文件放在文档所在目录，在文档开头使用 `\documentclass{XJTU-thesis}` 命令将文档的类设置成 `XJTU-thesis` 即可。
+
+目前完成了硕博的模板，尚未完成学士学位模板。主文档内容的书写参考范例 `main.tex`。
+
+### 工程结构
+
+**文件夹**
+- Build: 放置编译生成的结果和临时文件
+- Codes: 放置使用的代码
+- Figures: 放置使用的图片（没有可自行新建）
+- Main_Spine: 放置正文章节
+- Main_Miscellaneous: 放置非正文章节的文字内容
+- References: 放置参考文献数据库文件（.bib）
+- Materials: 放置模板相关资源
+  - Materials/BiblographyStyles: 放置参考文献样式（.bst .bcx 等）
+  - Materials/Fonts: 放置字体文件（考虑到版权问题，在未安装宋体、黑体等字体的系统上请自行安装或复制 .ttf 至 ./Materials/Fonts/ 目录下）
+  - Materials/Icons: 放置学校的相关标识
+  - Materials/Tools: 放置由作者提供的简单小脚本及其他内容
+- .vscode: 放置 VS Code 的相关配置
+
+**文件**
+- latexmkrc: latexmk 配置
+- main.tex: 主文档
+- XJTU-thesis.cls: 文档类
+- README.md: 本文档
+- LICENSE: 版权说明
+- Materials/Tools/batch_pdfcrop.bat/sh: 批量裁剪 pdf 白边并重命名
+- Materials/Tools/pdf2jpg.py: 批量转换 pdf 至 jpg 以避免查重到无意义的重复如表头之类的（需下载 pdfbox）
+- Materials/Tools/configuration_for_vscode.json: 可以使用的 VS Code 部分设置
+
+### 文档编译
+
+#### 软件编译
+
+请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。**使用 TeXstudio、Texmaker 或 WinEdt 等编辑环境请将编译引擎设置成 latexmk**，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
+
+如果使用 VS Code 完成编辑和编译工作，请拖动本工程至 VS Code 内打开，或使用 shell 输入 `code .`。
+
+#### 手动编译
+
+编译文档请使用 XeTeX 引擎。模版提供 latexmkrc 用于自动编译。请执行
+```bash
+latexmk main.tex
+```
+即可自动调用相关程序进行编译，处理各种文件依赖并自动预览。执行 `latexmk -c` 命令清理所有缓存文件。
+
+或执行
+```bash
+xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xelatex main.tex
+```
+命令即可。
+
+#### 调整 latexmkrc 文件
+
+使用 latexmk 进行编译时，最重要的文件是 latexmkrc 文件，模板已经给出了可以使用的一份。
+
+在此基础上，可以通过其进一步控制编译器的工作顺序，具体的使用方法请自行查询 `latexmk` 宏包。
+
+只建议大家根据自己需求修改其中的一条内容，`$clean_mode = X`，其中 `X` 可以设置为 `0~3` 的某一个值，它控制在每次编译开始前，对于编译生成的相关文件的清理，值的具体含义为：
+- 0：不进行任何清理
+- 1：清理所有文件
+- 2：清理除 .pdf/.ps/.dvi 外所有文件
+- 3：清理除 .dep/.aux 外所有文件
+
+具体的使用可以表现为，如果设置为 0，在有时编译出错后需要手动（或通过 VS Code）设置清理辅助文件以重新生成，但可以提高编译速度。
+如果设置为 1，则会每次重新生成所有文件，速度会受到一定影响，但是不会受到以前留存的辅助文件的影响，建议在做完修改后使用此种方式重新生成。
+
+## 设置 VS Code
+
+这里只讨论使用2021年之后版本的 VS Code 搭配 LaTeX Workshop 的设置。而 VS Code 的设置实质是修改 settings.json 文件的内容。模板提供了部分设置，放置在 `.vscode/settings.json`。
+
+LaTeX Workshop 主要影响的参数包括
+
+- latex-workshop.latex.tools 与 latex-workshop.latex.recipes
+
+tools 提供最基本的指令，比如 latexmk 或 xelatex，而 recipes 通过组合 tool 提供的指令实现多种编译方式
+
+- latex-workshop.latex.clean.fileTypes 与 latex-workshop.latex.autoClean.run
+
+fileTypes 设置要清理的文件扩展名，按照 shell 语法展开；autoClean.run 设置编译结束后的清理行为，可以设置为不清理/每次清理或失败后清理
+
+- pdf.internal.synctex.keybinding 与 pdf-tex 跳转
+
+keybinding 设置了从 .pdf 文件到 .tex 源文件的跳转方式，可以设置为无/双击/Ctrl-点击
+
+实现从 .tex 到 .pdf 的跳转，可以通过点击 LaTeX Workshop-Navigate-SyncTeX，也可以设置键盘快捷键，具体实现可自己查询
+
+## 论文排版指南
+
+### 论文封面
+
+论文真正的封面不应由此文档生成，应当在进行纸质版本打印时取得。本模板能通过 `\thesistitles` 产生 `标题页` 。
+
+### 中英文摘要
+
+中英文摘要应包含在 `chineseabstract` 和 `englishabstract` 环境中，对应的关键字和文档类型使用 `\chinesekeywordstype` 和 `\englishkeywordstype`命令添加，并包含在相应的环境中。模板自动设置页眉和页脚。
+
+### 论文目录
+
+论文目录由命令 `\thesistableofcontens` 添加，并且自动处理标题，页眉以及缩进等问题。
+
+### 主要符号表
+
+主要符号表通过修改添加 `Main_Miscellaneous/glossary.tex` 中的内容，使用 `\thesisglossarylist` 生成。
+
+定义专有词汇或符号使用 `\newglossaryentry{<label>}{<description>}` 命令，例如：
+```latex
+\newglossaryentry{Linux}
+{
+  name=Linux,
+  description={is a generic term referring to the family of Unix-like
+    computer operating systems that use the Linux kernel},
+  plural=Linuces
+}
+
+\newglossaryentry{current}
+{
+  name=$I$,
+  description={An electric current is a stream of charged particles, such as electrons or ions, moving through an electrical conductor or space},
+}
+```
+
+缩略词使用 `\newacronym[description=<chinese>]{<label>}{<abbrv>}{<full>}` 命令，例如：
+
+```latex
+\newacronym[description=逻辑卷管理器]{lvm}{LVM}{Logical Volume Manager}
+```
+
+本模板会导入所有添加到 `glossary.tex` 中的词汇。正文中引用缩略词时，使用 `glossaries` 宏包提供的 `\gls` 、`\Gls`（首字母大写）或 `\glspl`（复数形式）等命令引用缩略词的 `<label>`。
+
+具体使用方法参考[glossaries宏包文档](https://www.ctan.org/tex-archive/macros/latex/contrib/glossaries/)。
+
+### 论文主体
+
+论文主体的写作参考一般的 LaTeX 教程（如中文版的[lshort](https://www.ctan.org/pkg/lshort-zh-cn)），可以自由添加章节，章节内添加所需要的内容，分小节，插入公式、表格和图片。
+
+各个章节通过 `\thesisbody{Main_Spine/c1,Main_Spine/c2,Main_Spine/c3}` 命令引入，注意此命令只应使用一次，且注意参数顺序。
+
+此外，模板还提供了另外一组命令以导入正文
+```latex
+\thesisbodybegin
+\include{Main_Spine/c1}
+\include{Main_Spine/c2}
+\include{Main_Spine/c3}
+\include{Main_Spine/c4}
+\include{Main_Spine/c5}
+\include{Main_Spine/c6}
+\thesisbodyend
+```
+
+此时，可以通过注释或导言区的 `\includeonly` 命令只编译部分章节，同时保持章节编号。
+
+> 具体地说，首先请自己学习 \includeonly 命令的具体使用方法。\includeonly 的实质是跳过编译 .tex 文件，直接读取 .aux 文件调整计数器等设置。因此如果想要使用此命令，首先要确保一次全部内容的编译，以生成 .aux 文件；还要确保编译成功后此文件不被清理（VS Code）；还要确保编译开始前此文件不被清理（latexmkrc $cleanup_mode=0）
+> 但是请注意，使用\includeonly 导入部分章节的命令后，目录可能不能正确的生成（包含所有章节而非导入的章节），但不影响最后的提交
+
+### 数学环境
+
+数学环境的字体调整请使用 `unicode-math` 提供的 `\symup, \symbfup, \symit, \symbfit` 等命令，使用斜体粗体的符号。也可使用 `\clist{\boldsymbol}` 加粗。具体请查看「使用手册」。
+
+注意，本模板已经定义了 `\diff` 命令产生标准的微分符号，请不要再自行使用其他符号（微分号是正体的 d，与后面内容间距稍小）
+
+### 单位与国际标准
+
+本模板引入了 `siunitx` 宏包输出正确的数字和单位，使用方法为 `\SI{#1}{#2}`，其中 `#1` 为数值，`#2` 为单位，如 `共有\SI{100}{kg}` 。
+
+### 代码抄录
+
+本模板提供了一套基本样式 `sty_basic`，使用者也可以自定义喜欢的样式。
+
+### 致谢
+
+致谢部分由命令 `\thesisacknowledegment` 开始，具体内容应在 `Main_Miscellaneous/acknowledegment.tex` 中编辑。
+
+### 参考文献
+
+使用 Biber 作为后端，基于 BibLaTeX 录入参考文献，由 `\thesisbibliography` 命令导入正文，默认导入 `References/reference.bib` 文件数据库，也可在导言区通过 `\addreferenceresource{References/reference}` 手动添加可选参数指定文件数据库。参考文献风格依照国标（不是学校的 Word 模板是因为其部分内容不符合国标，而它又要求国标）设置为「顺序编码制」。
+
+参考文献的在文中的引用分多种，可自行查阅 `biblatex-gbt7714-2015` 宏包，主要使用两种：在原文中作句法成分的为直接引用，使用 `\parencite` 命令；若使用 `\cite` 命令，在文中文献编号显示为上标；若使用 `\footfullcite` 命令，参考文献著录将以脚注形式显示在本页。
+
+如果出现不能正常显示参考文献编号，请查看此 [issue](https://github.com/obster-y/XJTU-thesis/issues/4)。
+
+### 攻读学位期间取得的研究成果
+
+在攻读学位期间取得的研究成果章节中，可以通过在导言区使用 `\addachivementresource{References/achievement}` 添加成果数据库，并使用 `\thesisachivements[auto]` 自动生成成果。
+
+在成果数据库的各条记录中，如果含有 `AUTHOR+an = {X=highlight}` 字段，则此条目的第 `X` 位作者将会被加粗标注。
+
+不添加 `[auto]` 参数则导入 `Main_Miscellaneous/achievement.tex` 此文件的内容，可以在其中手动添加条目。
+
+### 附录
+
+附录部分由命令 `\thesisappendix{}` 命令引入，此处引入的文件内的每一个章，都会被当作是一个附录，使用大写拉丁字母顺序编号。能够自动根据要求使得所有附录在目录中合并显示为一个 `附录` 或 `Appendi{x/ces}`。
+
+### 插入图片和表格
+
+插入图片使用 `figure` 环境，自动调整图片前后的间距。
+
+添加子图则使用 `\subcaption` 包内的命令。如：
+```latex
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[height=6cm]{xjtu_blue.pdf}
+        \subcaption{title1}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\linewidth}
+        \centering
+        \includegraphics[height=6cm]{xjtu_blue.pdf}
+        \subcaption{title2}
+        \label{subfig:lb1}
+    \end{subfigure}
+    \caption{title}
+\end{figure}
+```
+
+若子图过多需要跨页则在间断处插入 `\floatcontinue{tb}` 命令，参数可自行设置，实现细节可查阅 XJTU-thesis.cls。
+
+图片文件可以统一放在 `./Figure/` 目录下，可以直接将图片放在其下，容易整理，工程也看起来清爽。具体插入图片和表格的代码参考范例 `main.tex`。
+
+插入表格使用 `table` 环境，自动调整表格前后的间距和默认的字体大小。
+
+根据学校要求，所有表格必须通栏，因此请使用 `tabularx` 环境生成表格，列格式 `X Y Z` 分别代表 `左对齐 居中 右对齐`。三线表默认宽度也已进行调整，不必手动更改。
+
+若表格过长，请使用 `xltabular` 环境，具体用法可参考 `使用手册.pdf`。
+
+### 定理环境
+
+模板提供了各类预定义的环境，具体请查看 `c1.tex` 文件。
+
+### 算法描述
+
+算法描述使用 `algorithm` 环境，具体写法请参考范例 `Main_Spine\c3.tex` 。模板类自动加载 `algorithm2e` 宏包，详细的用法请参考[algorithm2e宏包文档](https://www.ctan.org/pkg/algorithm2e)。
+
+### 枚举环境和脚注
+
+枚举使用标准的 `enumerate`、`itemize` 以及 `description` 环境。脚注使用标准的 `\footnote` 命令插入。
+
+### 便捷清空临时文件脚本
+
+本项目提供了一个清除临时文件的 shell/bat 脚本，可以清除临时文件。

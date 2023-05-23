@@ -1,6 +1,10 @@
 {
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.outDir": "./Build/",
+    "latex-workshop.latex.rootFile.useSubFile": false,
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "latex-workshop.intellisense.citation.backend": "biblatex",
     "latex-workshop.latex.clean.fileTypes": [
         "*.acn",
         "*.acr",
@@ -32,6 +36,7 @@
         "*.slo",
         "*.sls",
         "*.xdv",
+        "*.xdy",
         "*.listing",
     ],
     "latex-workshop.latex.tools": [
@@ -52,6 +57,7 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-shell-escape",
+                "--output-directory=%OUTDIR%",
                 "%DOC%"
             ],
         },
@@ -59,6 +65,7 @@
             "name": "biblatex",
             "command": "biber",
             "args": [
+                "-outdir=%OUTDIR%",
                 "%DOCFILE%"
             ]
         }
