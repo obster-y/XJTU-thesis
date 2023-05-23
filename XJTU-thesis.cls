@@ -942,6 +942,14 @@
   \else
     \pdfbookmark{题名页}{Title Page (Chinese)}
   \fi
+  \ifthesis@blind
+    \renewcommand{\zh@theauthor}{{}}
+    \renewcommand{\zh@theadvisor}{{}}
+    \renewcommand{\zhasscociateinfo}{{}}
+    \renewcommand{\en@theauthor}{\ }
+    \renewcommand{\en@theadvisor}{{}}
+    \renewcommand{\enasscociateinfo}{{}}
+  \fi
   \parbox[t][1.2cm]{2.5cm}{}
   \begin{center}
     \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\[0.8cm]
@@ -978,8 +986,8 @@
     \vskip 4cm
     \begin{spacing}{1.8}\sanhao
       By\\
-      \en@theauthor\\
-      Supervisor: \en@theadvisor\\
+      \en@theauthor \\
+      Supervisor: \en@theadvisor \\
       \enasscociateinfo
       \en@thesubjectdisplay\\
       \en@thesubmitdate\\
@@ -1021,6 +1029,15 @@
   \dim_new:N \spaceWidth
   \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \l_dcc_tl 1}
 
+  \ifthesis@blind
+    \renewcommand{\zh@theauthor}{{}}
+    \renewcommand{\zh@theadvisor}{{}}
+    \renewcommand{\zhasscociateinfo}{{}}
+    \renewcommand{\en@theauthor}{\ }
+    \renewcommand{\en@theadvisor}{{}}
+    \renewcommand{\enasscociateinfo}{{}}
+  \fi
+
   \tl_gput_right:Nn \g_dc_tabular_tl {%
     \begin{tblr}{
       width=\textwidth,
@@ -1034,13 +1051,15 @@
     答辩委员会委员： & & \\
   }
 
-  \tl_gput_right:Nn \g_dc_tabular_tl {{\clist_item:Nn \l_dcc_tl 1 \clist_item:Nn \l_dcc_tl 3}：&\sanhao\underline{\parbox[t]{9em}{\clist_item:Nn \l_dcc_tl 2}} & \xiaowu（{\color{red}{注：主席}}）\\}
+  \ifthesis@blind\else
+    \tl_gput_right:Nn \g_dc_tabular_tl {{\clist_item:Nn \l_dcc_tl 1 \clist_item:Nn \l_dcc_tl 3}：&\sanhao\underline{\parbox[t]{9em}{\clist_item:Nn \l_dcc_tl 2}} & \xiaowu（{\color{red}{注：主席}}）\\}
 
-  \seq_map_variable:NNn \g_defense_committee_seq \i {
-    \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \i 2}
-    \tl_gput_right:Nx \g_dc_tabular_tl {{\clist_item:Nn \i 1 \clist_item:Nn \i 3}：&}
-    \tl_gput_right:Nx \g_dc_tabular_tl {\underline{\exp_not:N \parbox[t]{9em}{\clist_item:Nn \i 2} }\\}
-  }
+    \seq_map_variable:NNn \g_defense_committee_seq \i {
+      \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \i 2}
+      \tl_gput_right:Nx \g_dc_tabular_tl {{\clist_item:Nn \i 1 \clist_item:Nn \i 3}：&}
+      \tl_gput_right:Nx \g_dc_tabular_tl {\underline{\exp_not:N \parbox[t]{9em}{\clist_item:Nn \i 2} }\\}
+    }
+  \fi
 
   \tl_gput_right:Nn \g_dc_tabular_tl {%
     答辩时间：\zh@thedefensedate & & \\
