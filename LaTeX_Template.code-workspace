@@ -1,11 +1,15 @@
 {
   "folders": [
     {
-      "name": "XJTU-thesis",
+      "name": "LaTeX源码",
       "path": "./LaTeX_Template"
     },
     {
-      "name": "生成的文件",
+      "name": "生成的PDF",
+      "path": "./out"
+    },
+    {
+      "name": "临时文件",
       "path": "./build"
     }
   ],
@@ -14,7 +18,8 @@
       {
         "name": "latexmk",
         "tools": [
-          "latexmk"
+          "latexmk",
+          "copy_result"
         ]
       },
     ],
@@ -39,6 +44,14 @@
         ],
         "env": {}
       },
+      {
+        "name": "copy_result",
+        "command": "powershell.exe",
+        "args": [
+          "copy '%OUTDIR%/%DOCFILE%.pdf' ../out",
+        ],
+        "env": {}
+      }
     ],
     "latex-workshop.latex.outDir": "../build",
     "latex-workshop.view.pdf.viewer": "tab",
@@ -96,6 +109,25 @@
   "extensions": {
     "recommendations": [
       "James-Yu.latex-workshop"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "清除临时文件",
+        "windows": {
+          "command": "${workspaceFolder}/clear.bat"
+        },
+        "command": "${workspaceFolder}/clear.sh",
+        "type": "shell",
+        "args": [],
+        "group": "tex",
+        "problemMatcher": [],
+        "options": {
+          "cwd": "${workspaceFolder}/../build"
+        }
+      }
     ]
   }
 }
