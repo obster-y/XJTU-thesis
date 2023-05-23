@@ -143,10 +143,11 @@ If you have any questions about the template, please submit an issue directly on
 
 请使用 VS Code + LaTeX Workshop 或使用 TeXStudio 等软件，不建议使用各类非正版软件如 CTeX 套装自带的 WinEdt 等。**使用 TeXstudio、Texmaker 或 WinEdt 等编辑环境请将编译引擎设置成 latexmk**，如果在 Windows 平台下使用 MiKTeX 还需要安装 [Perl 语言解释器](http://strawberryperl.com/)。
 
+如果使用 VS Code 完成编辑和编译工作，请在 VS Code 菜单中选择 `文件`-`从文件打开工作区`，并选择本项目根目录的 `LaTeX_Template.code-workspace`，以获得最佳编辑体验（包含自动配置的工作区分区以及 LaTeX Workshop 的部分设置）。
 
 #### 手动编译
 
-编译文档请使用 XeTeX 引擎。模版提供 latexmkrc 用于自动编译。请将工作目录切换到本项目文件夹下，执行
+编译文档请使用 XeTeX 引擎。模版提供 latexmkrc 用于自动编译。请将工作目录切换到本项目的`LaTeX_Template`文件夹下，执行
 ```bash
 latexmk main.tex
 ```
@@ -154,7 +155,7 @@ latexmk main.tex
 
 或执行
 ```bash
-xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xelate main.tex 
+xelatex main.tex && xelatex main.tex && biber main && makeglossaries main && xelate main.tex
 ```
 命令即可。
 
@@ -346,4 +347,3 @@ keybinding 设置了从 .pdf 文件到 .tex 源文件的跳转方式，可以设
 ### 便捷清空临时文件脚本
 
 本项目提供了一个清除临时文件的 shell/bat 脚本，可以清除临时文件。
-
