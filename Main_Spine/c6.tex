@@ -3,16 +3,19 @@
 \xchapter{本模板已载入的 Packages}{Loaded Packages}
 
 \begin{table}[h]
-  \begin{tabular}{|c|c|c|c|c|c|c|c|}
-  \hline
-  expl3     & ifxetex    & xcolor   & tikz        & tikz-3dplot & zhnumber    & datetime2  & indentfirst \\ \hline
-  setspace  & etoolbox   & xpatch   & xparse      & calc        & ulem        & ifthen     & realboxes   \\ \hline
-  blindtext & zhlipsum   & amsmath  & unicode-math     & amsthm      & thmtools    & glossaries & upgreek     \\ \hline
-  pifont    & array      & commath  & siunitx     & mathtools   & -    & geometry   & ifoddpage   \\ \hline
-  emptypage & pdfpages   & xeCJK    & fontenc     & lmodern     & anyfontsize & mathrsfs   & amsfonts    \\ \hline
-  ctex      & ifplatform & graphicx & algorithm2e & tcolorbox   & listings    & enumitem   & footmisc    \\ \hline
-  fancyvrb  & fancyhdr   & titlesec & float       & newfloat    & multirow    & longtable  & tabu        \\ \hline
-  tabularx  & xltabular  & booktabs & caption     & subcaption  & xurl        & hyperref   & bookmark    \\ \hline
-  titletoc  & tocloft    & biblatex & appendix    & cleveref    &             &            &             \\ \hline
-  \end{tabular}
+  \begin{tblr}{
+    colspec={*{8}{X[c,m]}},
+    vlines, hlines,
+    leftsep=0pt,rightsep=0pt,
+  }
+  expl3     & ifxetex    & xcolor   & tikz        & tikz-3dplot & zhnumber    & datetime2  & indentfirst \\
+  setspace  & etoolbox   & xpatch   & xparse      & calc        & ulem        & ifthen     & realboxes   \\
+  blindtext & zhlipsum   & amsmath  & unicode-math     & amsthm      & thmtools    & glossaries & upgreek     \\
+  pifont    & array      & commath  & siunitx     & mathtools   & -    & geometry   & ifoddpage   \\
+  emptypage & pdfpages   & xeCJK    & fontenc     & lmodern     & anyfontsize & mathrsfs   & amsfonts    \\
+  ctex      & ifplatform & graphicx & algorithm2e & tcolorbox   & listings    & enumitem   & footmisc    \\
+  fancyvrb  & fancyhdr   & titlesec & float       & newfloat    & tabularray    & -  & -        \\
+  -  & -  & - & caption     & subcaption  & xurl        & hyperref   & bookmark    \\
+  titletoc  & tocloft    & biblatex & appendix    & cleveref    &             &            &             \\
+  \end{tblr}
 \end{table}

@@ -41,19 +41,22 @@
 按照学校的要求，正文最多应具有七个层级，分别使用以下命令，为了方便中英目录的生成，前三层命令是由模板自定义的，同时第六层目录的命令是由模板新增的。注意，不论正文主体是中或英，目录顺序均为先中后英，这些命令有两个参数的也是先中后英。
 
 \begin{table}[H]
-  \begin{tabularx}{\textwidth}{YY}
-  \toprule
+  \begin{tblr}{
+    colspec={X[c]X[c]},
+    verb
+  }
+    \toprule
       层级 & 命令 \\
-  \midrule
-      0  & \lstinline|\\xchapter{Chs}{Eng}| \\
-      1  & \lstinline|\\xsection{Chs}{Eng}| \\
-      2  & \lstinline|\\xsubsection{Chs}{Eng}| \\
-      3  & \lstinline|\\subsubsection{Chs/Eng}| \\
-      4  & \lstinline|\\paragraph{Chs/Eng}| \\
-      5  & \lstinline|\\subparagraph{Chs/Eng}| \\
-      6  & \lstinline|\\subsubparagraph{Chs/Eng}| \\
-  \bottomrule
-  \end{tabularx}
+    \midrule
+      0  & \verb|\xchapter{Chs}{Eng}| \\
+      1  & \verb|\xsection{Chs}{Eng}| \\
+      2  & \verb|\xsubsection{Chs}{Eng}| \\
+      3  & \verb|\subsubsection{Chs/Eng}| \\
+      4  & \verb|\paragraph{Chs/Eng}| \\
+      5  & \verb|\subparagraph{Chs/Eng}| \\
+      6  & \verb|\subsubparagraph{Chs/Eng}| \\
+    \bottomrule
+  \end{tblr}
 \end{table}
 
 示例如下：
@@ -194,7 +197,10 @@
 本模板通过\clist[columbiablue]{thmtools}宏包定义了以下环境，其中\textbf{证明}环境默认具有缩进，没有编号，同时使用\clist{\qedhere}结束证明，其他环境样式一致。
 
 \begin{table}[H]
-  \begin{tabularx}{\textwidth}{YYY|YYY}
+  \begin{tblr}{
+    colspec={*{6}{X[c]}},
+    vline{4},
+  }
   \toprule
     环境 & 英文名称 & 中文名称 & 环境 & 英文名称 & 中文名称 \\
   \midrule
@@ -205,7 +211,7 @@
     assumption & Assumption & 假设 & remark & Remark & 注 \\
     problem & Problem & 问题 & conjecture & Conjecture & 猜想 \\
   \bottomrule
-  \end{tabularx}
+  \end{tblr}
 \end{table}
 
 

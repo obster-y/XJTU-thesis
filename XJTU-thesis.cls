@@ -716,22 +716,23 @@
 %%% 浮动体 %%%
 \RequirePackage{float}
 \RequirePackage{newfloat}
-\RequirePackage{multirow}
-\RequirePackage{longtable}
-\RequirePackage{tabu}
-\RequirePackage{tabularx}
-\RequirePackage{xltabular}
-\RequirePackage{booktabs}
+
+\RequirePackage{multicol}
+\RequirePackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+\NewTblrTheme{xjtu_std}{
+    \SetTblrStyle{width}{\linewidth}
+    \DefTblrTemplate{conthead-text}{normal}{（续）}
+    \SetTblrTemplate{conthead-text}{normal}
+    \DefTblrTemplate{contfoot-text}{normal}{表格待续}
+    \SetTblrTemplate{contfoot-text}{normal}
+}
 
 % 三线表样式
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\lightrulewidth}{1.0pt}
 \setlength{\arrayrulewidth}{0.5pt}
-
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
-\newcolumntype{Z}{>{\raggedleft\arraybackslash}X}
-\tabcolsep=1ex
-\tabulinesep=\tabcolsep
 
 % tikz
 \newlength\tikzboxwidth
@@ -748,10 +749,10 @@
   \end{tikzpicture}%
 }
 
-\def\hlinew#1{%
-  \noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
-  \reserved@a\@xhline}
-\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%
+% \def\hlinew#1{%
+%   \noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
+%   \reserved@a\@xhline}
+% \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%
 
 \AtBeginEnvironment{figure}{
   \def\@floatboxreset{\centering}
@@ -759,9 +760,8 @@
 \AtBeginEnvironment{table}{
   \def\@floatboxreset{\centering}
 }
-\AtBeginEnvironment{tabular}{\wuhao}
-\AtBeginEnvironment{tabularx}{\wuhao}
-\AtBeginEnvironment{xltabular}{\wuhao}
+\AtBeginEnvironment{tblr}{\wuhao}
+\AtBeginEnvironment{longtblr}{\wuhao}
 
 
 %%% caption %%%
@@ -1024,14 +1024,31 @@
   \dim_new:N \spaceWidth
   \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \l_dcc_tl 1}
 
-  \tl_gput_right:Nn \g_dc_tabular_tl {{\clist_item:Nn \l_dcc_tl 1 \clist_item:Nn \l_dcc_tl 3}：&\sanhao\underline{\parbox[t]{10em}{\clist_item:Nn \l_dcc_tl 2}}\xiaowu（{\color{red}{注：主席}}）\\}
+  \tl_gput_right:Nn \g_dc_tabular_tl {%
+    \begin{tblr}{
+      width=\textwidth,
+      colspec={X[r,b]ll},
+      cell{1,2,Y,Z}{1}={r=1,c=3}{l},
+      row{1-Z} = {font=\sanhao},
+      rowsep=2.4ex,
+      column{1,3}={leftsep=0pt,rightsep=0pt}
+    }
+    答辩人：\zh@theauthor & & \\
+    答辩委员会委员： & & \\
+  }
+
+  \tl_gput_right:Nn \g_dc_tabular_tl {{\clist_item:Nn \l_dcc_tl 1 \clist_item:Nn \l_dcc_tl 3}：&\sanhao\underline{\parbox[t]{9em}{\clist_item:Nn \l_dcc_tl 2}} & \xiaowu（{\color{red}{注：主席}}）\\}
 
   \seq_map_variable:NNn \g_defense_committee_seq \i {
     \bp_set_to_width:Nn \spaceWidth {\clist_item:Nn \i 2}
-    \tl_gput_right:Nn \g_dc_tabular_tl {\sanhao}
     \tl_gput_right:Nx \g_dc_tabular_tl {{\clist_item:Nn \i 1 \clist_item:Nn \i 3}：&}
-    \tl_gput_right:Nn \g_dc_tabular_tl {\sanhao}
-    \tl_gput_right:Nx \g_dc_tabular_tl {\underline{\exp_not:N \parbox[t]{10em}{\clist_item:Nn \i 2} }\\}
+    \tl_gput_right:Nx \g_dc_tabular_tl {\underline{\exp_not:N \parbox[t]{9em}{\clist_item:Nn \i 2} }\\}
+  }
+
+  \tl_gput_right:Nn \g_dc_tabular_tl {%
+    答辩时间：\zh@thedefensedate & & \\
+    答辩地点：\zh@thedefenseloc & & \\
+    \end{tblr}
   }
 }
 \NewDocumentCommand \defencecommittelist {}{
@@ -1057,15 +1074,7 @@
   \end{center}\end{spacing}
   \vfill
   \begin{center}
-    \renewcommand{\arraystretch}{2.5}
-    \begin{tabular}{rl}
-      \multicolumn{1}{l}{\sanhao 答辩人：\zh@theauthor}&\\
-      \multicolumn{1}{l}{\sanhao 答辩委员会委员：}&\\
-      \defencecommittelist
-      \multicolumn{1}{l}{\sanhao 答辩时间：\zh@thedefensedate}&\\
-      \multicolumn{2}{l}{\sanhao 答辩地点：\zh@thedefenseloc}\\
-    \end{tabular}
-    \renewcommand{\arraystretch}{1}
+    \defencecommittelist
   \end{center}
   \cleardoublepage
 }
@@ -1661,6 +1670,11 @@
 }
 \tl_set:Nn \g_gr_tabular_tl {}
 \NewDocumentCommand \genreviewerlist {}{
+  \tl_gput_right:Nn \g_gr_tabular_tl {%
+    \begin{tblr}{%
+      width=0.863\textwidth,%
+      colspec={X[c,1]X[c,1]X[c,2]}%
+    }}
     \seq_map_variable:NNn \g_general_reviewer_seq \i {
       \tl_gput_right:Nn \g_gr_tabular_tl {\xiaosi}
       \tl_gput_right:Nx \g_gr_tabular_tl {\clist_item:Nn \i 2 & }
@@ -1669,8 +1683,9 @@
       \tl_gput_right:Nn \g_gr_tabular_tl {\xiaosi}
       \tl_gput_right:Nx \g_gr_tabular_tl {\clist_item:Nn \i 1 \\}
     }
+  \tl_gput_right:Nn \g_gr_tabular_tl {\end{tblr}}
 }
-\NewDocumentCommand \generalreviewerlist {}{
+\def \generalreviewerlist {
   \tl_use:N \g_gr_tabular_tl
 }
 \ExplSyntaxOff
@@ -1694,9 +1709,7 @@
     \renewcommand{\arraystretch}{1.5}
     \begin{table}[H]
       \centering
-    \begin{tabularx}{0.863\textwidth}{p{0.2157\textwidth}<{\centering}p{0.2157\textwidth}<{\centering}p{0.4315\textwidth}<{\centering}}
       \generalreviewerlist
-    \end{tabularx}
     \end{table}
     \renewcommand{\arraystretch}{1}
     % \vspace{\baselineskip}

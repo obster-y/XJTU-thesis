@@ -173,160 +173,165 @@
 \xsubsection{普通表格}{Normal Tables}
 
 
-通栏表格应使用 tabularx 环境，其中 \clist{X,Y,Z} 分别对应初始表格的 \clist{l,c,r}
+考虑到使用成本、内容与样式分离。模板默认调用现代化的表格绘制宏包 \clist[columbiablue]{tabularray}。该宏包的使用方法请使用 \clist{texdoc tabularray}，网上也有此手册的中文翻译。请确保使用的发行版包含这一宏包（即更新至 2023 及以后的版本）。
+
+非跨页表格应使用 tblr 环境制作表格，使用 figure 作为浮动体环境，使用 \clist{\toprule}，\clist{\midrule} 和 \clist{\bottomrule} 指定三线表的三条线：
 
 \begin{texcode}[]{}
-  \begin{table}[H]
-    \caption{左对齐}
-    \begin{tabularx}{\textwidth}{XX}
-    \toprule
-        \textbf{Symptom} & \textbf{Metric} \\
-    \midrule
-        Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
-        Class that is large and complex & WMC is high \\
-        Class that has a lot of methods that only operate on a proper & \\
-    \bottomrule
-    \end{tabularx}
-  \end{table}
+    \begin{table}[H]
+        \caption{tblr 基本用法}
+        \label{tbl:2-1}
+        \begin{tblr}{
+            % colspec={X[r,m,2]X[c,3]X[l,1]}
+            X[r,m,2]X[c,3]X[l,1]
+        }
+            \toprule
+            Head & Test & 测试 \\
+            \midrule
+            Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few & 3 \\
+            1 & 2 & 3 \\
+            1 & 2 & 3 \\
+            \bottomrule
+        \end{tblr}
+    \end{table}
 \end{texcode}
+
+tblr 环境各列的对齐方式可以以键值对的方式在必选参数中设置，或者直接作为唯一必选参数（参考 tabularray 手册第 24 页）。列类型包括 c/l/r, t/b/m, X 等。c/l/r 为默认的三种对齐方式，t/b/m 指定单元格内容超过列宽时垂直方向的对齐方式， X 类型会自动调整列宽使全表宽度与页宽一致，X 类型列的水平、垂直对齐方式以类似 X[c] 的方式在 X 后的方括号内指定。X 类型后的方括号可以指定此列宽度与其他X类列宽度的相对大小，也可使用 \clist{wd=A}直接指定列宽。推荐使用 X 作为列类型。
 
 \begin{texcode}[]{}
-  \begin{table}[H]
-    \caption{居中}
-    \begin{tabularx}{\textwidth}{YY}
-    \toprule
-        \textbf{Symptom} & \textbf{Metric} \\
-    \midrule
-        Class  & ATFD \\
-        Class  & WMC \\
-        Class  & TCC \\
-    \bottomrule
-    \end{tabularx}
-  \end{table}
+    \begin{tblr}{
+        colspec={|ll|X[c]|rr|},
+        cell{1}{1}={r=3,c=2}{r,m},
+        cell{1}{3}={r=2,c=3}{l,t},
+        cell{3}{Z}={}{red},
+        hline{4-6}={2pt,blue},
+    }
+        \hline
+        1-1 & 1-2 & 1-3 & 1-4 & 1-5 \\
+        \hline
+        2-1 & 2-2 & 2-3 & 2-4 & 2-5 \\
+        \hline
+        3-1 & 3-2 & MIDDLE & 3-4 & 3-5 \\
+        % \hline (4th)
+        4-1 & 4-2 & 4-3 & 4-4 & 4-5 \\
+        % \hline (5th)
+        5-1 & 5-2 & 5-3 & 5-4 & 5-5 \\
+        % \hline (6th)
+    \end{tblr}
 \end{texcode}
 
-
-\clearpage
+tabularray 的优点在于格式和内容分离，使用更贴合人类习惯。单元格的合并，文字、背景、边框的样式都可以放在参数中设置。 \clist{cell{R}{C}={merge}{style}}用于设置单元格合并，其中 R,C 指定合并单元格左上角的位置，merge参数指定合并多少行多少列，style 调整合并后的单元格样式，其中 R,C 除了使用行号进行索引，可以使用 X,Y,Z 索引倒数第三、二、一行/列，可以使用 odd/even 选择 奇/偶列，还可以使用连字符(dash)选择区间，非常方便。
 
 \xsubsection{复杂表格}{Complicated tables}
 
-在三线表中可以加辅助线，以适应较复杂表格的需要：
+在三线表中可以加辅助线，以适应较复杂表格的需要，具体使用方法请自行阅读宏包：
 
 \begin{texcode}[]{}
-\begin{table}[H]  
+\begin{table}[H]
   \centering
   \caption{compare with other approachs}
   \label{table:methodcompare}
-  \begin{tabularx}{\textwidth}{*{7}Y}
-    \toprule
-    \multirow{2}*{Model} & \multicolumn{3}{c}{trigger identification} &  \multicolumn{3}{c}{Event Extraction} \\ 
-    \cline{2-7}
+  \begin{tblr}{
+      colspec={*{7}{X[c]}},
+      cell{1}{1}={r=2}{c,m},
+      cell{1}{2,5}={c=3}{c,m},
+      hline{2,4,6}={1pt},
+      hline{1,3,Z}={1.5pt},
+      row{4,5}={rowsep=0pt},
+      row{Z}={m,font=\bfseries},
+  }
+    Model & trigger inditification & & & Event Extraction & & \\
     & P(\%) & R(\%) & F1(\%) & P(\%) & R(\%) & F1(\%) \\
-    \midrule 
     Baseline1 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
-    \midrule[0.5pt]
     Baseline2  & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
     Baseline3  & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
-    \midrule[0.5pt]
-    {\bf Our approach}  & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} & {\bf 76.84} \\
-    \bottomrule
-  \end{tabularx}
+    Our approach  & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 & 76.84 \\
+  \end{tblr}
 \end{table}
 \end{texcode}
 
-\clearpage
-
 \xsubsection{长表格}{Long Tables}
 
-当表格过长时，使用\clist{xltabular}环境，可以自动生成续表：
+当表格过长时，使用\clist{longtblr}环境，此时不需要浮动体环境。在可选参数中需要设置\clist{theme=xjtu_std}，以调用预先设置好的续表样式，同时设置表格标题、label、脚注等，具体使用方法请自行阅读宏包。
 
 \begin{texcodeonly}[]{}
-  \begin{xltabular}{\textwidth}{XX}
-    \caption{左对齐} \\
-
-      \toprule
-      \textbf{Symptom} & \textbf{Metric} \\
-      \midrule
-    \endfirsthead % 以上设置第一张表表头
-
-      \multicolumn{2}{c}{\tablename\ \thetable{}（续）} \\
-      \toprule
-      \textbf{Symptom} & \textbf{Metric} \\
-      \midrule
-    \endhead % 以上设置所有续表表头
-
-      \bottomrule
-      \multicolumn{2}{r}{表格待续} \\
-    \endfoot % 以上设置第一张表结尾
-
-      \bottomrule
-    \endlastfoot % 以上设置最后一张表结尾
-
-    Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few \\
-    Class that is large and complex & WMC is high \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-    Class that has a lot of methods that only operate on a proper & \\
-  \end{xltabular}
+    \begin{longtblr}[
+        theme = xjtu_std,
+        caption = {A Long Long Long Long Long Long Long Table },
+        entry = {Short Caption},
+        label = {tblr:test},
+        note{a} = {脚注},
+        note{$\dag$} = {还是脚注},
+        remark{Note} = {注释，即表格内没有标注符号的脚注},
+        remark{Source} = {还是注释},
+    ]{
+        colspec = {XX[c]X},
+        rowhead = 1, rowfoot = 0,
+    }
+    \toprule
+    Head & Head & Head \\
+    \midrule
+    Epsilon & Zeta\TblrNote{a} & Eta \\
+    Iota & Kappa\TblrNote{$\dag$} & Lambda \\
+    Nu & Xi & Omicron \\
+    \dots 
+    Foot & Foot & Foot \\
+    \bottomrule
 \end{texcodeonly}
 
-\begin{xltabular}{\textwidth}{YY}
-  \caption{长表格} \\
-
+\begin{longtblr}[
+        theme = xjtu_std,
+        caption = {A Long Long Long Long Long Long Long Table },
+        entry = {Short Caption},
+        label = {tblr:test},
+        note{a} = {脚注},
+        note{$\dag$} = {还是脚注},
+        remark{Note} = {注释，即表格内没有标注符号的脚注},
+        remark{Source} = {还是注释},
+    ]{
+        colspec = {XX[c]X},
+        rowhead = 1, rowfoot = 0,
+    }
     \toprule
-    \textbf{Symptom} & \textbf{Metric} \\
+    Head & Head & Head \\
     \midrule
-  \endfirsthead % 以上设置第一张表表头
-
-    \multicolumn{2}{c}{\tablename\ \thetable{}（续）} \\
-    \toprule
-    \textbf{Symptom} & \textbf{Metric} \\
+    Head & Head & Head \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta\TblrNote{a} & Eta \\
+    Iota & Kappa\TblrNote{$\dag$} & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    %
+    % ......
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    % Foot & Foot & Foot \\
+    Alpha & Beta & Gamma \\
     \midrule
-  \endhead % 以上设置所有续表表头
-
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Foot & Foot & Foot \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Foot & Foot & Foot \\
+    Alpha & Beta & Gamma \\
+    Epsilon & Zeta & Eta \\
+    Iota & Kappa & Lambda \\
+    Nu & Xi & Omicron \\
+    Rho & Sigma & Tau \\
+    Phi & Chi & Psi \\
+    Foot & Foot & Foot \\
     \bottomrule
-    \multicolumn{2}{r}{表格待续} \\
-  \endfoot % 以上设置第一张表结尾
-
-    \bottomrule
-  \endlastfoot % 以上设置最后一张表结尾
-
-  % 开始表格内容
-  Class that has many accessor methods and accesses a lot of external data & ATFD is more than a few\\
-  Class that is large and complex & WMC is high\\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-  Class that has a lot of methods that only operate on a proper & \\
-\end{xltabular}
+\end{longtblr}
