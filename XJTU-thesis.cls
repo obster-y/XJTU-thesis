@@ -264,6 +264,7 @@
   \newfontfamily{\heiti@letter}{SimHei}
   \newfontfamily{\kaiti@letter}{KaiTi}
   \newfontfamily{\songti@letter}{SimSun}
+  \newfontfamily{\kaiti}{STKaiti}
   \setmainfont{Times New Roman}
   \setmathfont{XITS Math}
   \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
@@ -272,6 +273,7 @@
     \setCJKmainfont[AutoFakeBold=true]{Songti SC}
     \newfontfamily{\heiti@letter}{STHeiti}
     \newfontfamily{\songti@letter}{Songti SC}
+    \newfontfamily{\kaiti}{STKaiti}
     \setmainfont{Times New Roman}
     \setmathfont{XITS Math}
     \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
@@ -280,6 +282,7 @@
     % \setCJKmainfont[AutoFakeBold=true,Path=/usr/local/share/fonts/]{fzsong.ttf}
     % \newfontfamily{\heiti@letter}[Path=/usr/local/share/fonts/]{fzhei.ttf}
     % \newfontfamily{\songti@letter}[Path=/usr/local/share/fonts/]{fzsong.ttf}
+    % \newfontfamily{\kaiti}{STKaiti}
     \setCJKmainfont[AutoFakeBold=true]{FandolSong}
     \newfontfamily{\heiti@letter}{FandolHei}
     \newfontfamily{\songti@letter}{FandolSong}
