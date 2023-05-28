@@ -1,4 +1,8 @@
 {
+    "[tex]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+    },
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.latex.outDir": "./Build/",

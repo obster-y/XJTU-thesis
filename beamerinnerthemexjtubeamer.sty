@@ -1,0 +1,458 @@
+%%
+%%  Copyright 2016-2023 Obster-Y
+%%
+%%  This work may be distributed and/or modified under the
+%%  conditions of the LaTeX Project Public License, either version 1.3
+%%  of this license or (at your option) any later version.
+%%  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%%  and version 1.3 or later is part of all distributions of LaTeX
+%%  version 2005/12/01 or later.
+%%
+%%  This work has the LPPL maintenance status `maintained'.
+%%
+%%  The Current Maintainer of this work is Obster-Y.
+%%
+%%  This work contains source codes from `beamerinnerthemesjtubeamer.dtx' devloped
+%%  by sjtuG and distributed under Apache License V2.0
+%%
+%%  This work consists of the files beamerinnerthemexjtubeamer.sty.
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemexjtubeamer}[2023/05/28 v1.0.0 xjtubeamer inner theme]
+
+%%%%%%%%%%%%%
+%% OPTIONS %%
+%%%%%%%%%%%%%
+
+\RequirePackage{tcolorbox}
+\DefineOption{inner}{cover}{maxplus}
+\DefineOption{inner}{cover}{max}
+\DefineOption{inner}{cover}{min}
+\DefineOption{inner}{cover}{user} %For Customization
+\ExecuteOptionsBeamer{
+  maxplus,
+  max,
+  min,
+  user,
+}
+\DeclareOptionBeamer{zh}{\def\xjtubeamer@inner@lang{zh}}
+\DeclareOptionBeamer{en}{\def\xjtubeamer@inner@lang{en}}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
+  \ExecuteOptionsBeamer{en}}
+\DefineOption{inner}{color}{red}
+\DefineOption{inner}{color}{blue}
+\ExecuteOptionsBeamer{red}
+\ProcessOptionsBeamer
+
+
+%%%%%%%%%%%%
+%% COLORS %%
+%%%%%%%%%%%%
+
+\if\EqualOption{inner}{color}{red}
+  \colorlet{cprimary}{xjtuRedPrimary}
+  \colorlet{csecondary}{xjtuRedSecondary}
+  \colorlet{ctertiary}{xjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{xjtuBluePrimary}
+  \colorlet{csecondary}{xjtuBlueSecondary}
+  \colorlet{ctertiary}{xjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{listingsutf8}
+\tcbset{shield externalize}
+
+
+%%%%%%%%%%%%
+%% COVERS %%
+%%%%%%%%%%%%
+
+\setbeamertemplate{logo}[\xjtubeamer@inner@cover]
+\newcommand{\bgcenterbox}[1]{
+  \parbox[c][1.1\paperheight][c]{\paperwidth}{
+    \centering\resizebox{\paperwidth}{!}{#1}
+  }
+}
+
+%% inner cover max %%
+\if\EqualOption{inner}{cover}{max}
+  \setbeamertemplate{background}
+    {\bgcenterbox{\xjtubg[cprimary!50,opacity=0.2]}}
+\fi
+\def\titlegraphic{\setbeamertemplate{titlegraphic}}
+\def\inserttitlegraphic{\usebeamertemplate{titlegraphic}}
+\setbeamertemplate{titlegraphic}{}
+\setbeamertemplate{titlegraphic}[\xjtubeamer@inner@cover]
+\setbeamertemplate{navigation symbols}{}
+\newdimen\beamer@sidebarwidth
+\beamer@sidebarwidth=0em
+\def\coverpage#1{
+  {
+    \tikzset{external/export=false}
+    \setlength{\parindent}{0em}
+    \ifdim\beamer@sidebarwidth=0em %
+      \usebeamertemplate*{#1}
+    \else
+      \hspace*{-0.5\beamer@sidebarwidth}\parbox[t]{\textwidth}{
+        \usebeamertemplate*{#1}
+      }
+    \fi
+  }
+}
+\def\definecover#1{
+  \expandafter\def\csname #1page\endcsname{
+    \coverpage{#1 page}
+  }
+  \expandafter\def\csname make#1\endcsname{
+    {
+      \def\beamer@writeslidentry{\clearpage\beamer@notesactions}
+      \ifbeamer@inframe\csname #1page\endcsname\else
+        \begin{frame}[plain]
+          \csname #1page\endcsname
+        \end{frame}\fi
+    }
+  }
+}
+
+%% inner cover min %%
+\if\EqualOption{inner}{cover}{min}
+  % TBD
+  % \setbeamertemplate{background}{
+  %   \begin{picture}(100,220)
+  %     \xjtubadge[cprimary!50,opacity=0.8]
+  %     % \includegraphics[width=\paperwidth]{Planck_CMB}
+  %   \end{picture}
+  %   % \bgcenterbox{\xjtubadge[cprimary!50,opacity=0.8]}
+  % }
+\else
+  \setbeamertemplate{blocks}[rounded]
+\fi
+
+
+%%%%%%%%%%%%%%%%
+%% STRUCTURES %%
+%%%%%%%%%%%%%%%%
+
+\definecover{title}
+\definecover{bottom}
+\setbeamertemplate{title page}[\xjtubeamer@inner@cover]
+\setbeamertemplate{bottom page}[\xjtubeamer@inner@cover]
+\definecover{part}
+\definecover{section}
+\definecover{subsection}
+\defbeamertemplateparent{sectioning pages}{part page,section page,subsection page}{}
+\setbeamertemplate{sectioning pages}[\xjtubeamer@inner@cover]
+% \setbeamertemplate{part page}[\xjtubeamer@inner@cover]
+% \setbeamertemplate{section page}[\xjtubeamer@inner@cover]
+% \setbeamertemplate{subsection page}[\xjtubeamer@inner@cover]
+\AtBeginPart{
+  \makepart
+}
+\setbeamertemplate{items}[circle]
+\setlength\leftmargini{1.4em}
+\setlength\leftmarginii{1.4em}
+\setlength\leftmarginiii{1.4em}
+\setbeamersize{description width=0.72em}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% TABLE OF CONTENTS %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\defbeamertemplate{section in toc}{stamp}{
+  \vspace{1pt}\leavevmode
+  \leftskip=28mm\bulletshape{\inserttocsectionnumber}
+  \hspace{0mm}\inserttocsection\par
+  \vspace{0.5pt}
+}
+\defbeamertemplate{subsection in toc}{stamp}{
+  \vspace{1.5pt}\leavevmode
+  \leftskip=29mm\bulletshapeb[structure!80]{\inserttocsectionnumber.\inserttocsubsectionnumber}
+  \hspace{-2.5mm}\inserttocsubsection\par
+}
+\defbeamertemplate{subsubsection in toc}{stamp}{
+  \leavevmode
+  \hspace{43.2mm}\normalsize\usebeamerfont{subsection in toc}%
+  \usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par
+}
+\setbeamertemplate{sections/subsections in toc}[stamp]
+
+
+%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAPHY %%
+%%%%%%%%%%%%%%%%%%
+
+\newenvironment{bibliolist}[1]{
+  \begin{thebibliography}{#1}
+    \let\olditem\item%
+    \def\item{\def\newblock{\beamer@newblock}\olditem}
+    \setbeamertemplate{bibliography item}[text]
+    \newcommand{\articleitem}{%
+      \item[{\setbeamertemplate{bibliography item}[article]%
+      \usebeamertemplate{bibliography item}}]%
+      \newblock%
+    }
+    \newcommand{\bookitem}{%
+      \item[{\setbeamertemplate{bibliography item}[book]%
+      \usebeamertemplate{bibliography item}}]%
+      \newblock%
+    }
+    \newcommand{\onlineitem}{%
+      \item[{\setbeamertemplate{bibliography item}[online]%
+      \usebeamertemplate{bibliography item}}]%
+      \newblock%
+    }
+}{
+  \end{thebibliography}
+}
+
+
+%%%%%%%%%%%%%%%%
+%% STAMPBOXES %%
+%%%%%%%%%%%%%%%%
+
+\newcommand<>{\highlight}[2][structure]{%
+  \only#3{%
+    \textcolor{white}{\colorbox{#1}{#2}}
+  }
+}
+
+\providecommand{\paragraph}[1]{\textcolor{white}{\colorbox{structure}{#1}}\space}
+
+\newtcolorbox{stampbox}[1][cprimary]{%
+  capture=hbox,
+  enhanced,
+  frame empty,
+  interior empty,
+  sharp corners,
+  top=0.24em,bottom=0.24em,left=0.24em,right=0.24em,
+  boxsep=0em,
+  borderline={0.05em}{0em}{
+    #1,
+    decoration={
+      stampline,
+      segment length=0.8em,
+      path has corners=true,
+    },
+    decorate
+  }
+}
+
+\newcommand{\stamphrule}[1][cprimary]{%
+  \vskip-\prevdepth%
+  \vskip0.5\baselineskip%
+  {%
+    \tikzset{external/export=false}%
+    \nointerlineskip%
+    \begin{tikzpicture}
+      \draw[
+        line width=0.05em,
+        decoration=stampline,
+        segment length=0.8em,
+        decorate,
+        #1
+      ] (0,0) -- ({\hsize-0.05em},0);
+    \end{tikzpicture}%
+  }\par%
+}
+
+\newcounter{stampblockcnt}
+\defbeamertemplate*{block stamp begin}{xjtubeamer}{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block body stamp}%
+    {\leavevmode\centering\hskip-2em\bfseries%
+    \stamptext[structure]{\insertstampnum}%
+    \alert{\insertblocktitle}\par\vskip1ex}
+    {\usebeamercolor[fg]{structure}\hrule\@height.04em}
+    \vskip1ex
+}
+
+\defbeamertemplate*{block stamp end}{xjtubeamer}{
+  \end{beamercolorbox}\vskip2.5ex%
+}
+\setbeamertemplate{block stamp begin}[xjtubeamer]
+\setbeamertemplate{block stamp end}[xjtubeamer]
+
+\newenvironment<>{stampblock}[2][%
+  \stepcounter{stampblockcnt}%
+  \arabic{stampblockcnt}
+]{%
+  \begin{actionenv}#3%
+  \def\insertstampnum{#1}%
+  \def\insertblocktitle{#2}%
+  \usebeamertemplate{block stamp begin}
+}{
+  \par%
+  \usebeamertemplate{block stamp end}%
+  \end{actionenv}
+}
+%% If you want to reset the counter for each frame:
+% \AtBeginEnvironment{frame}{\setcounter{stampblockcnt}{0}}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% LISTING STYLES %%
+%%%%%%%%%%%%%%%%%%%%
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{cprimary},%
+  stringstyle=\color{csecondary},%
+  commentstyle=\color{ctertiary!50!gray},%
+  columns=flexible,
+  extendedchars=false,
+  showstringspaces=false,
+  showspaces=false,
+  breaklines
+}
+\newtcblisting{codeblock}[2][]{
+  listing only,
+  listing engine=listings,
+  listing options={
+    numbers=left,
+    numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+    numbersep=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
+    #1,
+  },
+  enhanced,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  right*=0.5mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
+}
+\newcommand<>{\highlightline}{%
+  \only#1{%
+    \rlap{%
+      \color{structure!25}%
+      \rule[-\dp\strutbox]{\linewidth}{\baselineskip}
+    }
+  }
+}
+\newtcbinputlisting{\codeblockinput}[3][]{
+  listing only,
+  listing engine=listings,
+  listing options={
+    numbers=left,
+    numberstyle=\color{cprimary!80}\ttfamily\scriptsize,
+    numbersep=5pt,
+    aboveskip=0pt,
+    belowskip=0pt,
+    #1,
+  },
+  listing file=#3,
+  enhanced,
+  sharp corners,
+  top=0mm,
+  bottom=0mm,
+  right*=0.5mm,
+  title=#2,
+  colback=cprimary!5,
+  colframe=cprimary!80,
+  overlay={
+    \begin{tcbclipinterior}\fill[cprimary!20]%
+      (frame.south west) rectangle ([xshift=5.5mm]frame.north west);
+    \end{tcbclipinterior}
+  }
+}
+\AtEndPreamble{%
+  \@ifpackageloaded{pgfplots}{%
+    \pgfplotsset{
+      compat=newest,
+      every axis/.style={
+        font=\small\sffamily,
+        cycle multi list={
+            mark options={thick}\nextlist
+            mark list\nextlist
+            cprimary,csecondary,ctertiary\nextlist
+          },
+        height=0.5*\the\paperheight,
+        axis line style={
+            cprimary,
+            thin
+          },
+        every tick label/.style={
+            cprimary,
+            font=\small,
+            /pgf/number format/assume math mode=true
+          },
+        grid style={cprimary!10},
+        tick style={cprimary!50},
+        minor tick style={cprimary!30},
+        xlabel style={cprimary},
+        ylabel style={cprimary},
+        zlabel style={cprimary},
+        legend style={
+            draw={cprimary},
+            thin,
+            nodes={cprimary}
+          },
+        thick,
+      },
+    }
+  }{}
+  \@ifpackageloaded{pgfplotstable}{%
+    \RequirePackage{colortbl}
+    \RequirePackage{booktabs}
+    \def\zapcolorreset{\let\reset@color\relax\ignorespaces}
+    \def\colorrows#1{\noalign{\aftergroup\zapcolorreset#1}\ignorespaces}
+    \pgfplotstableset{
+      col sep=comma,
+      every table/.style={
+        font={\small\sffamily},
+      },
+      every head row/.style={
+        before row={
+          \arrayrulecolor{cprimary}
+          \toprule
+          \colorrows{\color{cprimary}}
+        },
+        after row={
+            \midrule
+            \colorrows{\color{black}}
+          },
+        },
+      every last row/.style={
+        after row=\bottomrule
+      },
+    }
+    \newcolumntype{L}[1]{>{\begin{pgfplotstablecoltype}[#1]}
+            r<{\end{pgfplotstablecoltype}}}
+  }{}
+  \if\EqualOption{inner}{lang}{zh}
+    \@ifpackageloaded{algorithm2e}{%
+      \SetAlgorithmName{\algorithmname}{\algorithmname}{\algorithmname{}索引}
+    }
+  \fi
+  \def\Hy@WarnOptionDisabled#1{
+    \def\next{#1}%
+    \ifx\next pdfauthor %
+      \ifx\next driverfallback %
+      \else
+        \Hy@Warning{%
+          Option `#1' has already been used,\MessageBreak
+          setting the option has no effect%
+        }
+      \fi%
+    \fi%
+  }
+}
+
+\endinput
+
+%% EOF: beamerinnerthemexjtubeamer.sty

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $(dirname "$(readlink -f "$0")")
+cd $(dirname "$(dirname "$(dirname "$(readlink -f "$0")")")")
 
 rm main.charcnt -f
 

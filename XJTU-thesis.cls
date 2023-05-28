@@ -1,5 +1,5 @@
 %
-%  Copyright 2016-2021 Obstery-Y
+%  Copyright 2016-2021 Obster-Y
 %
 %  This work may be distributed and/or modified under the
 %  conditions of the LaTeX Project Public License, either version 1.3
@@ -11,7 +11,7 @@
 %
 %  This work has the LPPL maintenance status `maintained'.
 %
-%  The Current Maintainer of this work is Obstery-Y.
+%  The Current Maintainer of this work is Obster-Y.
 %
 %  This work consists of the files XJTU-thesis.cls.
 %
@@ -479,7 +479,7 @@
   \PassOptionsToPackage{draft}{graphicx}
 \fi
 \RequirePackage{graphicx}
-\graphicspath{{./Figures/},{./Materials/Icons/}}
+\graphicspath{{./Figures/},{./Materials/VI/}}
 
 
 %%% algorithm %%%
@@ -962,7 +962,7 @@
   \fi
   \parbox[t][1.2cm]{2.5cm}{}
   \begin{center}
-    \includegraphics[width=8cm]{Materials/Icons/XJTU.pdf} \\[0.8cm]
+    \includegraphics[width=8cm]{Materials/VI/XJTU.pdf} \\[0.8cm]
     \fontsize{22pt}{22pt}\selectfont \chinesedegreename 学位论文\\
     \vskip 3.5cm
     \sanhao {\bfseries \zh@thetitle}\\

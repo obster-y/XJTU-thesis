@@ -1,0 +1,1063 @@
+%%
+%%  Copyright 2016-2023 Obster-Y
+%%
+%%  This work may be distributed and/or modified under the
+%%  conditions of the LaTeX Project Public License, either version 1.3
+%%  of this license or (at your option) any later version.
+%%  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%%  and version 1.3 or later is part of all distributions of LaTeX
+%%  version 2005/12/01 or later.
+%%
+%%  This work has the LPPL maintenance status `maintained'.
+%%
+%%  The Current Maintainer of this work is Obster-Y.
+%%
+%%  This work contains source codes from `beamerthemesjtubeamer.dtx' devloped
+%%  by sjtuG and distributed under Apache License V2.0
+%%
+%%  This work consists of the files beamerthemexjtubeamer.sty.
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemexjtubeamer}[2023/05/28 v1.0.0 xjtubeamer theme]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                          OPTIONS                          %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begingroup options
+%% Cover Options %%
+\DeclareOptionBeamer{maxplus}{
+  \def\xjtubeamer@cover{maxplus}
+  \def\xjtubeamer@logopos{topright}
+}
+\DeclareOptionBeamer{max}{
+  \def\xjtubeamer@cover{max}
+  \def\xjtubeamer@logopos{bottomright}
+}
+\DeclareOptionBeamer{min}{
+  \def\xjtubeamer@cover{min}
+  \def\xjtubeamer@logopos{topright}
+}
+\DeclareOptionBeamer{user}{ %For Customization
+  \def\xjtubeamer@cover{user}
+  \def\xjtubeamer@logopos{topright}
+}
+\ExecuteOptionsBeamer{
+  maxplus,
+  max,
+  min,
+  user,
+}
+
+%% Color Options %%
+\DeclareOptionBeamer{red}{
+  \def\xjtubeamer@color{red}
+}
+\DeclareOptionBeamer{blue}{
+  \def\xjtubeamer@color{blue}
+}
+\ExecuteOptionsBeamer{red}
+
+%% Theme Options %%
+\DeclareOptionBeamer{light}{
+  \def\xjtubeamer@lum{light}
+}
+\DeclareOptionBeamer{dark}{
+  \def\xjtubeamer@lum{dark}
+}
+\ExecuteOptionsBeamer{dark}
+
+%% Language Options %%
+\DeclareOptionBeamer{zh}{
+  \def\xjtubeamer@lang{zh}
+}
+\DeclareOptionBeamer{en}{
+  \def\xjtubeamer@lang{en}
+}
+\@ifclassloaded{ctexbeamer}{
+  \ExecuteOptionsBeamer{zh}
+}{
+  \ExecuteOptionsBeamer{en}
+}
+
+%% Navigation Options %%
+\DeclareOptionBeamer{miniframes}{
+  \def\xjtubeamer@nav{miniframes}
+}
+\DeclareOptionBeamer{infolines}{
+  \def\xjtubeamer@nav{infolines}
+}
+\DeclareOptionBeamer{sidebar}{
+  \def\xjtubeamer@nav{sidebar}
+}
+\DeclareOptionBeamer{default}{
+  \def\xjtubeamer@nav{default}
+}
+\DeclareOptionBeamer{smoothbars}{
+  \def\xjtubeamer@nav{smoothbars}
+}
+\DeclareOptionBeamer{split}{
+  \def\xjtubeamer@nav{split}
+}
+\DeclareOptionBeamer{shadow}{
+  \def\xjtubeamer@nav{shadow}
+}
+\DeclareOptionBeamer{tree}{
+  \def\xjtubeamer@nav{tree}
+}
+\DeclareOptionBeamer{smoothtree}{
+  \def\xjtubeamer@nav{smoothtree}
+}
+\ExecuteOptionsBeamer{miniframes}
+
+%% Uni Logo Options %%
+\DeclareOptionBeamer{topright}{
+  \def\xjtubeamer@logopos{topright}
+}
+\DeclareOptionBeamer{bottomright}{
+  \def\xjtubeamer@logopos{bottomright}
+}
+
+\ProcessOptionsBeamer
+\PassOptionsToPackage{\xjtubeamer@cover}{beamerinnerthemexjtubeamer}
+\PassOptionsToPackage{\xjtubeamer@color}{beamercolorthemexjtubeamer}
+\PassOptionsToPackage{\xjtubeamer@color}{beamerinnerthemexjtubeamer}
+\PassOptionsToPackage{\xjtubeamer@lum}{beamercolorthemexjtubeamer}
+\PassOptionsToPackage{\xjtubeamer@lang}{beamerinnerthemexjtubeamer}
+\PassOptionsToPackage{\xjtubeamer@nav}{beamerouterthemexjtubeamer}
+\PassOptionsToPackage{\xjtubeamer@logopos}{beamerouterthemexjtubeamer}
+% \endgroup options
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                      VISUAL IDENTITY                      %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begingroup visual_identity
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% UTILITY FUNCTIONS %%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begingroup utility
+\newif\ifxjtubeamer@tempif%
+\newbox\xjtubeamer@tempbox%
+\newskip\xjtubeamer@h%
+\def\DefineOption#1#2#3{%
+  % #1: package
+  % #2: key
+  % #3: value
+  \DeclareOptionBeamer{#3}{\expandafter\def\csname xjtubeamer@#1@#2\endcsname{#3}}%
+}
+\def\EqualOption{TT\fi\ifEqualOption}
+\def\ifEqualOption#1#2#3{%
+  % #1: package
+  % #2: key
+  % #3: value
+  \edef\tempvar{\csname xjtubeamer@#1@#2\endcsname}%
+  \def\tempvalue{#3}%
+  \ifx\tempvar\tempvalue\xjtubeamer@tempiftrue\else\xjtubeamer@tempiffalse\fi%
+  \ifxjtubeamer@tempif%
+}
+\def\IsEmpty{TT\fi\ifIsEmpty}
+\def\ifIsEmpty#1{%
+  \setbox\xjtubeamer@tempbox=\hbox\bgroup\def\\{}#1\unskip\egroup%
+  \ifdim\wd\xjtubeamer@tempbox=0pt \xjtubeamer@tempiftrue%
+  \else\xjtubeamer@tempiffalse\fi%
+  \ifxjtubeamer@tempif%
+}
+\providecommand{\getcontribdir}[1]{contrib/#1}
+\providecommand{\getcontribpath}[2]{\getcontribdir{#1}/#2}
+
+\RequirePackage{array}
+\RequirePackage{tikz}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{external}
+\usetikzlibrary{backgrounds}
+
+% \endgroup utility
+
+%%%%%%%%%%%
+%% LOGOS %%
+%%%%%%%%%%%
+
+% \begingroup logos
+
+\newcommand{\definelogo}[4]{
+  % #1: csname
+  % #2: path
+  % #3: horizontal clip (0~1)
+  % #4: vertical clip (0~1)
+  \pgfmathparse{notgreater(#3,#4)}
+  \ifnum\pgfmathresult=1
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[width=1.5cm]{#2}};
+    \end{tikzfadingfrompicture}
+  \else
+    \begin{tikzfadingfrompicture}[name=#1]
+      \fill[black] (-1,-1) rectangle (1,1);
+      \node {\includegraphics[height=1.5cm]{#2}};
+    \end{tikzfadingfrompicture}
+  \fi
+  \expandafter\providecommand\csname #1\endcsname[1][]{%
+    % ##1: override color, or opacity=... (optional)
+    \tikzexternaldisable%
+    \begin{tikzpicture}
+      \begin{scope}
+        \clip ({-1.0+#3},{-1.0+#4}) rectangle ({1.0-#3},{1.0-#4});
+        \fill [##1, path fading=#1] (-1,-1) rectangle (1,1);
+      \end{scope}
+    \end{tikzpicture}%
+  }
+}
+\definelogo{xjtubadge}{Materials/VI/xjtu-badge.pdf}{0}{0}
+\definelogo{zhlogo}{Materials/VI/xjtu-badge-name_cn_en.pdf}{0.13}{0.75}
+\definelogo{enlogo}{Materials/VI/xjtu-badge-name_en.pdf}{0.13}{0.75}
+\definelogo{dlogo}{Materials/VI/xjtu-badge_vertical-name_cn_en.pdf}{0}{0}
+\definelogo{vlogo}{Materials/VI/xjtu-badge.pdf}{0.8}{0.13} % NOT IMPLEMENTED YET, should be a vertical banner-like image
+\definelogo{xjtubg}{Materials/VI/xjtu-badge.pdf}{0.3}{0.5} % NOT IMPLEMENTED YET, should be a sketch-like image
+\definelogo{xjtugate}{Materials/VI/xjtu-badge.pdf}{0.25}{0.8} % NOT IMPLEMENTED YET, should be a strip of sketch-like image
+\newcommand{\secondaryinstlogo}[3][]{%
+  % #1: shortinst (optional)
+  % #2: longinst
+  % #3: logo
+  \hbox{%
+    \raggedright%
+    \resizebox{!}{1cm}{\vphantom{-}#3}%
+    \if\IsEmpty{#2}%
+    \else%
+      \if\IsEmpty{#1}%
+        \if\IsEmpty{#3}\else%
+          {\hskip0.31cm\vrule width0.5pt}\hskip0.31cm%
+        \fi%
+        \vbox to 1cm{%
+          \vfill%
+          \hbox{%
+            \noindent%
+            \fontsize{7pt}{0pt}\selectfont\mdseries\scshape%
+            \begin{tabular}{@{}l<{\vphantom{\vrule depth2pt}}@{}}
+              #2
+            \end{tabular}%
+          }%
+          \vskip-2pt%
+          \vfill%
+        }%
+      \else%
+        \if\IsEmpty{#3}\else%
+          {\hskip0.23cm\vrule width0.5pt}\hskip0.23cm%
+        \fi%
+        \vbox to 1cm{%
+          \def\\{}%
+          \vfill
+          \offinterlineskip
+          \hbox{%
+            \fontsize{13pt}{0pt}\selectfont%
+            \mdseries\sffamily #2%
+          }
+          \vskip0.08cm%
+          \hbox{%
+            \fontsize{5pt}{0pt}\selectfont%
+            \mdseries\scshape #1%
+          }
+          \vskip-\prevdepth\vskip0.14cm%
+        }%
+      \fi%
+    \fi%
+  }%
+}
+
+% \endgroup logos
+
+%%%%%%%%%%%%%%%%
+%% STRUCTURES %%
+%%%%%%%%%%%%%%%%
+
+% \begingroup strutures
+
+\providecommand{\stamptext}[2][structure]{
+  {
+    \providecolor{#1}{named}{xjtuRedPrimary}
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[baseline=(nodetext.base)]
+      \node [white] (nodetext) at (0,0) {#2};
+      \pgfextracty{\xjtubeamer@h}{\pgfpointanchor{nodetext}{north}}%
+      \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
+      \addtolength{\xjtubeamer@h}{-\pgf@ya}
+      \scoped[on background layer]
+        \fill [#1]
+          (-1.25*\xjtubeamer@h,0)
+          -- (-0.85*\xjtubeamer@h,0.3*\xjtubeamer@h)
+          -- (-0.85*\xjtubeamer@h,0.5*\xjtubeamer@h)
+          -- (0.85*\xjtubeamer@h,0.5*\xjtubeamer@h)
+          -- (0.85*\xjtubeamer@h,0.3*\xjtubeamer@h)
+          -- (1.25*\xjtubeamer@h,0)
+          -- (0.85*\xjtubeamer@h,-0.3*\xjtubeamer@h)
+          -- (0.85*\xjtubeamer@h,-0.5*\xjtubeamer@h)
+          -- (-0.85*\xjtubeamer@h,-0.5*\xjtubeamer@h)
+          -- (-0.85*\xjtubeamer@h,-0.3*\xjtubeamer@h) -- cycle;
+    \end{tikzpicture}
+  }
+}
+\providecommand{\bulletshape}[2][structure]{
+  {
+    \providecolor{#1}{named}{xjtuRedPrimary}
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[baseline=(nodetext.base)]
+      \node [white] (nodetext) at (0,0) {#2};
+      % \pgfextracty{\xjtubeamer@h}{\pgfpointanchor{nodetext}{north}}%
+      % \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
+      % \addtolength{\xjtubeamer@h}{-\pgf@ya}
+      \scoped[on background layer]
+      \fill[#1] (-0.25,-0.35) rectangle (0.25, 0.35);
+    \end{tikzpicture}
+  }
+}
+\providecommand{\bulletshapeb}[2][structure]{
+  {
+    \providecolor{#1}{named}{xjtuRedPrimary}
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[baseline=(nodetext.base)]
+      \node [black] (nodetext) at (0,0) {#2};
+      % \pgfextracty{\xjtubeamer@h}{\pgfpointanchor{nodetext}{north}}%
+      % \pgfextracty{\pgf@ya}{\pgfpointanchor{nodetext}{south}}%
+      % \addtolength{\xjtubeamer@h}{-\pgf@ya}
+      % \scoped[on background layer]
+      % \fill[white!0] (-0.3,-0.3) rectangle (0.3, 0.33);
+    \end{tikzpicture}
+  }
+}
+
+\def\xjtubeamer@compatible@false{false}
+\ifx\xjtubeamer@compatible\xjtubeamer@compatible@false
+\else
+  \usetikzlibrary{patterns.meta}
+  \tikzdeclarepattern{
+    name=stamp,
+    parameters={
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      \pgfkeysvalueof{/pgf/pattern keys/xshift},
+      \pgfkeysvalueof{/pgf/pattern keys/yshift},
+    },
+    defaults={
+      size/.initial = 5pt,
+      xshift/.initial = 0pt,
+      yshift/.initial = 0pt,
+    },
+    bottom left={(
+      -0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+      -0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+    )},
+    top right={(
+      0.5*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/xshift},
+      0.4*\pgfkeysvalueof{/pgf/pattern keys/size}
+      +\pgfkeysvalueof{/pgf/pattern keys/yshift}
+    )},
+    tile size={(
+      \pgfkeysvalueof{/pgf/pattern keys/size},
+      0.8*\pgfkeysvalueof{/pgf/pattern keys/size}
+    )},
+    code={
+      \def\xjtubeamer@s{\pgfkeysvalueof{/pgf/pattern keys/size}}%
+      \tikzset{x=0.5*\xjtubeamer@s,y=0.2*\xjtubeamer@s}
+      \fill[
+        xshift=\pgfkeysvalueof{/pgf/pattern keys/xshift},
+        yshift=\pgfkeysvalueof{/pgf/pattern keys/yshift},
+      ]
+      (-0.25*\xjtubeamer@s,0)
+      -- (-0.17*\xjtubeamer@s,0.06*\xjtubeamer@s)
+      -- (-0.17*\xjtubeamer@s,0.1*\xjtubeamer@s)
+      -- (0.17*\xjtubeamer@s,0.1*\xjtubeamer@s)
+      -- (0.17*\xjtubeamer@s,0.06*\xjtubeamer@s)
+      -- (0.25*\xjtubeamer@s,0)
+      -- (0.17*\xjtubeamer@s,-0.06*\xjtubeamer@s)
+      -- (0.17*\xjtubeamer@s,-0.1*\xjtubeamer@s)
+      -- (-0.17*\xjtubeamer@s,-0.1*\xjtubeamer@s)
+      -- (-0.17*\xjtubeamer@s,-0.06*\xjtubeamer@s) -- cycle;
+    }
+  }
+\fi
+\ifx\xjtubeamer@compatible\xjtubeamer@compatible@false
+  \providecommand{\stamparray}[3]{}
+\else
+  \providecommand{\stamparray}[3]{
+    % #1: pattern size
+    % #2: starting point
+    % #3: ending point
+    \usebeamercolor{palette primary}
+    \fill [pattern={stamp[size=#1]},
+      pattern color=bg!50!fg] #2 rectangle #3;
+    \def\xjtubeamer@s{#1}%
+    \pgfmathparse{0.5*\xjtubeamer@s}\let\xs=\pgfmathresult%
+    \pgfmathparse{-0.4*\xjtubeamer@s}\let\ys=\pgfmathresult%
+    \fill [pattern={stamp[size=#1,xshift=\xs, yshift=\ys]},
+      pattern color=bg!50!fg] #2 rectangle #3;
+  }
+\fi
+\pgfdeclaredecoration{stampline}{initial}
+{
+  \state{initial}[
+    width=\pgfdecorationsegmentlength,
+    auto corner on length=\pgfdecorationsegmentlength]
+  {
+    \def\xjtubeamer@l{\pgfdecorationsegmentlength}%
+    \pgfpathlineto{\pgfpoint{0.25*\xjtubeamer@l}{0pt}}
+    \pgfpathlineto{\pgfpoint{0.33*\xjtubeamer@l}{0.06*\xjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.33*\xjtubeamer@l}{0.1*\xjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.67*\xjtubeamer@l}{0.1*\xjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.67*\xjtubeamer@l}{0.06*\xjtubeamer@l}}
+    \pgfpathlineto{\pgfpoint{0.75*\xjtubeamer@l}{0pt}}
+    \pgfpathlineto{\pgfpoint{\xjtubeamer@l}{0pt}}
+  }
+  \state{final}
+  {
+    \pgfpathlineto{\pgfpointdecoratedpathlast}
+  }
+}
+
+% \endgroup strutures
+
+% \endgroup visual_identity
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                           COVERS                          %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begingroup covers
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% UTILITIY FUNCTIONS %%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begingroup utility
+
+\DefineOption{cover}{lang}{zh}
+\DefineOption{cover}{lang}{en}
+\@ifclassloaded{ctexbeamer}{\ExecuteOptionsBeamer{zh}}{
+  \ExecuteOptionsBeamer{en}}
+\ProcessOptionsBeamer
+
+
+\defbeamertemplate*{logo}{max}{
+  \resizebox{!}{1cm}{\xjtubadge}
+}
+\if\EqualOption{cover}{lang}{zh}
+  \defbeamertemplate*{logo}{default}{
+    \resizebox{!}{0.7cm}{\zhlogo}
+  }
+\else
+  \defbeamertemplate*{logo}{default}{
+    \resizebox{!}{0.7cm}{\enlogo}
+  }
+\fi
+
+
+\tikzfading[
+  name = center fade,
+  inner color = transparent!0,
+  outer color = transparent!15,
+]
+\tikzfading[
+  name = fade right,
+  left color = transparent!0,
+  right color = transparent!100,
+]
+\tikzfading[
+  name = fade right img,
+  left color = transparent!20,
+  right color = transparent!100,
+]
+
+
+%% BOTTOM %%
+\if\EqualOption{cover}{lang}{zh}%
+  \newcommand{\bottomthanks}{谢\,谢}
+\else%
+  \newcommand{\bottomthanks}{Thank You}
+\fi%
+
+
+%% SEC PAGE %%
+\if\EqualOption{cover}{lang}{zh}%
+  \@ifclassloaded{ctexbeamer}{
+    \def\xjtubeamer@cover@partnumber{\CTEX@thepart}
+    \def\xjtubeamer@cover@partname{\CTEX@partname}
+    \def\xjtubeamer@cover@sectionnumber{\CTEX@thesection}
+    \ctexset{section/name={第~,~节}}
+    \def\xjtubeamer@cover@sectionname{\CTEX@sectionname}
+    \def\xjtubeamer@cover@subsectionnumber{\CTEX@thesubsection}
+    \ctexset{subsection/name={第~,~小节}}
+    \def\xjtubeamer@cover@subsectionname{\CTEX@subsectionname}
+  }{
+    \def\xjtubeamer@cover@partnumber{\insertromanpartnumber}
+    \def\xjtubeamer@cover@partname{第~\xjtubeamer@cover@partnumber~部分}
+    \def\xjtubeamer@cover@sectionnumber{\insertsectionnumber}
+    \def\xjtubeamer@cover@sectionname{第~\xjtubeamer@cover@sectionnumber~节}
+    \def\xjtubeamer@cover@subsectionnumber{\insertsubsectionnumber}
+    \def\xjtubeamer@cover@subsectionname{第~\xjtubeamer@cover@subsectionnumber~小节}
+  }
+\else%
+    \def\xjtubeamer@cover@partnumber{\insertromanpartnumber}
+    \def\xjtubeamer@cover@partname{\partname~\xjtubeamer@cover@partnumber}
+    \def\xjtubeamer@cover@sectionnumber{\insertsectionnumber}
+    \def\xjtubeamer@cover@sectionname{\sectionname~\xjtubeamer@cover@sectionnumber}
+    \def\xjtubeamer@cover@subsectionnumber{\insertsubsectionnumber}
+    \def\xjtubeamer@cover@subsectionname{\subsectionname~\xjtubeamer@cover@subsectionnumber}
+\fi
+\def\definesecpage#1#2{
+  % #1: sectype (part, section, subsection)
+  % #2: cover   (maxplus, max, min)
+  \defbeamertemplate*{#1 page}{#2}[1][]{
+    {
+      \setbeamertemplate{sectioning page}[#2]{#1}
+      \usebeamertemplate{sectioning page}
+    }
+  }
+}
+\def\ifbeamercolorwhite#1#2{%
+  % #1: fg or bg
+  % #2: beamer color name
+  \beamer@thc@prepcolor%
+  \beamer@thc@docolor{#2}%
+  \def\beamer@temp{white}%
+  \expandafter\ifx\csname beamer@thc@#1\endcsname\beamer@temp%
+    \expandafter\@firstoftwo%
+  \else%
+    \expandafter\@secondoftwo%
+  \fi%
+}
+
+% \endgroup utility
+
+%%%%%%%%%%%%%%%%%%%%%
+%% TITLE PAGE ICON %%
+%%%%%%%%%%%%%%%%%%%%%
+
+% \begingroup icon
+\defbeamertemplate*{titlegraphic}{maxplus}{
+  % \includegraphics{Materials/Icons/.jpg} UNINPLEMENTED
+}
+\defbeamertemplate*{titlegraphic}{max}{
+  \xjtubg[opacity=0.2]
+}
+\defbeamertemplate*{titlegraphic}{min}{
+  % \includegraphics{Materials/Icons/.jpg} UNINPLEMENTED
+}
+\defbeamertemplate*{titlegraphic}{user}{
+  % FOR CUSTOMIZATION
+}
+% \endgroup icon
+
+%%%%%%%%%%%%%%%%
+%% TITLE PAGE %%
+%%%%%%%%%%%%%%%%
+
+% \begingroup titlepage
+\defbeamertemplate*{title page}{maxplus}[1][]{
+  \vbox{}
+  \vfill
+  \begingroup
+  \usebeamercolor{palette primary}%
+  \begin{tikzpicture}[overlay,
+      xshift=-0.12\paperwidth,
+      yshift=-0.53\paperheight]
+    \pgfmathsetlengthmacro{\outslant}{1.02\paperwidth}
+    \node[inner sep=0, outer sep=0]
+      at (0.57\paperwidth,0.5\paperheight){
+        \resizebox{!}{1.06\paperheight}{\vphantom{-}\inserttitlegraphic}};
+    \fill[color=white] (0,0) rectangle(1.1\paperwidth,3.9);
+    \fill[color=bg]  (0,-0.1\paperheight) rectangle(1.1\paperwidth,3.88);
+    \node[anchor=north west, text width=.8\paperwidth]
+    at (0.11\paperwidth,3.6){%
+    \usebeamercolor[fg]{title}
+    \ifx\insertsubtitle\@empty%
+      {\huge\bfseries\inserttitle}\\
+      \else%
+      {\Large\bfseries\inserttitle}\\
+      {\small\insertsubtitle}\\
+    \fi%
+    };
+    \node[anchor=south west, text width=.8\paperwidth] at (0.11\paperwidth,0.45){%
+      {\usebeamercolor[fg]{author}\small\insertauthor\par}
+        {\usebeamercolor[fg]{institute}\small\insertinstitute\par}
+        {\usebeamercolor[fg]{date}\small\insertdate}%
+    };
+    \node[anchor=south east, inner sep=0, outer sep=0] at ({\outslant-5pt},0.5){
+      \usebeamercolor[fg]{palatte primary}
+      \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
+    };
+  \end{tikzpicture}
+  \endgroup
+  \vfill
+}
+\defbeamertemplate*{title page}{max}[1][]{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \begin{tikzpicture}[overlay]
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.3*\the\paperheight);
+    \node [palette primary.fg, inner sep=0pt]
+    at (0.45\paperwidth-6pt,-0.4*\the\paperheight)
+    {\resizebox{1.3\paperwidth}{!}{\inserttitlegraphic}};
+  \end{tikzpicture}
+  \vfill
+  \begingroup
+  \begin{beamercolorbox}[sep=8pt,#1,center]{title}
+    \usebeamerfont{title}\inserttitle\par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \vskip0.25em%
+      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \fi%
+  \end{beamercolorbox}%
+  \vskip1em\par
+  \begin{beamercolorbox}[sep=8pt,#1,center]{author}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{author}\insertauthor
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=8pt,#1,center]{institute}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{institute}\normalsize\insertinstitute
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=8pt,#1,center]{date}
+    \usebeamercolor[fg]{palette primary}
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}
+  \endgroup
+  \vfill
+}
+\defbeamertemplate*{title page}{min}[1][]{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \begin{tikzpicture}[overlay]
+    \fill [palette primary.bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.2*\the\paperheight);
+  \end{tikzpicture}
+  \ifx\xjtubeamer@compatible\xjtubeamer@compatible@false
+  \else
+    \ifbeamer@draftmode%
+    \else%
+      \begin{tikzpicture}[overlay]
+        \stamparray{20pt}
+        {(-0.2*\the\paperwidth,-1*\the\paperheight)}
+        {(1*\the\paperwidth, 0.2*\the\paperheight)}
+        \fill [bg,path fading=fade right]
+        (-0.2*\the\paperwidth,-1*\the\paperheight) rectangle
+        (1*\the\paperwidth, 0.2*\the\paperheight);
+        \fill [bg,path fading=center fade,xshift=-10pt,yshift=-20pt]
+        (0.2*\the\paperwidth,0) circle [radius=\the\paperwidth];
+      \end{tikzpicture}
+    \fi%
+  \fi
+  \vfill
+  \begingroup
+  \centering
+  \begin{beamercolorbox}[sep=8pt,#1]{empty}
+    \usebeamercolor[fg]{palette primary}%
+    \hspace*{-0.6pt}%
+    \if\EqualOption{cover}{lang}{en}%
+      \secondaryinstlogo{\beamer@shortinstitute}{\usebeamertemplate{logo}}
+    \else%
+      \secondaryinstlogo[\insertshortinstitute]{\insertinstitute}{\usebeamertemplate{logo}}
+    \fi%
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[sep=8pt,#1]{title}
+    \usebeamerfont{title}\inserttitle\par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \vskip0.25em%
+      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \fi%
+  \end{beamercolorbox}%
+  \vskip1em\par
+  \begin{beamercolorbox}[sep=8pt,#1]{author}
+    \usebeamerfont{author}姓名：\insertauthor
+  \end{beamercolorbox}
+  % \vskip-6pt%
+  % \begin{beamercolorbox}[sep=8pt,#1]{idnum}
+  %   \usebeamerfont{author}学号：
+  % \end{beamercolorbox}
+  % \vskip-6pt%
+  % \begin{beamercolorbox}[sep=8pt,#1]{advisor}
+  %   \usebeamerfont{author}指导教师：
+  % \end{beamercolorbox}
+  % \vskip-6pt%
+  \begin{beamercolorbox}[sep=8pt,#1]{date}
+    \usebeamerfont{date}\insertdate
+  \end{beamercolorbox}
+  \usebeamercolor{palette primary}%
+  \ifx\inserttitlegraphic\@empty%
+  \else
+    % \begin{tikzpicture}[overlay, yshift=1.2em]
+    %   \node (pic) [fg, above left, inner sep=0.32em] at (0.86\paperwidth,0)
+    %   {\resizebox{0.3\paperwidth}{!}{\inserttitlegraphic}};
+    %   \draw[decoration={
+    %         stampline,
+    %         segment length=0.8em,
+    %         path has corners=true,
+    %       },decorate,fg]
+    %   (pic.north west) --
+    %   (pic.north east) --
+    %   (pic.south east) --
+    %   (pic.south west) -- cycle;
+    % \end{tikzpicture}
+  \fi
+  \endgroup
+  \vskip0.5em
+  \vfill
+}
+\defbeamertemplate*{title page}{user}[1][]{
+  %
+  % Developer could implement your own title page template here...
+  % or use "my" theme first, then implement your title page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{title page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{title page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{xjtubeamer}\usepackage{mycover}
+  %
+}
+% \endgroup titlepage
+
+%%%%%%%%%%%%%%%%%
+%% BOTTOM PAGE %%
+%%%%%%%%%%%%%%%%%
+
+% \begingroup bottompage
+\defbeamertemplate*{bottom page}{maxplus}[1][]{
+  \vbox{}
+  \begin{tikzpicture}[overlay]
+    \usebeamercolor{palette primary}
+    \fill[palette primary.bg] (-0.2\paperwidth,-\paperheight)
+    rectangle (\paperwidth, 0.5\paperheight);
+  \end{tikzpicture}
+  \vfill
+  \begin{beamercolorbox}[sep=0pt]{empty}
+    \usebeamercolor{structure}
+    \begin{tikzpicture}[overlay,xshift=0.54\paperwidth,yshift=-0.41\paperheight]
+      \begin{scope}
+        \clip (-0.66\paperwidth,0.06\paperheight)
+        rectangle (0.43\paperwidth,0.53\paperheight);
+        \node [anchor=north] at (0,0.645\paperheight) {
+          \resizebox{1.33\paperwidth}{!}{\inserttitlegraphic}};
+        \fill[structure.fg!50!black,path fading=fade right img]
+        (-0.66\paperwidth,0.06\paperheight)
+        rectangle (0.43\paperwidth,0.53\paperheight);
+        \node[white] at (-0.45\paperwidth,0.3\paperheight)
+        {\resizebox{!}{0.115\paperheight}{\vphantom{-}\usebeamertemplate{logo}}};
+        \node [right, white] at (-0.75\paperwidth, 0.15\paperheight)
+        {\resizebox{1.15\paperwidth}{!}{\xjtugate}};
+      \end{scope}
+      \node at (-0.13\paperwidth,0.7\paperheight) {
+        \usebeamercolor[fg]{title}
+        \LARGE \bfseries \bottomthanks
+      };
+    \end{tikzpicture}
+  \end{beamercolorbox}
+  \vfill
+}
+\defbeamertemplate*{bottom page}{max}[1][]{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \usebeamercolor{structure}
+  \begin{beamercolorbox}[sep=0pt]{empty}
+    \begin{tikzpicture}[overlay,yshift=0.25\paperwidth]
+      \def\leftw{0.215\paperwidth}
+      \def\midw{0.435\paperwidth}
+      \def\rightw{0.655\paperwidth}
+      \fill[palette primary.bg] (-0.2\paperwidth,-1.2\paperheight) rectangle
+      (\paperwidth, 0.1\paperheight);
+      \fill[palette primary.fg] (\leftw,0.1\paperheight)
+      -- (\leftw,-0.5\paperheight)
+      -- (\midw,-0.65\paperheight)
+      -- (\rightw,-0.5\paperheight)
+      -- (\rightw,0.1\paperheight) -- cycle;
+      \fill[palette primary.fg] (\leftw,-0.53\paperheight)
+      -- (\leftw,-0.59\paperheight)
+      -- (\midw,-0.74\paperheight)
+      -- (\rightw,-0.59\paperheight)
+      -- (\rightw,-0.53\paperheight)
+      -- (\midw,-0.68\paperheight) -- cycle;
+      \node[black] at (\midw,-0.65\paperheight) {
+        \resizebox{1.25\paperwidth}{!}{\inserttitlegraphic}};
+      \node[palette primary.bg] at (\midw,-0.2\paperheight)
+        {\resizebox{!}{2.5cm}{\vphantom{-}\usebeamertemplate{logo}}};
+      \node at (\midw,-0.45\paperheight) {
+        \usebeamercolor[bg]{palette primary}
+        \LARGE \bfseries\bottomthanks};
+    \end{tikzpicture}
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{bottom page}{min}[1][]{
+  \vbox{}
+  \usebeamercolor{palette primary}
+  \usebeamercolor{palette secondary}
+  \begin{tikzpicture}[overlay,yshift=-80pt]
+    \def\w{\the\paperwidth}%
+    \def\h{\the\paperheight}%
+    \fill [palette primary.bg] (-0.2*\w,-1*\h) rectangle (1*\w, 0.5*\h);
+    \begin{scope}[fill=palette primary.bg!50!palette primary.fg,fill opacity=0.15]
+      \clip (0.63*\w,1.05*\h) circle (1*\h);
+      \fill (0.14*\w,-0.95*\h) circle (1.67*\h);
+    \end{scope}
+    \begin{scope}
+      [fill=palette secondary.bg!50!palette primary.bg!70!palette primary.fg,
+        fill opacity=0.15]
+      \clip[xshift=26pt] (0.95*\w,-0.67*\h) circle (1.17*\h);
+      \fill
+      (0.14*\w,-0.95*\h) circle (1.67*\h)
+      (0.63*\w,1.05*\h) circle (1*\h);
+    \end{scope}
+  \end{tikzpicture}
+  \vfill
+  \usebeamercolor[fg]{palette primary}
+  \begingroup
+  \raggedleft
+  \resizebox{!}{1cm}{\vphantom{-}\usebeamertemplate{logo}}
+  \vfill
+  \vskip6em
+  \begin{beamercolorbox}[sep=8pt]{title}
+    \usebeamerfont{title}\noindent\LARGE \bfseries\bottomthanks
+    \vskip1em%
+    \usebeamerfont{subtitle}
+    \inserttitle
+    \ifx\insertauthor\@empty
+    \else
+      \ifx\insertauthor\@empty
+      % \else~$\cdot$~\fi
+      \else~\\[.8em]\fi
+    \fi
+    \insertauthor
+    \ifx\insertdate\@empty
+    \else
+      \ifx\insertdate\@empty
+      % \else~$\cdot$~\fi
+      \else~\\[.8em]\fi
+    \fi
+    \insertdate
+  \end{beamercolorbox}%
+  \vfill
+  \vskip3.5em
+  \endgroup
+}
+\defbeamertemplate*{bottom page}{user}[1][]{
+  %
+  % Developer could implement your own bottom page template here...
+  % or use "my" theme first, then implement your title page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{bottom page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{bottom page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{xjtubeamer}\usepackage{mycover}
+  %
+}
+% \endgroup bottompage
+
+%%%%%%%%%%%%%%
+%% SEC PAGE %%
+%%%%%%%%%%%%%%
+
+% \begingroup secpage
+\defbeamertemplate*{sectioning block}{maxplus}[1]{
+  \usebeamercolor[fg]{#1 title}
+  \usebeamerfont{#1 name}
+  \csname xjtubeamer@cover@#1name\endcsname
+  \par\vskip4pt
+  {\usebeamerfont{#1 title}\csname insert#1\endcsname\par}
+}
+\defbeamertemplate*{sectioning page}{maxplus}[1]{
+  \vbox{}
+  \def\xjtubeamer@cover@sectype{#1}
+  \usebeamercolor{#1 title}
+  \begin{tikzpicture}[overlay]
+    \fill [bg] (-0.2*\the\paperwidth,-1*\the\paperheight)
+    rectangle (1*\the\paperwidth, 0.4*\the\paperheight);
+    \node [right, fg] at (-0.2*\the\paperwidth, -0.5*\the\paperheight)
+    {\resizebox{1.15\paperwidth}{!}{\xjtugate}};
+  \end{tikzpicture}
+  \vfil
+  \begingroup
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[maxplus]{section}
+      \usebeamertemplate{sectioning block}
+      \vskip10pt
+    \fi
+    \setbeamertemplate{sectioning block}[maxplus]{#1}
+    \usebeamertemplate{sectioning block}
+    \if\EqualOption{cover}{sectype}{part}
+      \vskip10pt
+      {
+        \scriptsize
+        \hfuzz=100pt
+        \hbadness=100000
+        \hskip-0.3cm
+        \insertsectionnavigation{0.5cm}
+      }
+    \fi
+  \endgroup
+  \if\EqualOption{cover}{sectype}{section}
+    \vskip8.5ex
+  \fi
+  \vfill
+}
+\definesecpage{part}{maxplus}
+\definesecpage{section}{maxplus}
+\definesecpage{subsection}{maxplus}
+
+
+
+\defbeamertemplate*{sectioning block}{max}[1]
+{
+  \usebeamercolor{#1 title}
+  \ifbeamercolorwhite{fg}{#1 title}{\color{bg}}{\color{fg}}
+  \stamptext[.]{\large\csname xjtubeamer@cover@#1number\endcsname}\\
+  \vskip8pt
+  {
+    \usebeamerfont{#1 title}
+    \csname insert#1\endcsname
+    \par
+  }
+}
+\defbeamertemplate*{sectioning page}{max}[1]
+{
+  \vfill
+  \begingroup
+    \centering
+    \def\xjtubeamer@cover@sectype{#1}
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[max]{section}
+      \usebeamertemplate{sectioning block}
+      \vskip16pt
+    \fi
+    \setbeamertemplate{sectioning block}[max]{#1}
+    \usebeamertemplate{sectioning block}
+  \endgroup
+  \vfill
+}
+\definesecpage{part}{max}
+\definesecpage{section}{max}
+\definesecpage{subsection}{max}
+
+
+
+\defbeamertemplate*{sectioning block}{min}[1]{
+  \begin{beamercolorbox}[sep=12pt,right]{#1 title}
+    \usebeamerfont{#1 name}
+    \csname xjtubeamer@cover@#1name\endcsname
+    \par\vskip4pt
+    \usebeamerfont{#1 title}\csname insert#1\endcsname\par
+  \end{beamercolorbox}
+}
+\defbeamertemplate*{sectioning page}{min}[1]{
+  \vfill
+  \vskip 8pt
+  \begingroup
+  \def\xjtubeamer@cover@sectype{#1}
+  \if\EqualOption{cover}{sectype}{part}
+    \begin{beamercolorbox}[sep=16pt,right]{part title}
+      \hfill\usebeamerfont{part name}
+      \xjtubeamer@cover@partname
+      \par\vskip4pt
+      \usebeamerfont{part title}\insertpart\par
+      \hbox to \textwidth{
+        {
+          \usebeamerfont{footline}
+          \setbeamercolor{section in head/foot}{use=palette primary,
+            fg=palette primary.fg,bg=}
+          \let\navwidth\textwidth
+          \advance\navwidth by -32pt
+          \insertsectionnavigationhorizontal{\navwidth}{\hskip0pt plus1filll}{\hskip-.3cm}
+          \hskip11pt
+        }
+      }
+    \end{beamercolorbox}
+  \else
+    \if\EqualOption{cover}{sectype}{subsection}
+      \setbeamertemplate{sectioning block}[min]{section}
+      \usebeamertemplate{sectioning block}
+    \fi
+    \setbeamertemplate{sectioning block}[min]{#1}
+    \usebeamertemplate{sectioning block}
+  \fi
+  \endgroup
+  \vfill
+}
+\definesecpage{part}{min}
+\definesecpage{section}{min}
+\definesecpage{subsection}{min}
+
+
+
+\defbeamertemplate*{part page}{user}[1][]{
+  %
+  % Developer could implement your own part page template here...
+  % or use "my" theme first, then implement your part page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{part page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{part page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{xjtubeamer}\usepackage{mycover}
+  %
+}
+\defbeamertemplate*{section page}{user}[1][]{
+  %
+  % Developer could implement your own section page template here...
+  % or use "my" theme first, then implement your section page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{section page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{section page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{xjtubeamer}\usepackage{mycover}
+  %
+}
+\defbeamertemplate*{subsection page}{user}[1][]{
+  %
+  % Developer could implement your own subsection page template here...
+  % or use "my" theme first, then implement your subsection page
+  % in a different style file mycover.sty with:
+  %    \defbeamertemplate*{subsection page}{<another name>}[1][]{<Your implementation>}
+  %    \setbeamertemplate{subsection page}[<another name>]
+  % and in the main.tex:
+  %    \usetheme[my]{xjtubeamer}\usepackage{mycover}
+  %
+}
+% \endgroup secpage
+
+% \endgroup covers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                    THEME OPTION SETTINGS                  %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>
+\usecolortheme{xjtubeamer}
+\usefonttheme{xjtubeamer}
+\useinnertheme{xjtubeamer}
+\useoutertheme{xjtubeamer}
+\newrobustcmd*\usexjtutheme[2][]{
+  \def\xjtubeamer@userthemeoptions{#1}
+  \def\xjtubeamer@userthemelist{#2}
+  \@for\xjtubeamer@userthemename:=\xjtubeamer@userthemelist\do{
+    \@for\xjtubeamer@userthemeoption:=\xjtubeamer@userthemeoptions\do{
+      \expandafter\def\csname xjtubeamer@\xjtubeamer@userthemename
+        @\xjtubeamer@userthemeoption\endcsname{true}
+    }
+    \def\xjtubeamer@userthemefile{xjtubeamertheme\xjtubeamer@userthemename.ltx}
+    \IfFileExists{\xjtubeamer@userthemefile}{
+      \PackageWarning{\xjtubeamer@userthemename}{
+        Local ltx file is found. For documentation use only. \MessageBreak
+        Move to \getcontribdir{\xjtubeamer@userthemename} for release.
+        Unexpected error in other ltx may occur}
+      \renewcommand{\getcontribdir}[1]{.}
+    }{}
+    \input{\getcontribpath{\xjtubeamer@userthemename}{\xjtubeamer@userthemefile}}
+  }
+}
+
+\endinput
+
+%% EOF: beamerthemexjtubeamer.sty

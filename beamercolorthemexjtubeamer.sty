@@ -1,0 +1,254 @@
+%%
+%%  Copyright 2016-2023 Obster-Y
+%%
+%%  This work may be distributed and/or modified under the
+%%  conditions of the LaTeX Project Public License, either version 1.3
+%%  of this license or (at your option) any later version.
+%%  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%%  and version 1.3 or later is part of all distributions of LaTeX
+%%  version 2005/12/01 or later.
+%%
+%%  This work has the LPPL maintenance status `maintained'.
+%%
+%%  The Current Maintainer of this work is Obster-Y.
+%%
+%%  This work contains source codes from `beamercolorthemesjtubeamer.dtx' devloped
+%%  by sjtuG and distributed under Apache License V2.0
+%%
+%%  This work consists of the files beamercolorthemexjtubeamer.sty.
+%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemexjtubeamer}[2023/05/28 v1.0.0 xjtubeamer color theme]
+
+%%%%%%%%%%%%%
+%% PALETTE %%
+%%%%%%%%%%%%%
+
+%% RED: GRADIENT PALETTE %%
+% \definecolor{xjtuRedPrimary   }{RGB}{200, 22 , 30 }  % #C8161E
+% \definecolor{xjtuRedSecondary }{RGB}{185, 9  , 87 }  % #B90957
+% \definecolor{xjtuRedTertiary  }{RGB}{145, 50 , 122}  % #91327A
+% \definecolor{xjtuRedQuaternary}{RGB}{93 , 70 , 132}  % #5D4684
+%% BLUE: GRADIENT PALETTE %%
+% \definecolor{xjtuBluePrimary   }{RGB}{0  , 78 , 151}  % #004E97
+% \definecolor{xjtuBlueSecondary }{RGB}{0  , 122, 185}  % #007AB9
+% \definecolor{xjtuBlueTertiary  }{RGB}{0  , 162, 187}  % #00A2BB
+% \definecolor{xjtuBlueQuaternary}{RGB}{0  , 198, 162}  % #00C6A2
+
+%% RED: SPOT PALETTE %%
+\definecolor{xjtuRedPrimary}{RGB}{200, 22 , 30 }  % #C8161E
+\definecolor{xjtuRedSecondary}{RGB}{202, 134, 123}  % #CA867B
+\definecolor{xjtuRedTertiary}{RGB}{255, 229, 219}  % #FFE5DB
+\definecolor{xjtuRedQuaternary}{RGB}{90 , 186, 182}  % #5ABAB6
+%% BLUE: SPOT PALETTE %%
+\definecolor{xjtuBluePrimary}{RGB}{0  , 78 , 151}  % #004E97
+\definecolor{xjtuBlueSecondary}{RGB}{83 , 126, 206}  % #537ECE
+\definecolor{xjtuBlueTertiary}{RGB}{229, 240, 255}  % #E5F0FF
+\definecolor{xjtuBlueQuaternary}{RGB}{214, 164, 25 }  % #D6A419
+
+
+%%%%%%%%%%%%
+%% COLORS %%
+%%%%%%%%%%%%
+
+\DefineOption{color}{color}{red}
+\DefineOption{color}{color}{blue}
+\ExecuteOptionsBeamer{red}
+\DefineOption{color}{lum}{light}
+\DefineOption{color}{lum}{dark}
+\ExecuteOptionsBeamer{dark}
+\ProcessOptionsBeamer
+
+\if\EqualOption{color}{color}{red}
+  \colorlet{cprimary}{xjtuRedPrimary}
+  \colorlet{csecondary}{xjtuRedSecondary}
+  \colorlet{ctertiary}{xjtuRedTertiary}
+  \colorlet{cquanternary}{black}
+\else
+  \colorlet{cprimary}{xjtuBluePrimary}
+  \colorlet{csecondary}{xjtuBlueSecondary}
+  \colorlet{ctertiary}{xjtuBlueTertiary}
+  \colorlet{cquanternary}{white}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% STRUCTURE COLORS %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamercolor{structure}{
+  fg=cprimary
+}
+
+\if\EqualOption{color}{lum}{light}
+  \setbeamercolor{palette primary}{
+    bg=white,
+    fg=cprimary,
+  }
+  \setbeamercolor{palette secondary}{
+    bg=white,
+    fg=cprimary!50!csecondary,
+  }
+  \setbeamercolor{palette tertiary}{
+    bg=white,
+    fg=csecondary,
+  }
+\else
+  \setbeamercolor{palette primary}{
+    bg=cprimary,
+    fg=white,
+  }
+  \setbeamercolor{palette secondary}{
+    bg=cprimary!50!csecondary,
+    fg=white,
+  }
+  \setbeamercolor{palette tertiary}{
+    bg=csecondary,
+    fg=white,
+  }
+\fi
+
+\setbeamercolor{background canvas}{
+  bg=white,
+}
+\setbeamercolor{normal text}{
+  fg=black,
+  bg=black!40,
+}
+\setbeamercolor*{block title}{
+  parent=structure,
+}
+\setbeamercolor{titlelike}{
+  fg=cprimary,
+  bg=,
+}
+\setbeamercolor{title}{
+  use={palette primary},
+  fg=palette primary.fg,
+  bg=,
+}
+\setbeamercolor{subtitle}{
+  use={palette secondary},
+  fg=palette secondary.fg,
+  bg=,
+}
+\setbeamercolor{author}{
+  use={palette primary},
+  fg=palette primary.fg,
+  bg=,
+}
+\setbeamercolor{institute}{
+  parent=author,
+}
+\setbeamercolor{date}{
+  parent=author,
+}
+\setbeamercolor{logo}{
+  fg=cprimary,
+  bg=,
+}
+\setbeamercolor{block title}{
+  fg=white,
+  bg=cprimary!90
+}
+\setbeamercolor{block title alerted}{
+  use=alerted text,
+  fg=white,
+  bg=csecondary,
+}
+\setbeamercolor{block title example}{
+  use=example text,
+  fg=cquanternary,
+  bg=ctertiary,
+}
+\setbeamercolor{block body}{
+  parent=normal text,
+  use=block title,
+  bg=block title.bg!15,
+}
+\setbeamercolor{block body alerted}{
+  parent=normal text,
+  use=block title alerted,
+  bg=block title alerted.bg!15,
+}
+\setbeamercolor{block body example}{
+  parent=normal text,
+  use=block title example,
+  bg=block title example.bg!15,
+}
+\setbeamercolor{block body stamp}{
+  bg=,
+}
+\setbeamercolor{footnote}{
+  fg=black,
+  bg=,
+}
+\setbeamercolor{part title}{
+  parent={palette primary},
+}
+\setbeamercolor{section title}{
+  parent={palette secondary},
+}
+\setbeamercolor{subsection title}{
+  parent={palette tertiary},
+}
+\setbeamercolor{section in head/foot}{
+  fg=white,
+  bg=cprimary,
+}
+\setbeamercolor{subsection in head/foot}{
+  fg=cprimary,
+  bg=cprimary!20,
+}
+\setbeamercolor{navigation symbols in head/foot}{
+  fg=white,
+  bg=cprimary!20,
+}
+\setbeamercolor{institute in head/foot}{
+  fg=white,
+  bg=,
+}
+\setbeamercolor{author in head/foot}{
+  fg=white,
+  bg=,
+}
+\setbeamercolor{page number in head/foot}{
+  fg=white,
+  bg=,
+}
+\setbeamercolor{frametitle}{
+  use=titlelike,
+  fg=titlelike.fg,
+  bg=white,
+}
+\setbeamercolor{frametitle right}{
+  parent=subsection in head/foot,
+}
+\setbeamercolor{alerted text}{
+  fg=cprimary,
+}
+\setbeamercolor{bibliography item}{
+  fg=black,
+  bg=,
+}
+\setbeamercolor{bibliography entry author}{
+  fg=black,
+  bg=,
+}
+\setbeamercolor{bibliography entry title}{
+  fg=black,
+  bg=,
+}
+\setbeamercolor{bibliography entry location}{
+  fg=black,
+  bg=,
+}
+\setbeamercolor{bibliography entry note}{
+  fg=black,
+  bg=,
+}
+
+\endinput
+
+%% EOF: beamercolorthemexjtubeamer.sty
