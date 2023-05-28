@@ -8,7 +8,7 @@ $cleanup_mode = 0;
 
 $out_dir = "./Build";
 
-$xelatex = "xelatex -synctex=1 --shell-escape -interaction=nonstopmode %O %S";
+$xelatex = "xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape %O %S";
 $biber = "biber %O %S";
 $xdvipdfmx = 'xdvipdfmx -E -o %D %O %S';
 
