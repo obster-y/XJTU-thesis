@@ -1516,7 +1516,7 @@
 }
 
 \newcommand{\thesisbibname}{}
-\RenewDocumentCommand {\thesisbibliography} { } {
+\RenewDocumentCommand {\thesisbibliography} { o } {
   \renewcommand{\thesisbibname}{参考文献}
   \ifthesis@english
     \renewcommand{\thesisbibname}{References}
@@ -1526,9 +1526,23 @@
   \addcontentsline{toc}{chapter}{参考文献}
   \addcontentsline{toe}{chapter}{References}
   \hypersetup{bookmarksdepth=2}
-%   \nocite{*}
   \printbibliography[heading=bibliography,title=\thesisbibname,keyword={references},resetnumbers=true]
   \pagecheck
+
+  \IfNoValueTF {#1} {
+    \chapter*{\thesisbibname}
+    \chaptermark{\thesisbibname}
+    \input{Main_Miscellaneous/achievement.tex}
+  }{
+    \newpage
+    \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
+    \pdfpagewidth=80cm
+    \pdfpageheight=130cm
+    \newgeometry{top=1in,left=1in,textwidth=70cm,textheight=120cm}
+    \printbibliography[heading=bibliography,title=\thesisbibname,keyword={references},resetnumbers=true]
+    \restoregeometry
+    \hmm
+  }
 }
 
 
