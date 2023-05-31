@@ -1530,9 +1530,6 @@
   \pagecheck
 
   \IfNoValueTF {#1} {
-    \chapter*{\thesisbibname}
-    \chaptermark{\thesisbibname}
-    \input{Main_Miscellaneous/achievement.tex}
   }{
     \newpage
     \edef\hmm{\pdfpagewidth=\the\pdfpagewidth \pdfpageheight=\the\pdfpageheight\relax}
