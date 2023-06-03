@@ -41,7 +41,7 @@
 
 % 学位类型
 % 考虑到专业学位的学位名称的少数特例(如专业型法学硕士不是 Master of Juris 而是 Juris Master)，此处学位类型请按照案例和文件填写
-% 同时为了前向兼容，可选项「A/P」代表「学术/专业」型学位，默认为学术型
+% 同时为了前向兼容，可选项「A/P」（实际必须正确选择）代表「学术/专业」型学位，默认为学术型
 % Type of your degree, Translate it from documents in `Materials/Requirements/2021/01 中英文题名页示例/英文标准翻译/'
 % \degree[A]{硕士}{Master of Engineering} % 学术型(Academic)硕士请基于 '学术学位名称.txt' 填写
 % \degree[P]{工程硕士}{Master of Engineering} % 专业型(Professional)硕士请基于 '专业学位（领域）英文标准翻译.pdf' 填写
@@ -67,6 +67,11 @@
 % \subject{航空宇航科学与技术}{Aeronautical and Astronautical Science and Technology}
 \subject{航空工程}{Aeronautical Engineering}
 
+% 论文提交日期，不输入参数则默认使用当前日期，如手动指明年月，请在第一个可选参数内填写年份，第二个可选参数填写月份（均为阿拉伯数字）
+% Submission date of this thesis, if you not put it manually, it will use the current time
+% \submitdate[2021][06]
+\submitdate
+
 % 答辩委员会委员 显示的顺序和这里的一样 第一个人是主席
 % Committee member of your defence, notice that the order shows in the thesis is same as here, and the first one is the chairperson
 % each member should be put as {Organization,Name,Title} split by comma
@@ -83,11 +88,6 @@
 % 答辩地点（涉密论文请手动设置为「西安交通大学」）
 % Defence location, default value is 「西安交通大学」
 \defenseloc{西安交通大学主楼E座303室}
-
-% 论文提交日期，不输入参数则默认使用当前日期，如手动指明年月，请在第一个可选参数内填写年份，第二个可选参数填写月份（均为阿拉伯数字）
-% Submission date of this thesis, if you not put it manually, it will use the current time
-% \submitdate[2021][06]
-\submitdate
 
 % 常规审阅人 要求和答辩委员会委员一样
 % General reviewer list, same requirements as the committee member
@@ -116,7 +116,6 @@
 % 参考文献源 参数中不要添加 .bib
 % 请使用 \addreferenceresource 添加数据库(可导入多个参考文献数据库)
 % 若自动化导入攻读学位期间的成果则使用 \addachivementresource
-\addreferenceresource{References/reference}
 \addreferenceresource{References/reference}
 \addachivementresource{References/achievement}
 
@@ -164,21 +163,7 @@
 % Glossaries Page, Rewrite your content in Main_Miscellaneous/glossary.tex
 \thesisglossarylist
 
-% 正文 注意英文正文写作时，中、英标题还是先中后英标题；同时，下面参数的顺序有意义，不要乱放
-% Main contents, X of cX is the chapter of the thesis, you can change it if you want, the order matters
-% and KEEP Chinese Title as the FIRST argument, English Titile as the SECOND, if you use `english' option
-
-% 可以通过 \thesisbody 直接导入各部分正文，但也可通过 \thesisbodybegin & \include & \thesisbodyend 组合导入正文
-
-% \thesisbody{
-%     Main_Spine/c1,
-%     Main_Spine/c2,
-%     Main_Spine/c3,
-%     Main_Spine/c4,
-%     Main_Spine/c5,
-%     Main_Spine/c6
-% }
-
+% 正文 使用 \thesisbodybegin & \include & \thesisbodyend 组合导入正文
 \thesisbodybegin
 \include{Main_Spine/c1}
 \include{Main_Spine/c2}
@@ -192,16 +177,17 @@
 % Acknowledgement, Rewrite your content in Main_Miscellaneous/acknowledegment.tex
 \thesisacknowledegment
 
-% [自动生成] 参考文献 默认使用 References/reference.bib，手动指定请在导言区 \addbibresource 处指定
-%                     任意可选参数会在参考文献后生成一个非常大的页面显示所有参考文献条目，可以直接复制粘贴到学位论文提交系统中
+% [自动生成] 参考文献
+%    默认使用 References/reference.bib，手动指定请在导言区 \addbibresource 处指定数据库。
+%    任意可选参数会在参考文献后生成一个非常大的页面显示所有参考文献条目，可以直接复制粘贴到学位论文提交系统中
 % [Auto Generate] Bibliography, Default file is References/reference.bib, change argument in \addbibresource for manual specification
 \thesisbibliography
 % \thesisbibliography[onepage]
 
 % 附录（有几个附录就导入几个文件（不加.tex后缀）），
 % Appendi(x/ies), argument should not have the .tex suffix
-\thesisappendix{Main_Miscellaneous/appendix_a,
-                Main_Miscellaneous/appendix_b}
+% \thesisappendix{Main_Miscellaneous/appendix_a,
+%                 Main_Miscellaneous/appendix_b}
 
 % 攻读学位期间取得的研究成果
 % 添加 [auto] 参数则读取通过 \addachivementresource 添加的数据库，否则读取 Main_Miscellaneous/achievement.tex 的内容 注意盲审时需要手动修改格式
