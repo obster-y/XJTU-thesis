@@ -18,7 +18,7 @@ This project is an official (LaTeX) template for Xi'an Jiaotong University degre
 ///
 The content of these links will be updated while keep links unchanged, this template now using the requirement released on May 8th 2021.
 
-## 更新记录 / Update Log
+## 更新记录 / Updating Logs
 
 - 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
 - 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
@@ -42,6 +42,6 @@ The content of these links will be updated while keep links unchanged, this temp
   - 本项目在 Github 的 [Wiki](https://github.com/obster-y/XJTU-thesis/wiki)
   - `main.tex` 中的说明
   - 自己编译工程生成的 `main.pdf`(变相的使用手册)
-  - 旧版的 使用说明.pdf 已不完全适用，所有内容以 Wiki 和 示例代码为准
+  - 之前的「使用说明.pdf」已不完全适用，所有内容以 [Wiki](https://github.com/obster-y/XJTU-thesis/wiki) 和 示例代码为准
 - Word 模板已移至新项目 [XJTU-thesis-office](https://github.com/obster-y/XJTU-thesis-office)，具体使用请查看该仓库
 - 如果对模板使用或格式有相关问题，请确保认真阅读完 [如何提问](https://github.com/obster-y/XJTU-thesis/wiki/%E5%A6%82%E4%BD%95%E6%8F%90%E9%97%AE) 后再提交 Issue 或 PR
