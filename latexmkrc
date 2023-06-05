@@ -32,4 +32,4 @@ push @generated_exts, 'glo', 'gls', 'glg';
 push @generated_exts, 'acn', 'acr', 'alg';
 push @generated_exts, 'synctex.gz';
 
-$clean_ext = 'acn acr alg aux bbl bcf blg brf fdb_latexmk glg glo gls hd idx ilg ind ist lof log lot out run.xml thm toc toe dvi slg slo sls xdv xdy listing'
+$clean_ext = 'acn acr alg aux bbl bcf blg brf fdb_latexmk fls glg glo gls hd idx ilg ind ist lof log lot nav out run.xml thm toc toe dvi slg slo sls snm xdv xdy listing'

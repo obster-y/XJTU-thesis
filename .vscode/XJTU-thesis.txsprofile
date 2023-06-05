@@ -1,0 +1,11 @@
+[texmaker]
+Tools\Commands\user0=latexmk -r latexmkrc %
+Tools\Commands\user1="xelatex -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape --output-directory=Build %"
+Tools\Log%20Paths=Build/
+Tools\PDF%20Paths=Build/
+Tools\Display%20Names=latexmk, xelatex
+Tools\User%20Order=user0, user1
+ToolsToolBar=main/tools/quickbuild, main/tools/compile, main/tools/stopcompile, main/tools/view, main/tools/viewlog, main/tools/user/cmd0, main/tools/user/cmd1, main/tools/clean
+CleanDialog\Extensions="acn,acr,alg,aux,bbl,bcf,blg,brf,fdb_latexmk,fls,glg,glo,gls,hd,idx,ilg,ind,ist,lof,log,lot,nav,out,run.xml,thm,toc,toe,dvi,slg,slo,sls,snm,xdv,xdy,listing"
+CleanDialog\Scope=3
+Spell\Language=<none>
