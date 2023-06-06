@@ -37,16 +37,39 @@
 \setbeamerfont{subsection name}{size=\normalsize}
 \setbeamerfont{footnote}{size=\scriptsize}
 
-% \newfontfamily{\heiti}{FZHei-B01S}
-% \newfontfamily{\songti}{FZShuSong-Z01S}
-\newfontfamily{\kaiti}{STKaiti}
-\setCJKmainfont[AutoFakeBold=true]{FZShuSong-Z01S}
-% \setCJKsansfont[AutoFakeBold=false]{FZHei-B01S}
-\setCJKsansfont[AutoFakeBold=false]{Source Han Sans SC}
-\setmainfont{XITS}
-\setsansfont{XITS}
-\setmathfont{Latin Modern Math}
-\setmathfont[version=bold,FakeBold={5}]{Latin Modern Math}
+\RequirePackage{ifplatform}
+\ifwindows
+  \setCJKmainfont[AutoFakeBold=true]{SimSun}
+  \setCJKsansfont[AutoFakeBold=false]{SimHei}
+  \newfontfamily{\kaiti}{STKaiti}
+  \setmainfont{XITS}
+  \setsansfont{XITS}
+  \setmathfont{XITS Math}
+  \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+\else
+  \ifmacosx
+    \setCJKmainfont[AutoFakeBold=true]{Songti SC}
+    \setCJKsansfont[AutoFakeBold=false]{Heiti SC}
+    \newfontfamily{\kaiti}{Kaiti SC}
+    \setmainfont{XITS}
+    \setsansfont{XITS}
+    \setmathfont{XITS Math}
+    \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+  \else
+    % 若使用方正字体需要自行下载并配置路径
+    % \setCJKmainfont[AutoFakeBold=true,Path=/usr/local/share/fonts/]{fzsong.ttf}
+    % \setCJKsansfont[AutoFakeBold=false,Path=/usr/local/share/fonts/]{fzhei.ttf}
+    % \newfontfamily{\kaiti}{STKaiti}
+    \setCJKmainfont[AutoFakeBold=true]{FandolSong}
+    \setCJKsansfont[AutoFakeBold=false]{Source Han Sans SC}
+    \setmainfont{XITS}
+    \setsansfont{XITS}
+    \setmathfont{XITS Math}
+    \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+  \fi
+\fi
+
+
 
 \endinput
 
