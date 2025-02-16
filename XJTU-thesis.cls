@@ -407,7 +407,10 @@
 \newcommand{\stuid}[1]{
   \renewcommand{\zh@thestuid}{#1}
 }
-\newcommand\monthnametwod[1]{\ifnum #1 < 10 0\fi #1}
+\newcommand\monthnametwod[1]{ %
+  \ifnum \numexpr#1\relax < 10 0\fi % 如果月份小于 10，补 0
+  \number\numexpr#1\relax
+}
 
 \newcommand{\monthname}[1]{
 \ifcase#1 \or January \or February \or March \or April \or May \or June
