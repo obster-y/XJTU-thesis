@@ -371,8 +371,8 @@
   \renewcommand{\en@theauthor}{#2}
 }
 \newcommand{\advisor}[4]{
-  \renewcommand{\zh@theadvisor}{#1 #2}
-  \renewcommand{\en@theadvisor}{#4 #3}
+  \renewcommand{\zh@theadvisor}{#1~#2}
+  \renewcommand{\en@theadvisor}{#4~#3}
 }
 \newcommand{\advisorassociate}[4]{
   \renewcommand{\zh@theadvisorassociate}{#1 #2}
