@@ -37,7 +37,7 @@ The content of these links will be updated while keep links unchanged, this temp
 - 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用
 - 本项目需要不低于 TeXLive 2023 的 TeX 发行版
 - 本项目只提供多文档结构的模板
-- 请优先使用 dev 分支，本项目将保持 master 分支与研究生院网站上的版本一致，dev 则分支保持基本内容同研究生院版本一致但开发新功能，请注意区分
+- 请优先使用 dev 分支，本项目将保持 master 分支与研究生院网站上的版本一致，dev 分支则保持基本内容同研究生院版本一致但开发新功能，请注意区分
 - 请在使用前完整阅读：
   - 本项目在 Github 的 [Wiki](https://github.com/obster-y/XJTU-thesis/wiki)
   - `main.tex` 中的说明
