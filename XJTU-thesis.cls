@@ -1752,7 +1752,12 @@
   \addcontentsline{toc}{chapter}{常规评阅人名单}
   \addcontentsline{toe}{chapter}{General Reviewers List}
   \hypersetup{bookmarksdepth=2}
-  本学位论文共接受 #1 位专家评阅，其中常规评阅人 #2 名，名单如下：
+  本学位论文共接受 #1 位专家评阅，其中常规评阅人 #2 名
+  \ifnum#2=0
+    。
+  \else
+    ，名单如下：
+  \fi：
   \ifthesis@blind\else
     \renewcommand{\arraystretch}{1.5}
     \begin{table}[H]
