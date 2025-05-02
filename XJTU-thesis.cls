@@ -1757,7 +1757,7 @@
     。
   \else
     ，名单如下：
-  \fi：
+  \fi
   \ifthesis@blind\else
     \renewcommand{\arraystretch}{1.5}
     \begin{table}[H]
