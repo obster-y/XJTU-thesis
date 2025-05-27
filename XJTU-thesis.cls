@@ -772,6 +772,7 @@
 }
 \AtBeginEnvironment{table}{
   \def\@floatboxreset{\centering}
+  \wuhao                                         % 设置表格字体为五号，与word模板对应
 }
 \AtBeginEnvironment{tblr}{\wuhao}
 \AtBeginEnvironment{longtblr}{\wuhao}
@@ -1145,7 +1146,8 @@
   \markboth{ABSTRACT}{ABSTRACT}
   \setlength{\parindent}{0em}
   \setstretch{1.2}
-  \setlength{\parskip}{10pt}
+  % \setlength{\parskip}{10pt}
+  \setlength{\parskip}{1\baselineskip}               %英文摘要段落间需要空一行，与word模板对应
 }{}
 
 \newcommand{\keywordswithtype}[4]{
@@ -1501,7 +1503,9 @@
 %   \end{spacing}
 % }{}{}
 
-\RequirePackage[hyperref=true,backend=biber,defernumbers=true,style=gb7714-2015,gbalign=left,gbpub=false]{biblatex}
+% \RequirePackage[hyperref=true,backend=biber,defernumbers=true,style=gb7714-2015,gbalign=left,gbpub=false]{biblatex}
+\RequirePackage[hyperref=true,backend=biber,defernumbers=true,style=gb7714-2015,gbalign=left,gbpub=false,gbnamefmt=lowercase]{biblatex}           %参考文献作者姓名大小写格式与word版本对齐，为首字母大写而非全部大写
+
 \renewcommand{\bibfont}{\zihao{5}}
 \setlength{\bibitemsep}{0ex}
 \setlength{\bibnamesep}{0ex}
