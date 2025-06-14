@@ -56,6 +56,7 @@
 \newif\ifthesis@blind         \thesis@blindfalse
 \newif\ifthesis@english       \thesis@englishfalse
 \newif\ifthesis@plgck         \thesis@plgckfalse
+\newif\ifthesis@fancyemptypage  \thesis@fancyemptypagefalse
 % \newif\ifthesis@pdflinks      \thesis@pdflinksfalse
 % \newif\ifthesis@colorlinks    \thesis@colorlinksfalse
 
@@ -66,6 +67,7 @@
 \DeclareOption{blind}       {\thesis@blindtrue}
 \DeclareOption{english}     {\thesis@englishtrue}
 \DeclareOption{plgck}       {\thesis@plgcktrue}
+\DeclareOption{fancyemptypage}       {\thesis@fancyemptypagetrue}
 
 \DeclareOption*{%
   \PassOptionsToClass{\CurrentOption}{book}
@@ -213,7 +215,9 @@
 %%% PAGE %%%
 %%% 页面 %%%
 \RequirePackage{ifoddpage}
-\RequirePackage{emptypage}
+\unless\ifthesis@fancyemptypage
+  \RequirePackage{emptypage}
+\fi
 \RequirePackage{pdfpages}
 
 % 根据图书馆要求，电子版纸质版完全对应。要求标题页，答辩委员会，摘要，目录，主要符号表，第一章，不论如何都应从奇数页开始；之后所有页面不在区分奇偶页。声明页不编号，单独附在最后。
@@ -991,7 +995,8 @@
       \zh@thesubmitdate\\
     \end{spacing}
   \end{center}
-  \cleardoublepage
+  \begingroup\pagestyle{empty}\cleardoublepage\endgroup
+  % \cleardoublepage
   \thispagestyle{empty}
   \ifthesis@english
     \pdfbookmark{Title Page (English)}{Title Page (English)}
@@ -1019,7 +1024,8 @@
       \en@thesubmitdate\\
     \end{spacing}
   \end{center}
-  \cleardoublepage
+  \begingroup\pagestyle{empty}\cleardoublepage\endgroup
+  % \cleardoublepage
 }
 \fi
 
@@ -1119,7 +1125,8 @@
   \begin{center}
     \defencecommittelist
   \end{center}
-  \cleardoublepage
+  \begingroup\pagestyle{empty}\cleardoublepage\endgroup
+  % \cleardoublepage
 }
 \fi
 
