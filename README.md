@@ -4,7 +4,7 @@
 [![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
 [![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
 
-[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的官方模板（提供 LaTeX 提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求。
+[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的~官方~模板（提供 LaTeX 提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求。
 ///
 This project is an official (LaTeX) template for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
 
@@ -17,6 +17,12 @@ This project is an official (LaTeX) template for Xi'an Jiaotong University degre
 此链接的页面内容会更新，但链接不变，目前基于的版本是 2021 年 5 月 8 日 发布的模板与要求。
 ///
 The content of these links will be updated while keep links unchanged, this template now using the requirement released on May 8th 2021.
+
+## 通知 / Notifications
+
+学位办/研究生院在2025年发布了新的论文模板，这次更新修改的内容，**不来源**于本仓库，本项目暂时没有继续跟进这次修改计划，同时建议根据学校新的要求完成论文排版。
+
+如果有同学愿意加入维护模板的计划，可以联系我加入项目。
 
 ## 更新记录 / Updating Logs
 
